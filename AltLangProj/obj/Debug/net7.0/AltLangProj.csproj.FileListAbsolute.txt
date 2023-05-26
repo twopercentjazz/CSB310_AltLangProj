@@ -1,0 +1,15 @@
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\AltLangProj.exe
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\AltLangProj.deps.json
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\AltLangProj.runtimeconfig.json
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\AltLangProj.dll
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\AltLangProj.pdb
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\AltLangProj.csproj.AssemblyReference.cache
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\AltLangProj.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\AltLangProj.AssemblyInfoInputs.cache
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\AltLangProj.AssemblyInfo.cs
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\AltLangProj.csproj.CoreCompileInputs.cache
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\AltLangProj.dll
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\refint\AltLangProj.dll
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\AltLangProj.pdb
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\AltLangProj.genruntimeconfig.cache
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\ref\AltLangProj.dll
