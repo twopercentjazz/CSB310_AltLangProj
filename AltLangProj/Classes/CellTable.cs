@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Data.Common;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace AltLangProj.Classes;
@@ -47,7 +48,130 @@ public class CellTable
         Console.WriteLine(toString());
     }
 
+    public void printRecord(int id)
+    {
+        Console.WriteLine(recordString(getRecordsMap().get_cell_table()[id]));
+    }
+
+    public void printMultipleRecords(int[] idList)
+    {
+        Cell[] temp = new Cell[idList.Length];
+        int i = 0;
+        foreach (int id in idList)
+        {
+            temp[i] = getRecordsMap().get_cell_table()[id];
+            i++;
+        }
+        Console.WriteLine(multiRecordString(temp));
+    }
+
+    public void printCustomString(int id, string[] field)
+    {
+        Console.WriteLine(customRecordString(getRecordsMap().get_cell_table()[id], field));
+    }
+
+    public void printCustomMultipleRecords(int[] idList, string[] fields)
+    {
+        Cell[] temp = new Cell[idList.Length];
+        int i = 0;
+        foreach (int id in idList)
+        {
+            temp[i] = getRecordsMap().get_cell_table()[id];
+            i++;
+        }
+        Console.WriteLine(customMultiRecordString(temp, fields));
+    }
+
     public String toString()
+    {
+        string temp = defaultFieldsString();
+        foreach (Cell record in this.recordsMap.get_cell_table().Values)
+        {
+            for (int i = 0; i < recordsMap.get_field_titles().Count - 2; i++)
+            {
+                if (recordsMap.get_field_titles()[i] != "year_of_launch" && recordsMap.get_field_titles()[i] != "features_sensors_count")
+                {
+                    temp += elementString(i, record);
+                }
+            }
+            temp += "\n";
+            temp += getRecordsMap().tableBorder(getRecordsMap().headersToString());
+        }
+        return temp;
+    }
+
+    public string recordString(Cell record)
+    {
+        string temp = defaultFieldsString();
+        for (int i = 0; i < recordsMap.get_field_titles().Count - 2; i++)
+        {
+            if (recordsMap.get_field_titles()[i] != "year_of_launch" && recordsMap.get_field_titles()[i] != "features_sensors_count")
+            {
+                temp += elementString(i, record);
+            }
+        }
+        temp += "\n";
+        temp += getRecordsMap().tableBorder(getRecordsMap().headersToString());
+        return temp;
+    }
+
+    public string customRecordString(Cell record, string[] fields)
+    {
+        string temp = "";
+        string border = getRecordsMap().tableBorder(getRecordsMap().customHeadersToString(fields));
+        string headers = getRecordsMap().customHeadersToString(fields);
+        temp += border + "\n";
+        temp += headers + "\n";
+        temp += border + "\n";
+        foreach (string field in fields)
+        {
+            temp += elementString(getRecordsMap().get_field_titles().IndexOf(field), record);
+        }
+        temp += "\n";
+        temp += border;
+        return temp;
+    }
+
+    public string customMultiRecordString(Cell[] records, string[] fields)
+    {
+        string temp = "";
+        string border = getRecordsMap().tableBorder(getRecordsMap().customHeadersToString(fields));
+        string headers = getRecordsMap().customHeadersToString(fields);
+        temp += border + "\n";
+        temp += headers + "\n";
+        temp += border + "\n";
+        foreach (Cell record in records)
+        {
+            foreach (string field in fields)
+            {
+                temp += elementString(getRecordsMap().get_field_titles().IndexOf(field), record);
+                
+            }
+            temp += "\n";
+            temp += border + "\n";
+        }
+        return temp;
+    }
+
+    public string multiRecordString(Cell[] records)
+    {
+        string temp = defaultFieldsString();
+        foreach (Cell record in records)
+        {
+            for (int i = 0; i < recordsMap.get_field_titles().Count - 2; i++)
+            {
+                if (recordsMap.get_field_titles()[i] != "year_of_launch" && recordsMap.get_field_titles()[i] != "features_sensors_count")
+                {
+                    temp += elementString(i, record);
+                }
+            }
+            temp += "\n";
+            temp += getRecordsMap().tableBorder(getRecordsMap().headersToString());
+        }
+        return temp;
+    }
+
+    public string defaultFieldsString()
     {
         string temp = "";
         string border = getRecordsMap().tableBorder(getRecordsMap().headersToString());
@@ -55,23 +179,10 @@ public class CellTable
         temp += border;
         temp += headers + "\n";
         temp += border;
-        foreach (Cell record in this.recordsMap.get_cell_table().Values)
-        {
-            for (int i = 0; i < recordsMap.get_field_titles().Count - 2; i++)
-            {
-                if (recordsMap.get_field_titles()[i] != "year_of_launch" && recordsMap.get_field_titles()[i] != "features_sensors_count")
-                {
-                    temp += recordString(i, record);
-                }
-                
-            }
-            temp += "\n";
-            temp += border;
-        }
         return temp;
     }
 
-    public string recordString(int column, Cell row)
+    public string elementString(int column, Cell row)
     {
         string temp = "";
         if (column == 0)

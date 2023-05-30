@@ -56,60 +56,76 @@ public class CellRecords
         {
             if (title != "year_of_launch" && title != "features_sensors_count")
             {
-                if (title == get_field_titles()[0])
-                {
-                    temp += String.Format("{0,-5}", title);
-                }
-                if (title == get_field_titles()[1])
-                {
-                    temp += String.Format("{0,-14}", title);
-                }
-                if (title == get_field_titles()[2])
-                {
-                    temp += String.Format("{0,-26}", title);
-                }
-                if (title == get_field_titles()[3])
-                {
-                    temp += String.Format("{0,-17}", title);
-                }
-                if (title == get_field_titles()[4])
-                {
-                    temp += String.Format("{0,-14}", title);
-                }
-                if (title == get_field_titles()[5])
-                {
-                    temp += String.Format("{0,-25}", title);
-                }
-                if (title == get_field_titles()[6])
-                {
-                    temp += String.Format("{0,-12}", title);
-                }
-                if (title == get_field_titles()[7])
-                {
-                    temp += String.Format("{0,-17}", title);
-                }
-                if (title == get_field_titles()[8])
-                {
-                    temp += String.Format("{0,-25}", title);
-                }
-                if (title == get_field_titles()[9])
-                {
-                    temp += String.Format("{0,-13}", title);
-                }
-                if (title == get_field_titles()[10])
-                {
-                    temp += String.Format("{0,-19}", title);
-                }
-                if (title == get_field_titles()[11])
-                {
-                    temp += String.Format("{0,-17}", title);
-                }
-                if (title == get_field_titles()[12])
-                {
-                    temp += String.Format("{0,-32}", title);
-                }
+                temp += titleString(title);
             }
+        }
+        return temp;
+    }
 
+    public string customHeadersToString(string[] headersList)
+    {
+        string temp = "";
+        foreach (string header in headersList)
+        {
+            temp += titleString(header);
+        }
+        return temp;
+    }
+
+    public string titleString(string title)
+    {
+        string temp = "";
+        if (title == get_field_titles()[0])
+        {
+            temp += String.Format("{0,-5}", title);
+        }
+        if (title == get_field_titles()[1])
+        {
+            temp += String.Format("{0,-14}", title);
+        }
+        if (title == get_field_titles()[2])
+        {
+            temp += String.Format("{0,-26}", title);
+        }
+        if (title == get_field_titles()[3])
+        {
+            temp += String.Format("{0,-17}", title);
+        }
+        if (title == get_field_titles()[4])
+        {
+            temp += String.Format("{0,-14}", title);
+        }
+        if (title == get_field_titles()[5])
+        {
+            temp += String.Format("{0,-25}", title);
+        }
+        if (title == get_field_titles()[6])
+        {
+            temp += String.Format("{0,-12}", title);
+        }
+        if (title == get_field_titles()[7])
+        {
+            temp += String.Format("{0,-17}", title);
+        }
+        if (title == get_field_titles()[8])
+        {
+            temp += String.Format("{0,-25}", title);
+        }
+        if (title == get_field_titles()[9])
+        {
+            temp += String.Format("{0,-13}", title);
+        }
+        if (title == get_field_titles()[10])
+        {
+            temp += String.Format("{0,-19}", title);
+        }
+        if (title == get_field_titles()[11])
+        {
+            temp += String.Format("{0,-17}", title);
+        }
+        if (title == get_field_titles()[12])
+        {
+            temp += String.Format("{0,-32}", title);
         }
         return temp;
     }

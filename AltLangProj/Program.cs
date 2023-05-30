@@ -51,7 +51,26 @@ foreach (var item in test.get_cell_id())
 
 CellTable cell = new CellTable(@"Input\cells.csv");
 
-cell.printCellTable();
+
+
+//cell.printCellTable();
+
+
+//cell.printRecord(1);
+//Console.WriteLine();
+//cell.printRecord(500);
+//Console.WriteLine();
+//cell.printRecord(1000);
+//Console.WriteLine();
+
+
+//cell.printMultipleRecords(new int[] {1, 500, 1000});
+
+//cell.printCustomString(1, new string[] { "id", "model", "oem" });
+
+cell.printCustomMultipleRecords(new int[] { 1, 500, 1000 }, new string[] { "id", "platform_os", "oem" });
+
+
 Console.ReadKey();
 
 
