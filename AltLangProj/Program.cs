@@ -1,14 +1,65 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
+using AltLangProj.Classes;
+using System;
+
+//ParseCsvFile temp = new ParseCsvFile(@"Input\cells.csv");
+
+//Console.WriteLine(temp.getRowData().Count);
+//Console.WriteLine(temp.getRowData()[0].Count);
+//Console.WriteLine(temp.getColumnData().Count);
+//Console.WriteLine(temp.getColumnData()[0].Count);
 
 
-//Console.WriteLine(c);
-//Console.ReadKey();
+//CleanCellData clean = new CleanCellData(temp.getColumnData(), temp.getRowData()[0]);
+
+//Console.WriteLine(clean.getCleanColumnData().Count);
+//Console.WriteLine(clean.getCleanColumnData()[2][3] == null);
+//Console.WriteLine(clean.getCleanColumnData()[2][886]);
+
+//CellFields test = new CellFields(clean.getCleanColumnData(), temp.getRowData());
 
 
-static void main(String[] args)
-{
+/*
+int count = 2;
+Console.WriteLine(test.get_initial_fields()[0]);
+foreach (var item in test.get_cell_id())
+{   Console.Write(count + " ");
+    if (item == null)
+    {
+        Console.Write("null");
+    }
+    else
+    {
+        Console.Write(item);
+    }
+    Console.WriteLine();
+    count++;
 
 }
+*/
+
+
+
+
+
+
+
+
+
+
+CellTable cell = new CellTable(@"Input\cells.csv");
+
+cell.printCellTable();
+Console.ReadKey();
+
+
+
+
+
+
+
+
+
 
