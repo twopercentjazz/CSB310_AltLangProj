@@ -3,6 +3,7 @@
 
 using AltLangProj.Classes;
 using System;
+using System.Collections.Generic;
 
 //ParseCsvFile temp = new ParseCsvFile(@"Input\cells.csv");
 
@@ -68,7 +69,24 @@ CellTable cell = new CellTable(@"Input\cells.csv");
 
 //cell.printCustomString(1, new string[] { "id", "model", "oem" });
 
-cell.printCustomMultipleRecords(new int[] { 1, 500, 1000 }, new string[] { "id", "platform_os", "oem" });
+//cell.printCustomMultipleRecords(new int[] { 1, 500, 1000 }, new string[] { "id", "platform_os", "oem" });
+
+//cell.deleteRecord(5);
+
+cell.addRecord(null, null, null, "poop", null, null, null, null, null, null, "a,b,c", null);
+
+foreach (int? VARIABLE in cell.getFieldsMap().get_year_of_launch())
+{
+    if (VARIABLE == null)
+    {
+        Console.WriteLine("null");
+    }
+    else
+    {
+        Console.WriteLine(VARIABLE);
+    }
+    
+}
 
 
 Console.ReadKey();

@@ -8,6 +8,7 @@ public class CellTable
 {
     private CellRecords recordsMap;
     private CellFields fieldsMap;
+    private int nextId;
 
 
     public CellTable(string filePath)
@@ -18,6 +19,7 @@ public class CellTable
         CellRecords records = new CellRecords(fields);
         this.recordsMap = records;
         this.fieldsMap = fields;
+        this.nextId = getRecordsMap().get_cell_table().Count + 1;
     }
 
 
@@ -39,6 +41,21 @@ public class CellTable
     public void setFieldsMap(CellFields fieldsMap)
     {
         this.fieldsMap = fieldsMap;
+    }
+
+    public int getNextId()
+    {
+        return this.nextId;
+    }
+
+    public void setNextId(int nextId)
+    {
+        this.nextId = nextId;
+    }
+
+    public void incrementNextId()
+    {
+        this.nextId++;
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -332,7 +349,199 @@ public class CellTable
         return temp;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////
 
+
+    public void deleteRecord(int id)
+    {
+        deleteRecordFromRecordMap(id);
+        deleteRecordFromFieldMap(id);
+    }
+
+    private void deleteRecordFromRecordMap(int id)
+    {
+        getRecordsMap().get_cell_table().Remove(id);
+    }
+
+    private void deleteRecordFromFieldMap(int id)
+    {
+        int idIndex = getFieldsMap().get_id().IndexOf(id);
+        foreach (string title in getFieldsMap().get_field_titles())
+        {
+            if (title == "id")
+            {
+                List<int> temp = (List<int>)getFieldsMap().get_cell_table()[title];
+                temp.RemoveAt(idIndex);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "launch_announced" || title == "year_of_launch" || title == "features_sensors_count")
+            {
+                List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()[title];
+                temp.RemoveAt(idIndex);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "body_weight" || title == "display_size")
+            {
+                List<double?> temp = (List<double?>)getFieldsMap().get_cell_table()[title];
+                temp.RemoveAt(idIndex);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else
+            {
+                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                temp.RemoveAt(idIndex);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            
+
+
+
+        }
+    }
+
+    public void addRecord(string oem, string model, int? launch_announced, string launch_status, string body_dimensions,
+        double? body_weight, string body_sim, string display_type, double? display_size, string display_resolution,
+        string features_sensors, string platform_os)
+    {
+        addRecordToRecordMap(oem, model, launch_announced, launch_status, body_dimensions,
+            body_weight, body_sim, display_type, display_size, display_resolution, features_sensors, platform_os);
+        addRecordToFieldMap(oem, model, launch_announced, launch_status, body_dimensions,
+            body_weight, body_sim, display_type, display_size, display_resolution, features_sensors, platform_os);
+        incrementNextId();
+    }
+
+    private void addRecordToRecordMap(string oem, string model, int? launch_announced, string launch_status, string body_dimensions,
+        double? body_weight, string body_sim, string display_type, double? display_size, string display_resolution,
+        string features_sensors, string platform_os)
+    {
+        int? features_sensors_count;
+        if (features_sensors != null)
+        {
+            features_sensors_count = features_sensors.Split(",").ToList().Count;
+        }
+        else
+        {
+            features_sensors_count = null;
+        }
+        getRecordsMap().get_cell_table().Add(getNextId(), new Cell(getNextId(),oem,model,launch_announced,launch_status,body_dimensions,
+            body_weight,body_sim,display_type,display_size,display_resolution,features_sensors_count,platform_os,getRecordsMap().get_field_titles()));
+    }
+
+    private void addRecordToFieldMap(string oem, string model, int? launch_announced, string launch_status, string body_dimensions,
+        double? body_weight, string body_sim, string display_type, double? display_size, string display_resolution,
+        string features_sensors, string platform_os)
+    {
+        foreach (string title in getFieldsMap().get_field_titles())
+        {
+            if (title == "id")
+            {
+                List<int> temp = (List<int>)getFieldsMap().get_cell_table()[title];
+                temp.Add(getNextId());
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "oem")
+            {
+                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                temp.Add(oem);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "model")
+            {
+                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                temp.Add(model);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "launch_announced")
+            {
+                List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()[title];
+                temp.Add(launch_announced);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "launch_status")
+            {
+                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                temp.Add(launch_status);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "body_dimensions")
+            {
+                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                temp.Add(body_dimensions);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "body_weight")
+            {
+                List<double?> temp = (List<double?>)getFieldsMap().get_cell_table()[title];
+                temp.Add(body_weight);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "body_sim")
+            {
+                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                temp.Add(body_sim);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "display_type")
+            {
+                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                temp.Add(display_type);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "display_size")
+            {
+                List<double?> temp = (List<double?>)getFieldsMap().get_cell_table()[title];
+                temp.Add(display_size);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "display_resolution")
+            {
+                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                temp.Add(display_resolution);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "features_sensors")
+            {
+                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                temp.Add(features_sensors);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "platform_os")
+            {
+                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                temp.Add(platform_os);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "features_sensors_count")
+            {
+                int? features_sensors_count;
+                if (features_sensors != null)
+                {
+                    features_sensors_count = features_sensors.Split(",").ToList().Count;
+                }
+                else
+                {
+                    features_sensors_count = null;
+                }
+                List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()[title];
+                temp.Add(features_sensors_count);
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+            else if (title == "year_of_launch")
+            {
+                List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()[title];
+                int i = 0;
+                if (int.TryParse(launch_status,out i))
+                {
+                    temp.Add(int.Parse(launch_status));
+                }
+                else
+                {
+                    temp.Add(null);
+                }
+                getFieldsMap().get_cell_table()[title] = temp;
+            }
+        }
+    }
 
 
 
