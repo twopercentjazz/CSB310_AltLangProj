@@ -545,4 +545,185 @@ public class CellTable
 
 
 
+    
+    //////////////////////////////////////////////////////////////////////////////////////////
+    
+
+
+
+    private double calcAvg(List<double?> nums)
+    {
+        double sum = 0;
+        int count = 0;
+        foreach (double? num in nums)
+        {
+            if (num != null)
+            {
+                sum += (double)num;
+                count++;
+            }
+        }
+        return sum / count;
+    }
+
+    private double calcMedian(List<double?> nums)
+    {
+        List<double> temp = new List<double>();
+        foreach (double? num in nums)
+        {
+            if (num != null)
+            {
+                temp.Add((double)num);
+            }
+        }
+        temp.Sort();
+        return temp[temp.Count / 2];
+    }
+
+    private double calcMode(List<double?> nums)
+    {
+        Dictionary<double,int> temp = new Dictionary<double, int>();
+        foreach (double? num in nums)
+        {
+            if (num != null)
+            {
+                if (temp.ContainsKey((double)num))
+                {
+                    temp[(double)num]++;
+                }
+                else
+                {
+                    temp.Add((double)num, 1);
+                }
+                
+            }
+        }
+
+        return temp.Aggregate((x, y) => 
+            x.Value > y.Value ? x : y).Key;
+    }
+
+    private string calcMode(List<string> elements)
+    {
+        Dictionary<string, int> temp = new Dictionary<string, int>();
+        foreach (string element in elements)
+        {
+            if (element != null)
+            {
+                if (temp.ContainsKey(element))
+                {
+                    temp[element]++;
+                }
+                else
+                {
+                    temp.Add(element, 1);
+                }
+
+            }
+        }
+
+        return temp.Aggregate((x, y) =>
+            x.Value > y.Value ? x : y).Key;
+    }
+
+
+
+    public double getAvgBodyWeight()
+    {
+        return calcAvg(getFieldsMap().get_body_weight());
+    }
+
+    public double getAvgDisplaySize()
+    {
+        return calcAvg(getFieldsMap().get_display_size());
+    }
+
+    public double getAvgFeaturesSensorsCount()
+    {
+        List<double?> temp = getFieldsMap().get_features_sensors_count().ConvertAll(x => (double?)x);
+        return calcAvg(temp);
+    }
+
+    public double getMedianBodyWeight()
+    {
+        return calcMedian(getFieldsMap().get_body_weight());
+    }
+
+    public double getMedianDisplaySize()
+    {
+        return calcMedian(getFieldsMap().get_display_size());
+    }
+
+    public double getMedianFeaturesSensorsCount()
+    {
+        List<double?> temp = getFieldsMap().get_features_sensors_count().ConvertAll(x => (double?)x);
+        return calcMedian(temp);
+    }
+
+    public double getModeBodyWeight()
+    {
+        return calcMode(getFieldsMap().get_body_weight());
+    }
+
+    public double getModeDisplaySize()
+    {
+        return calcMode(getFieldsMap().get_display_size());
+    }
+
+    public double getModeFeaturesSensorsCount()
+    {
+        List<double?> temp = getFieldsMap().get_features_sensors_count().ConvertAll(x => (double?)x);
+        return calcMode(temp);
+    }
+
+    public double getModeLaunchAnnounced()
+    {
+        List<double?> temp = getFieldsMap().get_launch_announced().ConvertAll(x => (double?)x);
+        return calcMode(temp);
+    }
+
+    public double getModeLaunchStatus()
+    {
+        List<double?> temp = getFieldsMap().get_year_of_launch().ConvertAll(x => (double?)x);
+        return calcMode(temp);
+    }
+
+    public string getModeOem()
+    {
+        return calcMode(getFieldsMap().get_oem());
+    }
+
+    public string getModeModel()
+    {
+        return calcMode(getFieldsMap().get_model());
+    }
+
+    public string getModeBodyDimensions()
+    {
+        return calcMode(getFieldsMap().get_body_dimensions());
+    }
+
+    public string getModeBodySim()
+    {
+        return calcMode(getFieldsMap().get_body_sim());
+    }
+
+    public string getModeDisplayType()
+    {
+        return calcMode(getFieldsMap().get_display_type());
+    }
+
+    public string getModeDisplayResolution()
+    {
+        return calcMode(getFieldsMap().get_display_resolution());
+    }
+
+    public string getModePlatformOs()
+    {
+        return calcMode(getFieldsMap().get_platform_os());
+    }
+
+
+
+
 }

@@ -73,8 +73,10 @@ CellTable cell = new CellTable(@"Input\cells.csv");
 
 //cell.deleteRecord(5);
 
-cell.addRecord(null, null, null, "poop", null, null, null, null, null, null, "a,b,c", null);
 
+//cell.addRecord(null, null, null, "poop", null, null, null, null, null, null, "a,b,c", null);
+
+/*
 foreach (int? VARIABLE in cell.getFieldsMap().get_year_of_launch())
 {
     if (VARIABLE == null)
@@ -87,6 +89,54 @@ foreach (int? VARIABLE in cell.getFieldsMap().get_year_of_launch())
     }
     
 }
+*/
+
+cell.printCellTable();
+
+Console.WriteLine();
+
+Console.WriteLine(cell.getAvgBodyWeight());
+
+Console.WriteLine(cell.getAvgDisplaySize());
+
+Console.WriteLine(cell.getAvgFeaturesSensorsCount());
+
+Console.WriteLine();
+
+Console.WriteLine(cell.getMedianBodyWeight());
+
+Console.WriteLine(cell.getMedianDisplaySize());
+
+Console.WriteLine(cell.getMedianFeaturesSensorsCount());
+
+Console.WriteLine();
+
+Console.WriteLine(cell.getModeOem());
+
+Console.WriteLine(cell.getModeModel());
+
+Console.WriteLine(cell.getModeLaunchAnnounced());
+
+Console.WriteLine(cell.getModeLaunchStatus());
+
+Console.WriteLine(cell.getModeBodyDimensions());
+
+Console.WriteLine(cell.getModeBodyWeight());
+
+Console.WriteLine(cell.getModeBodySim());
+
+Console.WriteLine(cell.getModeDisplayType());
+
+Console.WriteLine(cell.getModeDisplaySize());
+
+Console.WriteLine(cell.getModeDisplayResolution());
+
+Console.WriteLine(cell.getModeFeaturesSensorsCount());
+
+Console.WriteLine(cell.getModePlatformOs());
+
+
+
 
 
 Console.ReadKey();
