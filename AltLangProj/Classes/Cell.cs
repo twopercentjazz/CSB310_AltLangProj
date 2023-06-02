@@ -42,6 +42,28 @@ public class Cell
         this.cell_map = create_cell_map();
     }
 
+    public Cell(int id, string oem, string model, int? launch_announced, string launch_status, string body_dimensions,
+        double? body_weight, string body_sim, string display_type, double? display_size, string display_resolution,
+        int? features_sensors, string platform_os, List<string> field_titles, Hashtable cell_map)
+    {
+        this.field_titles = field_titles;
+        this.oem = oem;
+        this.model = model;
+        this.launch_announced = launch_announced;
+        this.launch_status = launch_status;
+        this.body_dimensions = body_dimensions;
+        this.body_weight = body_weight;
+        this.body_sim = body_sim;
+        this.display_type = display_type;
+        this.display_size = display_size;
+        this.display_resolution = display_resolution;
+        this.features_sensors = features_sensors;
+        this.platform_os = platform_os;
+        this.id = id;
+        this.field_titles = field_titles;
+        this.cell_map = cell_map;
+    }
+
 
     private Hashtable create_cell_map()
     {
@@ -210,6 +232,12 @@ public class Cell
     public void set_cell_map(Hashtable table)
     {
         this.cell_map = table;
+    }
+
+    public Cell copy()
+    {
+        return new Cell(id, oem, model, launch_announced, launch_status, body_dimensions, body_weight, body_sim,
+            display_type, display_size, display_resolution, features_sensors, platform_os, field_titles, cell_map);
     }
 
     

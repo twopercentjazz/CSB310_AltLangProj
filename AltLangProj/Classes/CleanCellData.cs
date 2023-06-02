@@ -65,7 +65,7 @@ public class CleanCellData
                     temp.Add(columnData.ElementAt(i).ElementAt(j).Split(",")[0].Replace("\"", "").Replace(
                         " Professional", "").Split(" (")[0].Replace("Microsoft Smartphone", "Microsoft Windows Mobile").Replace(
                         " Smartphone", "").Replace(" PocketPC", "").Replace(" for Phone Edition", "").Replace(
-                        " SE", "").Replace(" OS", ""));
+                        " SE", "").Replace(" OS", "").Replace("for", ""));
                 }
                 else if (headers[i] == "body_dimensions")
                 {
