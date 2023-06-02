@@ -179,7 +179,8 @@ Console.WriteLine("\nThis is the number of phones with only one feature sensor: 
 
 Console.WriteLine();
 
-cell.printAvgPerOem("body_weight");
+
+Console.WriteLine("\nThe company (oem) with the highest average weight of the phone body: " + cell.printAvgPerOem("body_weight"));
 
 
 

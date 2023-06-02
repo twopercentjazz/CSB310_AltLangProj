@@ -223,7 +223,7 @@ public class CellTable
         }
     }
 
-    public void printAvgPerOem(string avgField)
+    public string printAvgPerOem(string avgField)
     {
         
         List<string> unique = findCount(getFieldsMap().get_oem()).Keys.ToList();
@@ -247,7 +247,14 @@ public class CellTable
         }
 
         printAvgTable(avg, "oem", avgField);
+        return findHighestAvgOem(avg);
 
+    }
+
+    public string findHighestAvgOem(Dictionary<string, double> temp)
+    {
+        return temp.Aggregate((x, y) =>
+            x.Value > y.Value ? x : y).Key;
     }
 
     public String toString()
@@ -994,7 +1001,18 @@ public class CellTable
             }
         }
         temp.Sort();
-        return temp[temp.Count / 2];
+        double median;
+        if (temp.Count % 2 == 1)
+        {
+            median = temp[temp.Count / 2];
+        }
+        else
+        {
+            double m1 = temp[(temp.Count / 2) - 1];
+            double m2 = temp[temp.Count / 2];
+            median = (m1 + m2) / 2;
+        }
+        return median;
     }
 
     private double calcMode(List<double?> nums)
