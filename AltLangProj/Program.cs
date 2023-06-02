@@ -45,13 +45,13 @@ foreach (var item in test.get_cell_id())
 
 
 
+// @"Input\cells.csv"
 
 
 
 
 
-
-CellTable cell = new CellTable(@"Input\cells.csv");
+CellTable cell = new CellTable(@"test");
 
 
 
@@ -182,8 +182,15 @@ Console.WriteLine();
 
 Console.WriteLine("\nThe company (oem) with the highest average weight of the phone body: " + cell.printAvgPerOem("body_weight"));
 
+///////////////////////////////////////////
 
+Console.WriteLine();
 
+CellTable cell4 = cell.getPhonesLaunchedAfterAnnouncedTable();
+
+//cell4.printCellTable();
+
+cell4.printCustomMultipleRecords(cell4.getRecordsMap().get_cell_table().Keys.ToArray(), new []{"id", "oem", "model", "launch_announced", "launch_status"});
 
 
 

@@ -1392,7 +1392,7 @@ public class CellTable
 
     public CellTable Copy()
     {
-        return new CellTable(@"Input\cells.csv");
+        return new CellTable(@"test");   //////////////////////////////////  replace back
     }
 
     public CellTable createQueryTable(FilterParameters filter)
@@ -1862,6 +1862,24 @@ public class CellTable
 
         }
 
+    }
+
+    public CellTable getPhonesLaunchedAfterAnnouncedTable()
+    {
+        CellTable temp = Copy();
+        foreach (int id in getRecordsMap().get_cell_table().Keys)
+        {
+            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Cancelled"))
+            {
+                temp.deleteRecord(id);
+            }
+            else if (getRecordsMap().get_cell_table()[id].get_launch_announced() >=
+                     int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()))
+            {
+                temp.deleteRecord(id);
+            }
+        }
+        return temp;
     }
 
 
