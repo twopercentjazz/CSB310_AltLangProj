@@ -51,7 +51,7 @@ foreach (var item in test.get_cell_id())
 
 
 
-CellTable cell = new CellTable(@"test");
+CellTable cell = new CellTable(@"Input\cells.csv");
 
 
 

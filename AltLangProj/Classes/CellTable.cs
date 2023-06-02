@@ -1392,7 +1392,7 @@ public class CellTable
 
     public CellTable Copy()
     {
-        return new CellTable(@"test");   //////////////////////////////////  replace back
+        return new CellTable(@"Input\cells.csv");  
     }
 
     public CellTable createQueryTable(FilterParameters filter)
