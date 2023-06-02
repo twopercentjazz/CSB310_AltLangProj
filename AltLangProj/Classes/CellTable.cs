@@ -182,14 +182,29 @@ public class CellTable
 
     private void printFrequencyTable(List<string> element, List<int> count, string field)
     {
-        string header = String.Format("{0,-32}{1}", "unique_" + field + "_elements", "element_count  ");
+        string header = String.Format("{0,-38}{1}", "unique_" + field + "_elements", "element_count  ");
         string border = getRecordsMap().tableBorder(header);
         Console.WriteLine(border);
         Console.WriteLine(header);
         Console.WriteLine(border);
         for (int i = 0; i < element.Count; i++)
         {
-            string line = String.Format("{0,-32}{1}", element[i], count[i]);
+            string line = String.Format("{0,-38}{1}", element[i], count[i]);
+            Console.WriteLine(line);
+            Console.WriteLine(border);
+        }
+    }
+
+    private void printAvgTable(Dictionary<string, double> values, string sortField, string avgField)
+    {
+        string header = String.Format("{0,-38}{1}", "unique_" + sortField + "_elements", avgField + "_avg  ");
+        string border = getRecordsMap().tableBorder(header);
+        Console.WriteLine(border);
+        Console.WriteLine(header);
+        Console.WriteLine(border);
+        foreach (string oem in values.Keys)
+        {
+            string line = String.Format("{0,-38}{1:0.00}", oem, values[oem]);
             Console.WriteLine(line);
             Console.WriteLine(border);
         }
@@ -208,6 +223,32 @@ public class CellTable
         }
     }
 
+    public void printAvgPerOem(string avgField)
+    {
+        
+        List<string> unique = findCount(getFieldsMap().get_oem()).Keys.ToList();
+
+        Dictionary<string, double> avg = new Dictionary<string, double>();
+
+        foreach (string oem in unique)
+        {
+            FilterParameters company = new FilterParameters();
+            company.getFilterString().Add("oem", new []{oem});
+            CellTable temp = createQueryTable(company);
+            if (avgField == "body_weight")
+            {
+                avg.Add(oem, temp.getAvgBodyWeight());
+            }
+            else if (avgField == "display_size")
+            {
+                avg.Add(oem, temp.getAvgDisplaySize());
+            }
+            
+        }
+
+        printAvgTable(avg, "oem", avgField);
+
+    }
 
     public String toString()
     {
@@ -1547,7 +1588,6 @@ public class CellTable
                                 getRecordsMap().get_cell_table()[id].get_id() <= filter.getFilterIntRange()[field].Value)
                             {
                                 found = true;
-                                break;
                             }
                             if (!found)
                             {
@@ -1588,7 +1628,6 @@ public class CellTable
                                 getRecordsMap().get_cell_table()[id].get_launch_announced() <= filter.getFilterIntRange()[field].Value)
                             {
                                 found = true;
-                                break;
                             }
                             if (!found)
                             {
@@ -1598,6 +1637,61 @@ public class CellTable
                         }
                     }
 
+                }
+                else if (field == "launch_status")
+                {
+                    if (filter.getFilterInt().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            
+                            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Cancelled"))
+                            {
+                                deleteRecord(id);
+                            }
+                            else
+                            {
+                                Boolean found = false;
+                                foreach (int item in filter.getFilterInt()[field])
+                                {
+                                    if (int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()).Equals(item))
+                                    {
+                                        found = true;
+                                        break;
+                                    }
+                                }
+                                if (!found)
+                                {
+                                    deleteRecord(id);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            
+                            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Cancelled"))
+                            {
+                                deleteRecord(id);
+                            }
+                            else
+                            {
+                                Boolean found = false;
+
+                                if (int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()) >= filter.getFilterIntRange()[field].Key &&
+                                    int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()) <= filter.getFilterIntRange()[field].Value)
+                                {
+                                    found = true;
+                                }
+                                if (!found)
+                                {
+                                    deleteRecord(id);
+                                }
+                            }
+                        }
+                    }
                 }
                 else if (field == "features_sensors")
                 {
@@ -1630,7 +1724,6 @@ public class CellTable
                                 getRecordsMap().get_cell_table()[id].get_features_sensors() <= filter.getFilterIntRange()[field].Value)
                             {
                                 found = true;
-                                break;
                             }
                             if (!found)
                             {
@@ -1693,7 +1786,6 @@ public class CellTable
                                 getRecordsMap().get_cell_table()[id].get_body_weight() <= filter.getFilterDoubleRange()[field].Value)
                             {
                                 found = true;
-                                break;
                             }
                             if (!found)
                             {
@@ -1737,7 +1829,6 @@ public class CellTable
                                 getRecordsMap().get_cell_table()[id].get_display_size() <= filter.getFilterDoubleRange()[field].Value)
                             {
                                 found = true;
-                                break;
                             }
                             if (!found)
                             {
@@ -1754,6 +1845,7 @@ public class CellTable
         }
 
     }
+
 
 
 
