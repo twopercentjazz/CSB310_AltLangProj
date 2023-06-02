@@ -142,14 +142,49 @@ Console.WriteLine();
 
 //cell.printCellTable();
 
+///////////////////////////////
+
 FilterParameters query = new FilterParameters();
-query.getFilterString().Add("oem", new[] { "Google", "Sony" });
+query.getFilterIntRange().Add("launch_status", new KeyValuePair<int,int>(2000, 2030));
+//query.getFilterInt().Add("launch_status", new []{2020});
+
 
 
 CellTable cell2 = cell.createQueryTable(query);
 
 
-cell2.printCellTable("oem");
+cell2.printCellTable("launch_status");
+
+cell2.printFrequencyTable("launch_status");
+
+Console.WriteLine("\nThis year had the most phones launched in the 2000's:  " + cell2.getModeLaunchStatus());
+
+/////////////////////////////
+
+Console.WriteLine();
+
+FilterParameters query2 = new FilterParameters();
+query2.getFilterInt().Add("features_sensors", new[]{1});
+
+CellTable cell3 = cell.createQueryTable(query2);
+
+cell3.printCellTable();
+
+cell3.printFrequencyTable("features_sensors");
+
+Console.WriteLine("\nThis is the number of phones with only one feature sensor:  " + cell3.getFeaturesSensorsCountElementCount(1));
+
+
+/////////////////////////////////////
+
+Console.WriteLine();
+
+cell.printAvgPerOem("body_weight");
+
+
+
+
+
 
 
 

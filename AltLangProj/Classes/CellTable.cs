@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Xml.Linq;
 using Microsoft.VisualBasic;
 
 namespace AltLangProj.Classes;
@@ -112,6 +113,141 @@ public class CellTable
             i++;
         }
         Console.WriteLine(customMultiRecordString(temp, fields));
+    }
+
+    public void printFrequencyTable(string field)
+    {
+        if (field == "oem")
+        {
+            Dictionary<string, int> temp = findCount(getFieldsMap().get_oem());
+            printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
+        }
+        else if (field == "model")
+        {
+            Dictionary<string, int> temp = findCount(getFieldsMap().get_model());
+            printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
+        }
+        else if (field == "launch_announced")
+        {
+            Dictionary<int, int> temp = findCount(getFieldsMap().get_launch_announced());
+            printFrequencyTable(convertToString(temp.Keys.ToList(), null), temp.Values.ToList(), field);
+        }
+        else if (field == "launch_status")
+        {
+            Dictionary<string, int> temp = findCount(getFieldsMap().get_launch_status());
+            printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
+        }
+        else if (field == "body_dimensions")
+        {
+            Dictionary<string, int> temp = findCount(getFieldsMap().get_body_dimensions());
+            printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
+        }
+        else if (field == "body_weight")
+        {
+            Dictionary<double, int> temp = findCount(getFieldsMap().get_body_weight());
+            printFrequencyTable(convertToString(null, temp.Keys.ToList()), temp.Values.ToList(), field);
+        }
+        else if (field == "body_sim")
+        {
+            Dictionary<string, int> temp = findCount(getFieldsMap().get_body_sim());
+            printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
+        }
+        else if (field == "display_type")
+        {
+            Dictionary<string, int> temp = findCount(getFieldsMap().get_display_type());
+            printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
+        }
+        else if (field == "display_size")
+        {
+            Dictionary<double, int> temp = findCount(getFieldsMap().get_display_size());
+            printFrequencyTable(convertToString(null, temp.Keys.ToList()), temp.Values.ToList(), field);
+        }
+        else if (field == "display_resolution")
+        {
+            Dictionary<string, int> temp = findCount(getFieldsMap().get_display_resolution());
+            printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
+        }
+        else if (field == "features_sensors")
+        {
+            Dictionary<int, int> temp = findCount(getFieldsMap().get_features_sensors_count());
+            printFrequencyTable(convertToString(temp.Keys.ToList(), null), temp.Values.ToList(), field);
+
+        }
+        else if (field == "platform_os")
+        {
+            Dictionary<string, int> temp = findCount(getFieldsMap().get_platform_os());
+            printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
+        }
+    }
+
+    private void printFrequencyTable(List<string> element, List<int> count, string field)
+    {
+        string header = String.Format("{0,-38}{1}", "unique_" + field + "_elements", "element_count  ");
+        string border = getRecordsMap().tableBorder(header);
+        Console.WriteLine(border);
+        Console.WriteLine(header);
+        Console.WriteLine(border);
+        for (int i = 0; i < element.Count; i++)
+        {
+            string line = String.Format("{0,-38}{1}", element[i], count[i]);
+            Console.WriteLine(line);
+            Console.WriteLine(border);
+        }
+    }
+
+    private void printAvgTable(Dictionary<string, double> values, string sortField, string avgField)
+    {
+        string header = String.Format("{0,-38}{1}", "unique_" + sortField + "_elements", avgField + "_avg  ");
+        string border = getRecordsMap().tableBorder(header);
+        Console.WriteLine(border);
+        Console.WriteLine(header);
+        Console.WriteLine(border);
+        foreach (string oem in values.Keys)
+        {
+            string line = String.Format("{0,-38}{1:0.00}", oem, values[oem]);
+            Console.WriteLine(line);
+            Console.WriteLine(border);
+        }
+    }
+
+    private List<string> convertToString(List<int> intList, List<double> doubleList)
+    {
+
+        if (intList != null)
+        {
+            return intList.ConvertAll<string>(x => x.ToString());
+        }
+        else
+        {
+            return doubleList.ConvertAll<string>(x => x.ToString());
+        }
+    }
+
+    public void printAvgPerOem(string avgField)
+    {
+        
+        List<string> unique = findCount(getFieldsMap().get_oem()).Keys.ToList();
+
+        Dictionary<string, double> avg = new Dictionary<string, double>();
+
+        foreach (string oem in unique)
+        {
+            FilterParameters company = new FilterParameters();
+            company.getFilterString().Add("oem", new []{oem});
+            CellTable temp = createQueryTable(company);
+            if (avgField == "body_weight")
+            {
+                avg.Add(oem, temp.getAvgBodyWeight());
+            }
+            else if (avgField == "display_size")
+            {
+                avg.Add(oem, temp.getAvgDisplaySize());
+            }
+            
+        }
+
+        printAvgTable(avg, "oem", avgField);
+
     }
 
     public String toString()
@@ -628,417 +764,7 @@ public class CellTable
 
     }
 
-    public void updateTableWhere(FilterParameters filter)
-    {
-        if (filter.getFilterString().Count != 0)
-        {
-            foreach (string field in filter.getFilterString().Keys)
-            {
-                if (field == "oem")
-                {
-                    foreach (int id in getRecordsMap().get_cell_table().Keys)
-                    {
-                        Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
-                        {
-                            if (getRecordsMap().get_cell_table()[id].get_oem().Equals(item))
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found)
-                        {
-                            deleteRecord(id);
-                        }
-                    }
-                }
-
-
-                else if (field == "model")
-                {
-                    foreach (int id in getRecordsMap().get_cell_table().Keys)
-                    {
-                        Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
-                        {
-                            if (getRecordsMap().get_cell_table()[id].get_model().Equals(item))
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found)
-                        {
-                            deleteRecord(id);
-                        }
-                    }
-
-
-                }
-
-                else if (field == "launch_status")
-                {
-                    foreach (int id in getRecordsMap().get_cell_table().Keys)
-                    {
-                        Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
-                        {
-                            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals(item))
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found)
-                        {
-                            deleteRecord(id);
-                        }
-                    }
-
-
-                }
-                else if (field == "body_dimensions")
-                {
-                    foreach (int id in getRecordsMap().get_cell_table().Keys)
-                    {
-                        Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
-                        {
-                            if (getRecordsMap().get_cell_table()[id].get_body_dimensions().Equals(item))
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found)
-                        {
-                            deleteRecord(id);
-                        }
-                    }
-
-
-                }
-
-                else if (field == "body_sim")
-                {
-                    foreach (int id in getRecordsMap().get_cell_table().Keys)
-                    {
-                        Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
-                        {
-                            if (getRecordsMap().get_cell_table()[id].get_body_sim().Equals(item))
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found)
-                        {
-                            deleteRecord(id);
-                        }
-                    }
-
-
-                }
-                else if (field == "display_type")
-                {
-                    foreach (int id in getRecordsMap().get_cell_table().Keys)
-                    {
-                        Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
-                        {
-                            if (getRecordsMap().get_cell_table()[id].get_display_type().Equals(item))
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found)
-                        {
-                            deleteRecord(id);
-                        }
-                    }
-
-
-                }
-                else if (field == "display_resolution")
-                {
-                    foreach (int id in getRecordsMap().get_cell_table().Keys)
-                    {
-                        Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
-                        {
-                            if (getRecordsMap().get_cell_table()[id].get_display_resolution().Equals(item))
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found)
-                        {
-                            deleteRecord(id);
-                        }
-                    }
-
-                }
-            }
-
-
-        }
-
-        if (filter.getFilterInt().Count != 0 || filter.getFilterIntRange().Count != 0)
-        {
-            string[] keys;
-            if (filter.getFilterInt().Count > 0)
-            {
-                keys = filter.getFilterInt().Keys.ToArray();
-            }
-            else
-            {
-                keys = filter.getFilterIntRange().Keys.ToArray();
-            }
-            foreach (string field in keys)
-            {
-                
-                if (field == "id")
-                {
-                    if (filter.getFilterInt().Count > 0)
-                    {
-                        foreach (int id in getRecordsMap().get_cell_table().Keys)
-                        {
-                            Boolean found = false;
-                            foreach (int item in filter.getFilterInt()[field])
-                            {
-                                if (getRecordsMap().get_cell_table()[id].get_id().Equals(item))
-                                {
-                                    found = true;
-                                    break;
-                                }
-                            }
-                            if (!found)
-                            {
-                                deleteRecord(id);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (int id in getRecordsMap().get_cell_table().Keys)
-                        {
-                            Boolean found = false;
-
-                            if (getRecordsMap().get_cell_table()[id].get_id() >= filter.getFilterIntRange()[field].Key &&
-                                getRecordsMap().get_cell_table()[id].get_id() <= filter.getFilterIntRange()[field].Value)
-                            {
-                                found = true;
-                                break;
-                            }
-                            if (!found)
-                            {
-                                deleteRecord(id);
-                            }
-
-                        }
-                    }
-                }
-                else if (field == "launch_announced")
-                {
-                    if (filter.getFilterInt().Count > 0)
-                    {
-                        foreach (int id in getRecordsMap().get_cell_table().Keys)
-                        {
-                            Boolean found = false;
-                            foreach (int item in filter.getFilterInt()[field])
-                            {
-                                if (getRecordsMap().get_cell_table()[id].get_launch_announced().Equals(item))
-                                {
-                                    found = true;
-                                    break;
-                                }
-                            }
-                            if (!found)
-                            {
-                                deleteRecord(id);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (int id in getRecordsMap().get_cell_table().Keys)
-                        {
-                            Boolean found = false;
-
-                            if (getRecordsMap().get_cell_table()[id].get_launch_announced() >= filter.getFilterIntRange()[field].Key &&
-                                getRecordsMap().get_cell_table()[id].get_launch_announced() <= filter.getFilterIntRange()[field].Value)
-                            {
-                                found = true;
-                                break;
-                            }
-                            if (!found)
-                            {
-                                deleteRecord(id);
-                            }
-
-                        }
-                    }
-
-                }
-                else if (field == "features_sensors")
-                {
-                    if (filter.getFilterInt().Count > 0)
-                    {
-                        foreach (int id in getRecordsMap().get_cell_table().Keys)
-                        {
-                            Boolean found = false;
-                            foreach (int item in filter.getFilterInt()[field])
-                            {
-                                if (getRecordsMap().get_cell_table()[id].get_features_sensors().Equals(item))
-                                {
-                                    found = true;
-                                    break;
-                                }
-                            }
-                            if (!found)
-                            {
-                                deleteRecord(id);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (int id in getRecordsMap().get_cell_table().Keys)
-                        {
-                            Boolean found = false;
-
-                            if (getRecordsMap().get_cell_table()[id].get_features_sensors() >= filter.getFilterIntRange()[field].Key &&
-                                getRecordsMap().get_cell_table()[id].get_features_sensors() <= filter.getFilterIntRange()[field].Value)
-                            {
-                                found = true;
-                                break;
-                            }
-                            if (!found)
-                            {
-                                deleteRecord(id);
-                            }
-
-                        }
-                    }
-
-
-                }
-
-            }
-
-            
-        }
-
-        if (filter.getFilterDouble().Count != 0 || filter.getFilterDoubleRange().Count != 0)
-        {
-            string[] keys;
-            if (filter.getFilterDouble().Count > 0)
-            {
-                keys = filter.getFilterDouble().Keys.ToArray();
-            }
-            else
-            {
-                keys = filter.getFilterDoubleRange().Keys.ToArray();
-            }
-
-            foreach (string field in keys)
-            {
-                if (field == "body_weight")
-                {
-                    if (filter.getFilterDouble().Count > 0)
-                    {
-                        foreach (int id in getRecordsMap().get_cell_table().Keys)
-                        {
-                            Boolean found = false;
-                            foreach (int item in filter.getFilterDouble()[field])
-                            {
-                                if (getRecordsMap().get_cell_table()[id].get_body_weight().Equals(item))
-                                {
-                                    found = true;
-                                    break;
-                                }
-                            }
-                            if (!found)
-                            {
-                                deleteRecord(id);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (int id in getRecordsMap().get_cell_table().Keys)
-                        {
-                            Boolean found = false;
-
-                            if (getRecordsMap().get_cell_table()[id].get_body_weight() >= filter.getFilterDoubleRange()[field].Key &&
-                                getRecordsMap().get_cell_table()[id].get_body_weight() <= filter.getFilterDoubleRange()[field].Value)
-                            {
-                                found = true;
-                                break;
-                            }
-                            if (!found)
-                            {
-                                deleteRecord(id);
-                            }
-
-                        }
-                    }
-
-
-                }
-
-                else if (field == "display_size")
-                {
-                    if (filter.getFilterDouble().Count > 0)
-                    {
-                        foreach (int id in getRecordsMap().get_cell_table().Keys)
-                        {
-                            Boolean found = false;
-                            foreach (int item in filter.getFilterDouble()[field])
-                            {
-                                if (getRecordsMap().get_cell_table()[id].get_display_size().Equals(item))
-                                {
-                                    found = true;
-                                    break;
-                                }
-                            }
-                            if (!found)
-                            {
-                                deleteRecord(id);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (int id in getRecordsMap().get_cell_table().Keys)
-                        {
-                            Boolean found = false;
-
-                            if (getRecordsMap().get_cell_table()[id].get_display_size() >= filter.getFilterDoubleRange()[field].Key &&
-                                getRecordsMap().get_cell_table()[id].get_display_size() <= filter.getFilterDoubleRange()[field].Value)
-                            {
-                                found = true;
-                                break;
-                            }
-                            if (!found)
-                            {
-                                deleteRecord(id);
-                            }
-
-                        }
-                    }
-
-
-                }
-            }
-                
-        }
-
-    }
+    
 
     ///////////////////////////////////////////////////////////////////////////////////
 
@@ -1657,6 +1383,469 @@ public class CellTable
         temp.updateTableWhere(filter);
         return temp;
     }
+
+    public void updateTableWhere(FilterParameters filter)
+    {
+        if (filter.getFilterString().Count != 0)
+        {
+            foreach (string field in filter.getFilterString().Keys)
+            {
+                if (field == "oem")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_oem().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+                }
+
+
+                else if (field == "model")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_model().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+
+                }
+
+                else if (field == "launch_status")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+
+                }
+                else if (field == "body_dimensions")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_body_dimensions().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+
+                }
+
+                else if (field == "body_sim")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_body_sim().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+
+                }
+                else if (field == "display_type")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_display_type().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+
+                }
+                else if (field == "display_resolution")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_display_resolution().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+                }
+            }
+
+
+        }
+
+        if (filter.getFilterInt().Count != 0 || filter.getFilterIntRange().Count != 0)
+        {
+            string[] keys;
+            if (filter.getFilterInt().Count > 0)
+            {
+                keys = filter.getFilterInt().Keys.ToArray();
+            }
+            else
+            {
+                keys = filter.getFilterIntRange().Keys.ToArray();
+            }
+            foreach (string field in keys)
+            {
+
+                if (field == "id")
+                {
+                    if (filter.getFilterInt().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+                            foreach (int item in filter.getFilterInt()[field])
+                            {
+                                if (getRecordsMap().get_cell_table()[id].get_id().Equals(item))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+
+                            if (getRecordsMap().get_cell_table()[id].get_id() >= filter.getFilterIntRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].get_id() <= filter.getFilterIntRange()[field].Value)
+                            {
+                                found = true;
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+
+                        }
+                    }
+                }
+                else if (field == "launch_announced")
+                {
+                    if (filter.getFilterInt().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+                            foreach (int item in filter.getFilterInt()[field])
+                            {
+                                if (getRecordsMap().get_cell_table()[id].get_launch_announced().Equals(item))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+
+                            if (getRecordsMap().get_cell_table()[id].get_launch_announced() >= filter.getFilterIntRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].get_launch_announced() <= filter.getFilterIntRange()[field].Value)
+                            {
+                                found = true;
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+
+                        }
+                    }
+
+                }
+                else if (field == "launch_status")
+                {
+                    if (filter.getFilterInt().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            
+                            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Cancelled"))
+                            {
+                                deleteRecord(id);
+                            }
+                            else
+                            {
+                                Boolean found = false;
+                                foreach (int item in filter.getFilterInt()[field])
+                                {
+                                    if (int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()).Equals(item))
+                                    {
+                                        found = true;
+                                        break;
+                                    }
+                                }
+                                if (!found)
+                                {
+                                    deleteRecord(id);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            
+                            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Cancelled"))
+                            {
+                                deleteRecord(id);
+                            }
+                            else
+                            {
+                                Boolean found = false;
+
+                                if (int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()) >= filter.getFilterIntRange()[field].Key &&
+                                    int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()) <= filter.getFilterIntRange()[field].Value)
+                                {
+                                    found = true;
+                                }
+                                if (!found)
+                                {
+                                    deleteRecord(id);
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (field == "features_sensors")
+                {
+                    if (filter.getFilterInt().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+                            foreach (int item in filter.getFilterInt()[field])
+                            {
+                                if (getRecordsMap().get_cell_table()[id].get_features_sensors().Equals(item))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+
+                            if (getRecordsMap().get_cell_table()[id].get_features_sensors() >= filter.getFilterIntRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].get_features_sensors() <= filter.getFilterIntRange()[field].Value)
+                            {
+                                found = true;
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+
+                        }
+                    }
+
+
+                }
+
+            }
+
+
+        }
+
+        if (filter.getFilterDouble().Count != 0 || filter.getFilterDoubleRange().Count != 0)
+        {
+            string[] keys;
+            if (filter.getFilterDouble().Count > 0)
+            {
+                keys = filter.getFilterDouble().Keys.ToArray();
+            }
+            else
+            {
+                keys = filter.getFilterDoubleRange().Keys.ToArray();
+            }
+
+            foreach (string field in keys)
+            {
+                if (field == "body_weight")
+                {
+                    if (filter.getFilterDouble().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+                            foreach (int item in filter.getFilterDouble()[field])
+                            {
+                                if (getRecordsMap().get_cell_table()[id].get_body_weight().Equals(item))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+
+                            if (getRecordsMap().get_cell_table()[id].get_body_weight() >= filter.getFilterDoubleRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].get_body_weight() <= filter.getFilterDoubleRange()[field].Value)
+                            {
+                                found = true;
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+
+                        }
+                    }
+
+
+                }
+
+                else if (field == "display_size")
+                {
+                    if (filter.getFilterDouble().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+                            foreach (int item in filter.getFilterDouble()[field])
+                            {
+                                if (getRecordsMap().get_cell_table()[id].get_display_size().Equals(item))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+
+                            if (getRecordsMap().get_cell_table()[id].get_display_size() >= filter.getFilterDoubleRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].get_display_size() <= filter.getFilterDoubleRange()[field].Value)
+                            {
+                                found = true;
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+
+                        }
+                    }
+
+
+                }
+            }
+
+        }
+
+    }
+
 
 
 

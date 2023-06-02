@@ -42,7 +42,7 @@ public class CleanCellData
                         if (columnData.ElementAt(i).ElementAt(j) == "Cancelled" ||
                             columnData.ElementAt(i).ElementAt(j) == "Discontinued")
                         {
-                            temp.Add(columnData.ElementAt(i).ElementAt(j).Replace("\"", ""));
+                            temp.Add(columnData.ElementAt(i).ElementAt(j).Replace("\"", "").Replace(" ",""));
                         }
                         else
                         {
