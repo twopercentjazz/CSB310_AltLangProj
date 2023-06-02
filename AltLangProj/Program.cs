@@ -151,6 +151,8 @@ CellTable cell2 = cell.createQueryTable(query);
 
 cell2.printCellTable("oem");
 
+cell2.printFrequencyTable("oem");
+
 
 
 
