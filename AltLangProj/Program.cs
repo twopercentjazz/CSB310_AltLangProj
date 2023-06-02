@@ -3,6 +3,7 @@
 
 using AltLangProj.Classes;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 //ParseCsvFile temp = new ParseCsvFile(@"Input\cells.csv");
@@ -91,7 +92,7 @@ foreach (int? VARIABLE in cell.getFieldsMap().get_year_of_launch())
 }
 */
 
-cell.printCellTable();
+//cell.printCellTable();
 
 Console.WriteLine();
 
@@ -134,6 +135,23 @@ Console.WriteLine(cell.getModeDisplayResolution());
 Console.WriteLine(cell.getModeFeaturesSensorsCount());
 
 Console.WriteLine(cell.getModePlatformOs());
+
+Console.WriteLine();
+
+//cell.printCellTable("oem");
+
+//cell.printCellTable();
+
+FilterParameters query = new FilterParameters();
+query.getFilterString().Add("oem", new[] { "Google", "Sony" });
+
+
+CellTable cell2 = cell.createQueryTable(query);
+
+
+cell2.printCellTable("oem");
+
+
 
 
 

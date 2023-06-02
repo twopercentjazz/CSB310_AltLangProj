@@ -54,6 +54,29 @@ namespace AltLangProj.Classes
             this.cell_table = create_cell_table();
         }
 
+        public CellFields(List<int> id, List<string> oem, List<string> model, List<int?> launch_announced, List<string> launch_status, List<string> body_dimensions, 
+            List<double?> body_weight, List<string> body_sim, List<string> display_type, List<double?> display_size, List<string> display_resolution, List<string> features_sensors, 
+            List<string> platform_os, List<string> field_titles, List<int?> year_of_launch, List<int?> features_sensors_count, Hashtable cell_table)
+        {
+            this.oem = oem;
+            this.model = model;
+            this.launch_announced = launch_announced;
+            this.launch_status = launch_status;
+            this.body_dimensions = body_dimensions;
+            this.body_weight = body_weight;
+            this.body_sim = body_sim;
+            this.display_type = display_type;
+            this.display_size = display_size;
+            this.display_resolution = display_resolution;
+            this.features_sensors = features_sensors;
+            this.platform_os = platform_os;
+            this.id = id;
+            this.year_of_launch = year_of_launch;
+            this.features_sensors_count = features_sensors_count;
+            this.field_titles = field_titles;
+            this.cell_table = cell_table;
+        }
+
         private List<int> create_cell_id_column()
         {
             List<int> temp = new List<int>();
@@ -290,6 +313,17 @@ namespace AltLangProj.Classes
         {
             this.features_sensors_count = column;
         }
+
+
+
+
+        public CellFields copy()
+        {
+            return new CellFields(id, oem, model, launch_announced, launch_status, body_dimensions,
+                body_weight, body_sim, display_type, display_size, display_resolution, features_sensors,
+                platform_os, field_titles, year_of_launch, features_sensors_count, cell_table);
+        }
+
     }
 
 }

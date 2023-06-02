@@ -11,6 +11,12 @@ public class CellRecords
         this.cell_table = create_cell_table(cell_table);
     }
 
+    public CellRecords(Dictionary<int, Cell> cell_table, List<string> field_titles)
+    {
+        this.field_titles = field_titles;
+        this.cell_table = cell_table;
+    }
+
     private Dictionary<int, Cell> create_cell_table(CellFields cell_table)
     {
         Dictionary<int, Cell> temp = new Dictionary<int, Cell>();
@@ -139,5 +145,10 @@ public class CellRecords
         }
 
         return temp;
+    }
+
+    public CellRecords copy()
+    {
+        return new CellRecords(cell_table, field_titles);
     }
 }

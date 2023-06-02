@@ -1,6 +1,9 @@
 ﻿using System.Data.Common;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Microsoft.VisualBasic;
 
 namespace AltLangProj.Classes;
 
@@ -20,6 +23,13 @@ public class CellTable
         this.recordsMap = records;
         this.fieldsMap = fields;
         this.nextId = getRecordsMap().get_cell_table().Count + 1;
+    }
+
+    public CellTable(CellRecords records, CellFields fields, int nextId)
+    {
+        this.recordsMap = records;
+        this.fieldsMap = fields;
+        this.nextId = nextId;
     }
 
 
@@ -63,6 +73,11 @@ public class CellTable
     public void printCellTable()
     {
         Console.WriteLine(toString());
+    }
+
+    public void printCellTable(string field)
+    {
+        printMultipleRecords(getIdListSorted(field));
     }
 
     public void printRecord(int id)
@@ -349,6 +364,682 @@ public class CellTable
         return temp;
     }
 
+
+    public int[] getIdListSorted(string field)
+    {
+        if (field == "id")
+        {
+            List<int> temp = (List<int>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, int> temp2 = new Dictionary<int, int>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (int item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, int> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+
+
+        
+        else if (field == "oem")
+        {
+            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, string> temp2 = new Dictionary<int, string>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (string item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+
+
+        else if (field == "model")
+        {
+            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, string> temp2 = new Dictionary<int, string>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (string item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+
+
+        else if (field == "launch_announced")
+        {
+            List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, int?> temp2 = new Dictionary<int, int?>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (int? item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, int?> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+
+
+        else if (field == "launch_status")
+        {
+            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, string> temp2 = new Dictionary<int, string>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (string item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+        else if (field == "body_dimensions")
+        {
+            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, string> temp2 = new Dictionary<int, string>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (string item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+        else if (field == "body_weight")
+        {
+            List<double?> temp = (List<double?>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, double?> temp2 = new Dictionary<int, double?>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (double? item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, double?> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+        else if (field == "body_sim")
+        {
+            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, string> temp2 = new Dictionary<int, string>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (string item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+        else if (field == "display_type")
+        {
+            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, string> temp2 = new Dictionary<int, string>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (string item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+        else if (field == "display_size")
+        {
+            List<double?> temp = (List<double?>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, double?> temp2 = new Dictionary<int, double?>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (double? item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, double?> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+        else if (field == "display_resolution")
+        {
+            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, string> temp2 = new Dictionary<int, string>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (string item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+        else if (field == "features_sensors")
+        {
+            List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()["features_sensors_count"];
+            Dictionary<int, int?> temp2 = new Dictionary<int, int?>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (int? item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, int?> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+        else if (field == "platform_os")
+        {
+            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            Dictionary<int, string> temp2 = new Dictionary<int, string>();
+            List<int> temp3 = new List<int>();
+            int i = 0;
+            foreach (string item in temp)
+            {
+                temp2.Add(getFieldsMap().get_id()[i], item);
+                i++;
+            }
+
+            foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
+            {
+                temp3.Add(item.Key);
+            }
+
+            return temp3.ToArray();
+        }
+
+        return null;
+
+    }
+
+    public void updateTableWhere(FilterParameters filter)
+    {
+        if (filter.getFilterString().Count != 0)
+        {
+            foreach (string field in filter.getFilterString().Keys)
+            {
+                if (field == "oem")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_oem().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+                }
+
+
+                else if (field == "model")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_model().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+
+                }
+
+                else if (field == "launch_status")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+
+                }
+                else if (field == "body_dimensions")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_body_dimensions().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+
+                }
+
+                else if (field == "body_sim")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_body_sim().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+
+                }
+                else if (field == "display_type")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_display_type().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+
+                }
+                else if (field == "display_resolution")
+                {
+                    foreach (int id in getRecordsMap().get_cell_table().Keys)
+                    {
+                        Boolean found = false;
+                        foreach (string item in filter.getFilterString()[field])
+                        {
+                            if (getRecordsMap().get_cell_table()[id].get_display_resolution().Equals(item))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            deleteRecord(id);
+                        }
+                    }
+
+                }
+            }
+
+
+        }
+
+        if (filter.getFilterInt().Count != 0 || filter.getFilterIntRange().Count != 0)
+        {
+            string[] keys;
+            if (filter.getFilterInt().Count > 0)
+            {
+                keys = filter.getFilterInt().Keys.ToArray();
+            }
+            else
+            {
+                keys = filter.getFilterIntRange().Keys.ToArray();
+            }
+            foreach (string field in keys)
+            {
+                
+                if (field == "id")
+                {
+                    if (filter.getFilterInt().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+                            foreach (int item in filter.getFilterInt()[field])
+                            {
+                                if (getRecordsMap().get_cell_table()[id].get_id().Equals(item))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+
+                            if (getRecordsMap().get_cell_table()[id].get_id() >= filter.getFilterIntRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].get_id() <= filter.getFilterIntRange()[field].Value)
+                            {
+                                found = true;
+                                break;
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+
+                        }
+                    }
+                }
+                else if (field == "launch_announced")
+                {
+                    if (filter.getFilterInt().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+                            foreach (int item in filter.getFilterInt()[field])
+                            {
+                                if (getRecordsMap().get_cell_table()[id].get_launch_announced().Equals(item))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+
+                            if (getRecordsMap().get_cell_table()[id].get_launch_announced() >= filter.getFilterIntRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].get_launch_announced() <= filter.getFilterIntRange()[field].Value)
+                            {
+                                found = true;
+                                break;
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+
+                        }
+                    }
+
+                }
+                else if (field == "features_sensors")
+                {
+                    if (filter.getFilterInt().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+                            foreach (int item in filter.getFilterInt()[field])
+                            {
+                                if (getRecordsMap().get_cell_table()[id].get_features_sensors().Equals(item))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+
+                            if (getRecordsMap().get_cell_table()[id].get_features_sensors() >= filter.getFilterIntRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].get_features_sensors() <= filter.getFilterIntRange()[field].Value)
+                            {
+                                found = true;
+                                break;
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+
+                        }
+                    }
+
+
+                }
+
+            }
+
+            
+        }
+
+        if (filter.getFilterDouble().Count != 0 || filter.getFilterDoubleRange().Count != 0)
+        {
+            string[] keys;
+            if (filter.getFilterDouble().Count > 0)
+            {
+                keys = filter.getFilterDouble().Keys.ToArray();
+            }
+            else
+            {
+                keys = filter.getFilterDoubleRange().Keys.ToArray();
+            }
+
+            foreach (string field in keys)
+            {
+                if (field == "body_weight")
+                {
+                    if (filter.getFilterDouble().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+                            foreach (int item in filter.getFilterDouble()[field])
+                            {
+                                if (getRecordsMap().get_cell_table()[id].get_body_weight().Equals(item))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+
+                            if (getRecordsMap().get_cell_table()[id].get_body_weight() >= filter.getFilterDoubleRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].get_body_weight() <= filter.getFilterDoubleRange()[field].Value)
+                            {
+                                found = true;
+                                break;
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+
+                        }
+                    }
+
+
+                }
+
+                else if (field == "display_size")
+                {
+                    if (filter.getFilterDouble().Count > 0)
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+                            foreach (int item in filter.getFilterDouble()[field])
+                            {
+                                if (getRecordsMap().get_cell_table()[id].get_display_size().Equals(item))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (int id in getRecordsMap().get_cell_table().Keys)
+                        {
+                            Boolean found = false;
+
+                            if (getRecordsMap().get_cell_table()[id].get_display_size() >= filter.getFilterDoubleRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].get_display_size() <= filter.getFilterDoubleRange()[field].Value)
+                            {
+                                found = true;
+                                break;
+                            }
+                            if (!found)
+                            {
+                                deleteRecord(id);
+                            }
+
+                        }
+                    }
+
+
+                }
+            }
+                
+        }
+
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////
 
 
@@ -626,6 +1317,69 @@ public class CellTable
             x.Value > y.Value ? x : y).Key;
     }
 
+    private Dictionary<int, int> findCount(List<int?> nums)
+    {
+        Dictionary<int, int> temp = new Dictionary<int, int>();
+        foreach (double? num in nums)
+        {
+            if (num != null)
+            {
+                if (temp.ContainsKey((int)num))
+                {
+                    temp[(int)num]++;
+                }
+                else
+                {
+                    temp.Add((int)num, 1);
+                }
+            }
+        }
+
+        return temp;
+    }
+
+    private Dictionary<string, int> findCount(List<string> elements)
+    {
+        Dictionary<string, int> temp = new Dictionary<string, int>();
+        foreach (string element in elements)
+        {
+            if (element != null)
+            {
+                if (temp.ContainsKey(element))
+                {
+                    temp[element]++;
+                }
+                else
+                {
+                    temp.Add(element, 1);
+                }
+
+            }
+        }
+        return temp;
+    }
+
+    private Dictionary<double, int> findCount(List<double?> nums)
+    {
+        Dictionary<double, int> temp = new Dictionary<double, int>();
+        foreach (double? num in nums)
+        {
+            if (num != null)
+            {
+                if (temp.ContainsKey((double)num))
+                {
+                    temp[(double)num]++;
+                }
+                else
+                {
+                    temp.Add((double)num, 1);
+                }
+
+            }
+        }
+        return temp;
+    }
+
 
 
     public double getAvgBodyWeight()
@@ -721,6 +1475,187 @@ public class CellTable
     public string getModePlatformOs()
     {
         return calcMode(getFieldsMap().get_platform_os());
+    }
+
+    public int getBodyWeightElementCount(double item)
+    {
+        Dictionary<double,int> temp = findCount(getFieldsMap().get_body_weight());
+        return temp[item];
+    }
+
+    public int getDisplaySizeElementCount(double item)
+    {
+        Dictionary<double, int> temp = findCount(getFieldsMap().get_display_size());
+        return temp[item];
+    }
+
+    public int getFeaturesSensorsCountElementCount(int item)
+    {
+        Dictionary<int, int> temp = findCount(getFieldsMap().get_features_sensors_count());
+        return temp[item];
+    }
+
+    public int getLaunchAnnouncedElementCount(int item)
+    {
+        Dictionary<int, int> temp = findCount(getFieldsMap().get_launch_announced());
+        return temp[item];
+    }
+
+    public int getLaunchStatusElementCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_launch_status());
+        return temp[item];
+    }
+
+    public int getOemElementCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_oem());
+        return temp[item];
+    }
+
+    public int getModelElementCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_model());
+        return temp[item];
+    }
+
+    public int getBodyDimensionsElementCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_body_dimensions());
+        return temp[item];
+    }
+
+    public int getBodySimElementCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_body_sim());
+        return temp[item];
+    }
+
+    public int getDisplayTypeElementCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_display_type());
+        return temp[item];
+    }
+
+    public int getDisplayResolutionElementCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_display_resolution());
+        return temp[item];
+    }
+
+    public int getPlatformOsElementCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_platform_os());
+        return temp[item];
+    }
+
+
+
+    public int getRecordsCount()
+    {
+        return recordsMap.get_cell_table().Count;
+    }
+
+    public int getFieldsCount()
+    {
+        return fieldsMap.get_cell_table().Count;
+    }
+
+
+    public int getBodyWeightUniqueCount(double item)
+    {
+        Dictionary<double, int> temp = findCount(getFieldsMap().get_body_weight());
+        return temp.Count;
+    }
+
+    public int getDisplaySizeUniqueCount(double item)
+    {
+        Dictionary<double, int> temp = findCount(getFieldsMap().get_display_size());
+        return temp.Count;
+    }
+
+    public int getFeaturesSensorsUniqueCount(int item)
+    {
+        Dictionary<int, int> temp = findCount(getFieldsMap().get_features_sensors_count());
+        return temp.Count;
+    }
+
+    public int getLaunchAnnouncedUniqueCount(int item)
+    {
+        Dictionary<int, int> temp = findCount(getFieldsMap().get_launch_announced());
+        return temp.Count;
+    }
+
+    public int getLaunchStatusUniqueCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_launch_status());
+        return temp.Count;
+    }
+
+    public int getOemUniqueCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_oem());
+        return temp.Count;
+    }
+
+    public int getModelUniqueCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_model());
+        return temp.Count;
+    }
+
+    public int getBodyDimensionsUniqueCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_body_dimensions());
+        return temp.Count;
+    }
+
+    public int getBodySimUniqueCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_body_sim());
+        return temp.Count;
+    }
+
+    public int getDisplayTypeUniqueCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_display_type());
+        return temp.Count;
+    }
+
+    public int getDisplayResolutionUniqueCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_display_resolution());
+        return temp.Count;
+    }
+
+    public int getPlatformOsUniqueCount(string item)
+    {
+        Dictionary<string, int> temp = findCount(getFieldsMap().get_platform_os());
+        return temp.Count;
+    }
+
+
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+    public CellTable Copy(int flag)
+    {
+        return new CellTable(this.recordsMap.copy(), this.fieldsMap.copy(), this.nextId);
+    }
+
+    public CellTable Copy()
+    {
+        return new CellTable(@"Input\cells.csv");
+    }
+
+    public CellTable createQueryTable(FilterParameters filter)
+    {
+        CellTable temp = Copy();
+        temp.updateTableWhere(filter);
+        return temp;
     }
 
 
