@@ -2,6 +2,15 @@
 
 namespace AltLangProj.Classes
 {
+    /// <summary>
+    /// This class represents a column oriented version of the cell phone table. This class is used to build one of 
+    /// the two table representations used in the CellTable class.
+    /// 
+    /// Note: This is an additional representation of the cell phone table (other than the row oriented table described in the
+    /// project specifications). In our AD350, when talking about physical design it was mentioned that row based storage was
+    /// useful for transactional applications and column based storage was useful for analytical applications. Since, some of
+    /// my additional methods are analytical I wanted to explore implementing this alternative column based representation.
+    /// </summary>
     public class CellFields
     {
         private List<int> _id;

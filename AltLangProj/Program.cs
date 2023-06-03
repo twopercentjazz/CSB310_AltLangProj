@@ -193,7 +193,7 @@ cell4.printTableSize(); ////////////
 
 //cell4.printCellTable();
 
-cell4.printCustomMultipleRecords(cell4.getRecordsMap().get_cell_table().Keys.ToArray(), new []{"id", "oem", "model", "launch_announced", "launch_status"});
+cell4.printCustomMultipleRecords(cell4.getRecordsMap().GetCellTable().Keys.ToArray(), new []{"id", "oem", "model", "launch_announced", "launch_status"});
 
 
 ///////////////////////////////////
