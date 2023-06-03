@@ -3,7 +3,9 @@
 namespace AltLangProj.Classes;
 
 /// <summary>
-/// This class represents a single record from the Cell Table.
+/// This class represents a single record from the Cell Table. This class is used to build a
+/// table in the CellRecords class.
+/// 
 /// Note: for my implementation I included a primary key column called '_id' to uniquely identify
 /// each record. I also made one additional design decision and modified the '_featuresSensors'
 /// data type from string to int?, so the column displays the number of feature sensors a cell phone has
@@ -138,7 +140,7 @@ public class Cell
     /// <summary>
     /// This method gets the id (primary key).
     /// </summary>
-    /// <returns> The _id number </returns>
+    /// <returns> The id number </returns>
     public int GetId()
     {
         return this._id;
@@ -154,7 +156,7 @@ public class Cell
     }
 
     /// <summary>
-    /// This method gets the oem.
+    /// This method gets the oem name.
     /// </summary>
     /// <returns> The oem (company) name </returns>
     public string GetOem()
@@ -163,7 +165,7 @@ public class Cell
     }
 
     /// <summary>
-    /// This method sets the oem.
+    /// This method sets the oem name.
     /// </summary>
     /// <param name="item"> The new oem name </param>
     public void SetOem(string item)

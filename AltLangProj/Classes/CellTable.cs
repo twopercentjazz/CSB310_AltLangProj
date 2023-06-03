@@ -1,13 +1,4 @@
-﻿using System.Data.Common;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Xml.Linq;
-using Microsoft.VisualBasic;
-
-namespace AltLangProj.Classes;
+﻿namespace AltLangProj.Classes;
 
 public class CellTable
 {
@@ -123,71 +114,71 @@ public class CellTable
 
     public void printFeatureSensorList(int id)
     {
-        int index = getFieldsMap().get_id().IndexOf(id);
-        Console.WriteLine("Record " + id + " has the following feature sensors: " + getFieldsMap().get_features_sensors()[index]);
+        int index = getFieldsMap().GetId().IndexOf(id);
+        Console.WriteLine("Record " + id + " has the following feature sensors: " + getFieldsMap().GetFeaturesSensors()[index]);
     }
 
     public void printFrequencyTable(string field)
     {
         if (field == "oem")
         {
-            Dictionary<string, int> temp = findCount(getFieldsMap().get_oem());
+            Dictionary<string, int> temp = findCount(getFieldsMap().GetOem());
             printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
         }
         else if (field == "model")
         {
-            Dictionary<string, int> temp = findCount(getFieldsMap().get_model());
+            Dictionary<string, int> temp = findCount(getFieldsMap().GetModel());
             printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
         }
         else if (field == "launch_announced")
         {
-            Dictionary<int, int> temp = findCount(getFieldsMap().get_launch_announced());
+            Dictionary<int, int> temp = findCount(getFieldsMap().GetLaunchAnnounced());
             printFrequencyTable(convertToString(temp.Keys.ToList(), null), temp.Values.ToList(), field);
         }
         else if (field == "launch_status")
         {
-            Dictionary<string, int> temp = findCount(getFieldsMap().get_launch_status());
+            Dictionary<string, int> temp = findCount(getFieldsMap().GetLaunchStatus());
             printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
         }
         else if (field == "body_dimensions")
         {
-            Dictionary<string, int> temp = findCount(getFieldsMap().get_body_dimensions());
+            Dictionary<string, int> temp = findCount(getFieldsMap().GetBodyDimensions());
             printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
         }
         else if (field == "body_weight")
         {
-            Dictionary<double, int> temp = findCount(getFieldsMap().get_body_weight());
+            Dictionary<double, int> temp = findCount(getFieldsMap().GetBodyWeight());
             printFrequencyTable(convertToString(null, temp.Keys.ToList()), temp.Values.ToList(), field);
         }
         else if (field == "body_sim")
         {
-            Dictionary<string, int> temp = findCount(getFieldsMap().get_body_sim());
+            Dictionary<string, int> temp = findCount(getFieldsMap().GetBodySim());
             printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
         }
         else if (field == "display_type")
         {
-            Dictionary<string, int> temp = findCount(getFieldsMap().get_display_type());
+            Dictionary<string, int> temp = findCount(getFieldsMap().GetDisplayType());
             printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
         }
         else if (field == "display_size")
         {
-            Dictionary<double, int> temp = findCount(getFieldsMap().get_display_size());
+            Dictionary<double, int> temp = findCount(getFieldsMap().GetDisplaySize());
             printFrequencyTable(convertToString(null, temp.Keys.ToList()), temp.Values.ToList(), field);
         }
         else if (field == "display_resolution")
         {
-            Dictionary<string, int> temp = findCount(getFieldsMap().get_display_resolution());
+            Dictionary<string, int> temp = findCount(getFieldsMap().GetDisplayResolution());
             printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
         }
         else if (field == "features_sensors")
         {
-            Dictionary<int, int> temp = findCount(getFieldsMap().get_features_sensors_count());
+            Dictionary<int, int> temp = findCount(getFieldsMap().GetFeaturesSensorsCount());
             printFrequencyTable(convertToString(temp.Keys.ToList(), null), temp.Values.ToList(), field);
 
         }
         else if (field == "platform_os")
         {
-            Dictionary<string, int> temp = findCount(getFieldsMap().get_platform_os());
+            Dictionary<string, int> temp = findCount(getFieldsMap().GetPlatformOs());
             printFrequencyTable(temp.Keys.ToList(), temp.Values.ToList(), field);
         }
     }
@@ -238,7 +229,7 @@ public class CellTable
     public string printAvgPerOem(string avgField)
     {
         
-        List<string> unique = findCount(getFieldsMap().get_oem()).Keys.ToList();
+        List<string> unique = findCount(getFieldsMap().GetOem()).Keys.ToList();
 
         Dictionary<string, double> avg = new Dictionary<string, double>();
 
@@ -368,7 +359,7 @@ public class CellTable
     public string getType(string field)
     {
         string type;
-        string temp = getFieldsMap().get_cell_table()[field].ToString();
+        string temp = getFieldsMap().GetCellTable()[field].ToString();
         if (temp.Contains("Int"))
         {
             type = "Integer";
@@ -639,13 +630,13 @@ public class CellTable
     {
         if (field == "id")
         {
-            List<int> temp = (List<int>)getFieldsMap().get_cell_table()[field];
+            List<int> temp = (List<int>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, int> temp2 = new Dictionary<int, int>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (int item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -661,13 +652,13 @@ public class CellTable
         
         else if (field == "oem")
         {
-            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            List<string> temp = (List<string>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, string> temp2 = new Dictionary<int, string>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (string item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -682,13 +673,13 @@ public class CellTable
 
         else if (field == "model")
         {
-            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            List<string> temp = (List<string>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, string> temp2 = new Dictionary<int, string>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (string item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -703,13 +694,13 @@ public class CellTable
 
         else if (field == "launch_announced")
         {
-            List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()[field];
+            List<int?> temp = (List<int?>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, int?> temp2 = new Dictionary<int, int?>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (int? item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -724,13 +715,13 @@ public class CellTable
 
         else if (field == "launch_status")
         {
-            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            List<string> temp = (List<string>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, string> temp2 = new Dictionary<int, string>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (string item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -743,13 +734,13 @@ public class CellTable
         }
         else if (field == "body_dimensions")
         {
-            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            List<string> temp = (List<string>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, string> temp2 = new Dictionary<int, string>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (string item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -762,13 +753,13 @@ public class CellTable
         }
         else if (field == "body_weight")
         {
-            List<double?> temp = (List<double?>)getFieldsMap().get_cell_table()[field];
+            List<double?> temp = (List<double?>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, double?> temp2 = new Dictionary<int, double?>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (double? item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -781,13 +772,13 @@ public class CellTable
         }
         else if (field == "body_sim")
         {
-            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            List<string> temp = (List<string>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, string> temp2 = new Dictionary<int, string>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (string item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -800,13 +791,13 @@ public class CellTable
         }
         else if (field == "display_type")
         {
-            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            List<string> temp = (List<string>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, string> temp2 = new Dictionary<int, string>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (string item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -819,13 +810,13 @@ public class CellTable
         }
         else if (field == "display_size")
         {
-            List<double?> temp = (List<double?>)getFieldsMap().get_cell_table()[field];
+            List<double?> temp = (List<double?>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, double?> temp2 = new Dictionary<int, double?>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (double? item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -838,13 +829,13 @@ public class CellTable
         }
         else if (field == "display_resolution")
         {
-            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            List<string> temp = (List<string>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, string> temp2 = new Dictionary<int, string>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (string item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -857,13 +848,13 @@ public class CellTable
         }
         else if (field == "features_sensors")
         {
-            List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()["features_sensors_count"];
+            List<int?> temp = (List<int?>)getFieldsMap().GetCellTable()["features_sensors_count"];
             Dictionary<int, int?> temp2 = new Dictionary<int, int?>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (int? item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -876,13 +867,13 @@ public class CellTable
         }
         else if (field == "platform_os")
         {
-            List<string> temp = (List<string>)getFieldsMap().get_cell_table()[field];
+            List<string> temp = (List<string>)getFieldsMap().GetCellTable()[field];
             Dictionary<int, string> temp2 = new Dictionary<int, string>();
             List<int> temp3 = new List<int>();
             int i = 0;
             foreach (string item in temp)
             {
-                temp2.Add(getFieldsMap().get_id()[i], item);
+                temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
 
@@ -916,37 +907,33 @@ public class CellTable
 
     private void deleteRecordFromFieldMap(int id)
     {
-        int idIndex = getFieldsMap().get_id().IndexOf(id);
-        foreach (string title in getFieldsMap().get_field_titles())
+        int idIndex = getFieldsMap().GetId().IndexOf(id);
+        foreach (string title in getFieldsMap().GetFieldTitles())
         {
             if (title == "id")
             {
-                List<int> temp = (List<int>)getFieldsMap().get_cell_table()[title];
+                List<int> temp = (List<int>)getFieldsMap().GetCellTable()[title];
                 temp.RemoveAt(idIndex);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "launch_announced" || title == "year_of_launch" || title == "features_sensors_count")
             {
-                List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()[title];
+                List<int?> temp = (List<int?>)getFieldsMap().GetCellTable()[title];
                 temp.RemoveAt(idIndex);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "body_weight" || title == "display_size")
             {
-                List<double?> temp = (List<double?>)getFieldsMap().get_cell_table()[title];
+                List<double?> temp = (List<double?>)getFieldsMap().GetCellTable()[title];
                 temp.RemoveAt(idIndex);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else
             {
-                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                List<string> temp = (List<string>)getFieldsMap().GetCellTable()[title];
                 temp.RemoveAt(idIndex);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
-            
-
-
-
         }
     }
 
@@ -982,85 +969,85 @@ public class CellTable
         double? body_weight, string body_sim, string display_type, double? display_size, string display_resolution,
         string features_sensors, string platform_os)
     {
-        foreach (string title in getFieldsMap().get_field_titles())
+        foreach (string title in getFieldsMap().GetFieldTitles())
         {
             if (title == "id")
             {
-                List<int> temp = (List<int>)getFieldsMap().get_cell_table()[title];
+                List<int> temp = (List<int>)getFieldsMap().GetCellTable()[title];
                 temp.Add(getNextId());
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "oem")
             {
-                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                List<string> temp = (List<string>)getFieldsMap().GetCellTable()[title];
                 temp.Add(oem);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "model")
             {
-                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                List<string> temp = (List<string>)getFieldsMap().GetCellTable()[title];
                 temp.Add(model);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "launch_announced")
             {
-                List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()[title];
+                List<int?> temp = (List<int?>)getFieldsMap().GetCellTable()[title];
                 temp.Add(launch_announced);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "launch_status")
             {
-                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                List<string> temp = (List<string>)getFieldsMap().GetCellTable()[title];
                 temp.Add(launch_status);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "body_dimensions")
             {
-                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                List<string> temp = (List<string>)getFieldsMap().GetCellTable()[title];
                 temp.Add(body_dimensions);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "body_weight")
             {
-                List<double?> temp = (List<double?>)getFieldsMap().get_cell_table()[title];
+                List<double?> temp = (List<double?>)getFieldsMap().GetCellTable()[title];
                 temp.Add(body_weight);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "body_sim")
             {
-                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                List<string> temp = (List<string>)getFieldsMap().GetCellTable()[title];
                 temp.Add(body_sim);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "display_type")
             {
-                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                List<string> temp = (List<string>)getFieldsMap().GetCellTable()[title];
                 temp.Add(display_type);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "display_size")
             {
-                List<double?> temp = (List<double?>)getFieldsMap().get_cell_table()[title];
+                List<double?> temp = (List<double?>)getFieldsMap().GetCellTable()[title];
                 temp.Add(display_size);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "display_resolution")
             {
-                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                List<string> temp = (List<string>)getFieldsMap().GetCellTable()[title];
                 temp.Add(display_resolution);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "features_sensors")
             {
-                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                List<string> temp = (List<string>)getFieldsMap().GetCellTable()[title];
                 temp.Add(features_sensors);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "platform_os")
             {
-                List<string> temp = (List<string>)getFieldsMap().get_cell_table()[title];
+                List<string> temp = (List<string>)getFieldsMap().GetCellTable()[title];
                 temp.Add(platform_os);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "features_sensors_count")
             {
@@ -1073,13 +1060,13 @@ public class CellTable
                 {
                     features_sensors_count = null;
                 }
-                List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()[title];
+                List<int?> temp = (List<int?>)getFieldsMap().GetCellTable()[title];
                 temp.Add(features_sensors_count);
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
             else if (title == "year_of_launch")
             {
-                List<int?> temp = (List<int?>)getFieldsMap().get_cell_table()[title];
+                List<int?> temp = (List<int?>)getFieldsMap().GetCellTable()[title];
                 int i = 0;
                 if (int.TryParse(launch_status,out i))
                 {
@@ -1089,7 +1076,7 @@ public class CellTable
                 {
                     temp.Add(null);
                 }
-                getFieldsMap().get_cell_table()[title] = temp;
+                getFieldsMap().GetCellTable()[title] = temp;
             }
         }
     }
@@ -1255,169 +1242,169 @@ public class CellTable
 
     public double getAvgBodyWeight()
     {
-        return calcAvg(getFieldsMap().get_body_weight());
+        return calcAvg(getFieldsMap().GetBodyWeight());
     }
 
     public double getAvgDisplaySize()
     {
-        return calcAvg(getFieldsMap().get_display_size());
+        return calcAvg(getFieldsMap().GetDisplaySize());
     }
 
     public double getAvgFeaturesSensorsCount()
     {
-        List<double?> temp = getFieldsMap().get_features_sensors_count().ConvertAll(x => (double?)x);
+        List<double?> temp = getFieldsMap().GetFeaturesSensorsCount().ConvertAll(x => (double?)x);
         return calcAvg(temp);
     }
 
     public double getMedianBodyWeight()
     {
-        return calcMedian(getFieldsMap().get_body_weight());
+        return calcMedian(getFieldsMap().GetBodyWeight());
     }
 
     public double getMedianDisplaySize()
     {
-        return calcMedian(getFieldsMap().get_display_size());
+        return calcMedian(getFieldsMap().GetDisplaySize());
     }
 
     public double getMedianFeaturesSensorsCount()
     {
-        List<double?> temp = getFieldsMap().get_features_sensors_count().ConvertAll(x => (double?)x);
+        List<double?> temp = getFieldsMap().GetFeaturesSensorsCount().ConvertAll(x => (double?)x);
         return calcMedian(temp);
     }
 
     public double getModeBodyWeight()
     {
-        return calcMode(getFieldsMap().get_body_weight());
+        return calcMode(getFieldsMap().GetBodyWeight());
     }
 
     public double getModeDisplaySize()
     {
-        return calcMode(getFieldsMap().get_display_size());
+        return calcMode(getFieldsMap().GetDisplaySize());
     }
 
     public double getModeFeaturesSensorsCount()
     {
-        List<double?> temp = getFieldsMap().get_features_sensors_count().ConvertAll(x => (double?)x);
+        List<double?> temp = getFieldsMap().GetFeaturesSensorsCount().ConvertAll(x => (double?)x);
         return calcMode(temp);
     }
 
     public double getModeLaunchAnnounced()
     {
-        List<double?> temp = getFieldsMap().get_launch_announced().ConvertAll(x => (double?)x);
+        List<double?> temp = getFieldsMap().GetLaunchAnnounced().ConvertAll(x => (double?)x);
         return calcMode(temp);
     }
 
     public string getModeLaunchStatus()
     {
-        //List<double?> temp = getFieldsMap().get_year_of_launch().ConvertAll(x => (double?)x);
+        //List<double?> temp = getFieldsMap().GetYearOfLaunch().ConvertAll(x => (double?)x);
         //return calcMode(temp);
-        return calcMode(getFieldsMap().get_launch_status());
+        return calcMode(getFieldsMap().GetLaunchStatus());
     }
 
     public string getModeOem()
     {
-        return calcMode(getFieldsMap().get_oem());
+        return calcMode(getFieldsMap().GetOem());
     }
 
     public string getModeModel()
     {
-        return calcMode(getFieldsMap().get_model());
+        return calcMode(getFieldsMap().GetModel());
     }
 
     public string getModeBodyDimensions()
     {
-        return calcMode(getFieldsMap().get_body_dimensions());
+        return calcMode(getFieldsMap().GetBodyDimensions());
     }
 
     public string getModeBodySim()
     {
-        return calcMode(getFieldsMap().get_body_sim());
+        return calcMode(getFieldsMap().GetBodySim());
     }
 
     public string getModeDisplayType()
     {
-        return calcMode(getFieldsMap().get_display_type());
+        return calcMode(getFieldsMap().GetDisplayType());
     }
 
     public string getModeDisplayResolution()
     {
-        return calcMode(getFieldsMap().get_display_resolution());
+        return calcMode(getFieldsMap().GetDisplayResolution());
     }
 
     public string getModePlatformOs()
     {
-        return calcMode(getFieldsMap().get_platform_os());
+        return calcMode(getFieldsMap().GetPlatformOs());
     }
 
     public int getBodyWeightElementCount(double item)
     {
-        Dictionary<double,int> temp = findCount(getFieldsMap().get_body_weight());
+        Dictionary<double,int> temp = findCount(getFieldsMap().GetBodyWeight());
         return temp[item];
     }
 
     public int getDisplaySizeElementCount(double item)
     {
-        Dictionary<double, int> temp = findCount(getFieldsMap().get_display_size());
+        Dictionary<double, int> temp = findCount(getFieldsMap().GetDisplaySize());
         return temp[item];
     }
 
     public int getFeaturesSensorsCountElementCount(int item)
     {
-        Dictionary<int, int> temp = findCount(getFieldsMap().get_features_sensors_count());
+        Dictionary<int, int> temp = findCount(getFieldsMap().GetFeaturesSensorsCount());
         return temp[item];
     }
 
     public int getLaunchAnnouncedElementCount(int item)
     {
-        Dictionary<int, int> temp = findCount(getFieldsMap().get_launch_announced());
+        Dictionary<int, int> temp = findCount(getFieldsMap().GetLaunchAnnounced());
         return temp[item];
     }
 
     public int getLaunchStatusElementCount(string item)
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_launch_status());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetLaunchStatus());
         return temp[item];
     }
 
     public int getOemElementCount(string item)
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_oem());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetOem());
         return temp[item];
     }
 
     public int getModelElementCount(string item)
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_model());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetModel());
         return temp[item];
     }
 
     public int getBodyDimensionsElementCount(string item)
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_body_dimensions());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetBodyDimensions());
         return temp[item];
     }
 
     public int getBodySimElementCount(string item)
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_body_sim());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetBodySim());
         return temp[item];
     }
 
     public int getDisplayTypeElementCount(string item)
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_display_type());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetDisplayType());
         return temp[item];
     }
 
     public int getDisplayResolutionElementCount(string item)
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_display_resolution());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetDisplayResolution());
         return temp[item];
     }
 
     public int getPlatformOsElementCount(string item)
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_platform_os());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetPlatformOs());
         return temp[item];
     }
 
@@ -1436,73 +1423,73 @@ public class CellTable
 
     public int getBodyWeightUniqueCount()
     {
-        Dictionary<double, int> temp = findCount(getFieldsMap().get_body_weight());
+        Dictionary<double, int> temp = findCount(getFieldsMap().GetBodyWeight());
         return temp.Count;
     }
 
     public int getDisplaySizeUniqueCount()
     {
-        Dictionary<double, int> temp = findCount(getFieldsMap().get_display_size());
+        Dictionary<double, int> temp = findCount(getFieldsMap().GetDisplaySize());
         return temp.Count;
     }
 
     public int getFeaturesSensorsUniqueCount()
     {
-        Dictionary<int, int> temp = findCount(getFieldsMap().get_features_sensors_count());
+        Dictionary<int, int> temp = findCount(getFieldsMap().GetFeaturesSensorsCount());
         return temp.Count;
     }
 
     public int getLaunchAnnouncedUniqueCount()
     {
-        Dictionary<int, int> temp = findCount(getFieldsMap().get_launch_announced());
+        Dictionary<int, int> temp = findCount(getFieldsMap().GetLaunchAnnounced());
         return temp.Count;
     }
 
     public int getLaunchStatusUniqueCount()
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_launch_status());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetLaunchStatus());
         return temp.Count;
     }
 
     public int getOemUniqueCount()
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_oem());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetOem());
         return temp.Count;
     }
 
     public int getModelUniqueCount()
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_model());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetModel());
         return temp.Count;
     }
 
     public int getBodyDimensionsUniqueCount()
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_body_dimensions());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetBodyDimensions());
         return temp.Count;
     }
 
     public int getBodySimUniqueCount()
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_body_sim());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetBodySim());
         return temp.Count;
     }
 
     public int getDisplayTypeUniqueCount()
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_display_type());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetDisplayType());
         return temp.Count;
     }
 
     public int getDisplayResolutionUniqueCount()
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_display_resolution());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetDisplayResolution());
         return temp.Count;
     }
 
     public int getPlatformOsUniqueCount()
     {
-        Dictionary<string, int> temp = findCount(getFieldsMap().get_platform_os());
+        Dictionary<string, int> temp = findCount(getFieldsMap().GetPlatformOs());
         return temp.Count;
     }
 
@@ -1515,7 +1502,7 @@ public class CellTable
 
     public CellTable Copy(int flag)
     {
-        return new CellTable(this.recordsMap.copy(), this.fieldsMap.copy(), this.nextId);
+        return new CellTable(this.recordsMap.copy(), this.fieldsMap.Copy(), this.nextId);
     }
 
     public CellTable Copy()
