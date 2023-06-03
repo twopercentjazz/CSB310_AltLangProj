@@ -51,7 +51,7 @@ foreach (var item in test.get_cell_id())
 CellTable test = new CellTable(@"test");
 
 
-CellTable cell = new CellTable(@"Input\cells.csv");
+CellTable cell = new CellTable(@"Resources\Input\cells.csv");
 
 
 
@@ -223,7 +223,7 @@ cell5.printTableStats();
 
 Console.WriteLine();
 
-ParseCsvFile parser = new ParseCsvFile(@"Input\cells.csv");
+ParseCsvFile parser = new ParseCsvFile(@"Resources\Input\cells.csv");
 CleanCellData cleanData = new CleanCellData(parser.getColumnData(), parser.getRowData()[0]);
 cleanData.printHasMissingData();
 
