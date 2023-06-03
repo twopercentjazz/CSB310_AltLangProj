@@ -2,29 +2,33 @@
 
 ### Visual Studio Project Organization:
 > <pre>
-> AltLangProj  
+> AltLangProj  <------------------------------------>  (The Visual Studio Project)
 >  |   |   |  
->  |   |   |--- Program.cs  
+>  |   |   |=== Program.cs  <----------------------->  (The Main Program Driver)
 >  |   |  
->  |   |--- Input  
->  |          |  
->  |          |--- cell.csv  
+>  |   |=== Resources  <---------------------------->  (Folder Containing Project Resources)
+>  |         |  |  |
+>  |         |  |  |=== Git Screenshots  <---------->  (Folder Containing Required Git Screenshots)
+>  |         |  |  
+>  |         |  |=== Input  <----------------------->  (Folder Containing Input csv Files)
+>  |         | 
+>  |         |=== Report Assets  <------------------>  (Folder Containing Screenshots for Report)
 >  |  
->  |--- Classes  
+>  |=== Classes  <---------------------------------->  (Folder Containing the Classes for the Project)
 >          |  
->          |--- Cell.cs  
+>          |=== Cell.cs  <-------------------------->  (
 >          |  
->          |--- CellFields.cs  
+>          |=== CellFields.cs  <-------------------->  (
 >          |  
->          |--- CellRecords.cs  
+>          |=== CellRecords.cs  <------------------->  (
 >          |  
->          |--- CellTable.cs  
+>          |=== CellTable.cs  <--------------------->  (
 >          |  
->          |--- CleanCellData.cs  
+>          |=== CleanCellData.cs  <----------------->  (
 >          |  
->          |--- FilterParameter.cs  
+>          |=== FilterParameter.cs  <--------------->  (
 >          |  
->          |--- ParseCsvFile.cs  
+>          |=== ParseCsvFile.cs  <------------------>  (
 > </pre>
 # Project Report
 
