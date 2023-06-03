@@ -8,6 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="Resources\Git Screenshots\Git_Commiting_Screenshot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Git Screenshots\Git_Pushing_Screenshot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Git Screenshots\Git_Staging_Screenshot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Input\cells.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -17,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Git Screenshots\" />
     <Folder Include="Resources\Report Assets\" />
   </ItemGroup>
 
