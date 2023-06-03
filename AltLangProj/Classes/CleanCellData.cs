@@ -30,7 +30,6 @@ public class CleanCellData
                 }
                 else if (headers[i] == "launch_announced" || headers[i] == "launch_status")
                 {
-                    //Regex r = new Regex(@"^[^\d]*(\d{4})");
                     Regex r = new Regex(@"\b\d{4}\b");
                     Match m = r.Match(columnData[i][j]);
                     if (m.Success)
@@ -106,6 +105,12 @@ public class CleanCellData
                 {
                     temp.Add(columnData.ElementAt(i).ElementAt(j).Split(" (")[0].Replace("\"", ""));
                 }
+                else if (headers[i] == "features_sensors")
+                {
+                    string fs = columnData.ElementAt(i).ElementAt(j).Replace("\"", "");
+                    fs = Regex.Replace(fs, @"\((.*?)\)", "").Replace(" ,", ",");
+                    temp.Add(fs);
+                }
                 else
                 {
                     temp.Add(columnData.ElementAt(i).ElementAt(j).Replace("\"", ""));
@@ -118,5 +123,39 @@ public class CleanCellData
     public List<List<string>> getCleanColumnData()
     {
         return this.cleanColumnData;
+    }
+
+    public Boolean hasMissingData()
+    {
+        Boolean missingData = false;
+        foreach (List<string> columnData in cleanColumnData)
+        {
+            foreach (string element in columnData)
+            {
+                if (element == "" || element == "-")
+                {
+                    missingData = true;
+                    break;
+                }
+            }
+
+            if (missingData)
+            {
+                break;
+            }
+        }
+        return missingData;
+    }
+
+    public void printHasMissingData()
+    {
+        if (hasMissingData())
+        {
+            Console.WriteLine("[The data has missing values]");
+        }
+        else
+        {
+            Console.WriteLine("[The data doesn't have missing values]");
+        }
     }
 }

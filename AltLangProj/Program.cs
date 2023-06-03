@@ -48,7 +48,7 @@ foreach (var item in test.get_cell_id())
 // @"Input\cells.csv"
 
 
-
+CellTable test = new CellTable(@"test");
 
 
 CellTable cell = new CellTable(@"Input\cells.csv");
@@ -78,7 +78,7 @@ CellTable cell = new CellTable(@"Input\cells.csv");
 //cell.addRecord(null, null, null, "poop", null, null, null, null, null, null, "a,b,c", null);
 
 /*
-foreach (int? VARIABLE in cell.getFieldsMap().get_year_of_launch())
+foreach (string VARIABLE in cell.getFieldsMap().get_features_sensors())
 {
     if (VARIABLE == null)
     {
@@ -92,8 +92,9 @@ foreach (int? VARIABLE in cell.getFieldsMap().get_year_of_launch())
 }
 */
 
-//cell.printCellTable();
 
+//cell.printCellTable();
+/*
 Console.WriteLine();
 
 Console.WriteLine(cell.getAvgBodyWeight());
@@ -137,6 +138,7 @@ Console.WriteLine(cell.getModeFeaturesSensorsCount());
 Console.WriteLine(cell.getModePlatformOs());
 
 Console.WriteLine();
+*/
 
 //cell.printCellTable("oem");
 
@@ -188,16 +190,42 @@ Console.WriteLine();
 
 CellTable cell4 = cell.getPhonesLaunchedAfterAnnouncedTable();
 
+cell4.printTableSize(); ////////////
+
 //cell4.printCellTable();
 
 cell4.printCustomMultipleRecords(cell4.getRecordsMap().get_cell_table().Keys.ToArray(), new []{"id", "oem", "model", "launch_announced", "launch_status"});
 
 
+///////////////////////////////////
+
+Console.WriteLine();
+cell4.printCellTable();
+cell4.printFeatureSensorList(835);
+
+Console.WriteLine(cell4.getType("body_weight"));
 
 
 
+////////////////////////////////////////////
 
 
+FilterParameters query3 = new FilterParameters();
+query3.getFilterString().Add("oem", new []{"Google", "Sony"});
+
+CellTable cell5 = cell.createQueryTable(query3);
+
+cell5.printCellTable();
+
+cell5.printTableStats();
+
+//Console.WriteLine(cell5.getType("features_sensors"));
+
+Console.WriteLine();
+
+ParseCsvFile parser = new ParseCsvFile(@"Input\cells.csv");
+CleanCellData cleanData = new CleanCellData(parser.getColumnData(), parser.getRowData()[0]);
+cleanData.printHasMissingData();
 
 
 Console.ReadKey();
