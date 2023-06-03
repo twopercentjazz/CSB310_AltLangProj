@@ -8,9 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Input\cells.csv">
+    <None Update="Resources\Input\cells.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Git Screenshots\" />
+    <Folder Include="Resources\Report Assets\" />
   </ItemGroup>
 
 </Project>
