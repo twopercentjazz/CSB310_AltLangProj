@@ -3,7 +3,7 @@
 > ### Project Organization
 > <pre>
 > AltLangProj  
->  |---|---|  
+>  |   |   |  
 >  |   |   |--- Program.cs  
 >  |   |  
 >  |   |--- Input  
