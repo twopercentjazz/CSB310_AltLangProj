@@ -80,7 +80,7 @@ CellTable cell = new CellTable(@"Resources\Input\cells.csv");
 //cell.addRecord(null, null, null, "poop", null, null, null, null, null, null, "a,b,c", null);
 
 /*
-foreach (string VARIABLE in cell.getFieldsMap().get_features_sensors())
+foreach (string VARIABLE in cell.getFieldsMap().GetFeaturesSensors())
 {
     if (VARIABLE == null)
     {

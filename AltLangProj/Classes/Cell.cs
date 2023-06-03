@@ -2,243 +2,356 @@
 
 namespace AltLangProj.Classes;
 
+/// <summary>
+/// This class represents a single record from the Cell Table.
+/// Note: for my implementation I included a primary key column called '_id' to uniquely identify
+/// each record. I also made one additional design decision and modified the '_featuresSensors'
+/// data type from string to int?, so the column displays the number of feature sensors a cell phone has
+/// instead of the (comma separated) string that lists the included feature sensors. I did this because
+/// I wanted to be able to display all fields in one line of console output when printing a record and
+/// to do that I needed to shorten some of the elements lengths (in a meaningful way). But it's worth
+/// mentioning that I also didn't discard the original list of feature sensors (see CellFields class).
+/// My program can easily recall this data as needed (using a method called printFeaturesSensorsList).
+/// </summary>
 public class Cell
 {
-    private int id;
-    private string oem;
-    private string model;
-    private int? launch_announced;
-    private string launch_status;
-    private string body_dimensions;
-    private double? body_weight;
-    private string body_sim;
-    private string display_type;
-    private double? display_size;
-    private string display_resolution;
-    private int? features_sensors;
-    private string platform_os;
-    private List<string> field_titles;
-    private Hashtable cell_map;
+    private int _id;
+    private string _oem;
+    private string _model;
+    private int? _launchAnnounced;
+    private string _launchStatus;
+    private string _bodyDimensions;
+    private double? _bodyWeight;
+    private string _bodySim;
+    private string _displayType;
+    private double? _displaySize;
+    private string _displayResolution;
+    private int? _featuresSensors;
+    private string _platformOs;
+    private List<string> _fieldTitles;
+    private Hashtable _cellMap;
 
-    public  Cell(int id, string oem, string model, int? launch_announced, string launch_status, string body_dimensions,
-        double? body_weight, string body_sim, string display_type, double? display_size, string display_resolution,
-        int? features_sensors, string platform_os, List<string> field_titles)
+    /// <summary>
+    /// This Constructs a Cell object.
+    /// </summary>
+    /// <param name="id"> The primary key </param>
+    /// <param name="oem"> The company name </param>
+    /// <param name="model"> The _model of the phone</param>
+    /// <param name="launchAnnounced"> The year the phone was announced </param>
+    /// <param name="launchStatus"> The year the phone was released </param>
+    /// <param name="bodyDimensions"> The dimensions of the phone </param>
+    /// <param name="bodyWeight"> The weight of the phone </param>
+    /// <param name="bodySim"> The type of sim the phone uses </param>
+    /// <param name="displayType"> The type of display the phone uses </param>
+    /// <param name="displaySize"> The size of the phones display </param>
+    /// <param name="displayResolution"> The resolution of the phones display </param>
+    /// <param name="featuresSensors"> The (number of) sensors the phone uses </param>
+    /// <param name="platformOs"> The operating system the phone uses </param>
+    /// <param name="fieldTitles"> List of all the column titles </param>
+    public  Cell(int id, string oem, string model, int? launchAnnounced, string launchStatus, string bodyDimensions,
+        double? bodyWeight, string bodySim, string displayType, double? displaySize, string displayResolution,
+        int? featuresSensors, string platformOs, List<string> fieldTitles)
     {
-        this.field_titles = field_titles;
-        this.oem = oem;
-        this.model = model;
-        this.launch_announced = launch_announced;
-        this.launch_status = launch_status;
-        this.body_dimensions = body_dimensions;
-        this.body_weight = body_weight;
-        this.body_sim = body_sim;
-        this.display_type = display_type;
-        this.display_size = display_size;
-        this.display_resolution = display_resolution;
-        this.features_sensors = features_sensors;
-        this.platform_os = platform_os;
-        this.id = id;
-        this.field_titles = field_titles;
-        this.cell_map = create_cell_map();
+        this._fieldTitles = fieldTitles;
+        this._oem = oem;
+        this._model = model;
+        this._launchAnnounced = launchAnnounced;
+        this._launchStatus = launchStatus;
+        this._bodyDimensions = bodyDimensions;
+        this._bodyWeight = bodyWeight;
+        this._bodySim = bodySim;
+        this._displayType = displayType;
+        this._displaySize = displaySize;
+        this._displayResolution = displayResolution;
+        this._featuresSensors = featuresSensors;
+        this._platformOs = platformOs;
+        this._id = id;
+        this._fieldTitles = fieldTitles;
+        this._cellMap = CreateCellMap();
     }
 
-    public Cell(int id, string oem, string model, int? launch_announced, string launch_status, string body_dimensions,
-        double? body_weight, string body_sim, string display_type, double? display_size, string display_resolution,
-        int? features_sensors, string platform_os, List<string> field_titles, Hashtable cell_map)
+    /// <summary>
+    /// This Constructs a Cell object, and is used to construct a new Copy of an existing Cell object.
+    /// </summary>
+    /// <param name="id"> The primary key </param>
+    /// <param name="oem"> The company name </param>
+    /// <param name="model"> The _model of the phone</param>
+    /// <param name="launchAnnounced"> The year the phone was announced </param>
+    /// <param name="launchStatus"> The year the phone was released </param>
+    /// <param name="bodyDimensions"> The dimensions of the phone </param>
+    /// <param name="bodyWeight"> The weight of the phone </param>
+    /// <param name="bodySim"> The type of sim the phone uses </param>
+    /// <param name="displayType"> The type of display the phone uses </param>
+    /// <param name="displaySize"> The size of the phones display </param>
+    /// <param name="displayResolution"> The resolution of the phones display </param>
+    /// <param name="featuresSensors"> The (number of) sensors the phone uses </param>
+    /// <param name="platformOs"> The operating system the phone uses </param>
+    /// <param name="fieldTitles"> List of all the column titles </param>
+    /// <param name="cellMap"> A map with column titles as keys and Cell elements as values </param>
+    public Cell(int id, string oem, string model, int? launchAnnounced, string launchStatus, string bodyDimensions,
+        double? bodyWeight, string bodySim, string displayType, double? displaySize, string displayResolution,
+        int? featuresSensors, string platformOs, List<string> fieldTitles, Hashtable cellMap)
     {
-        this.field_titles = field_titles;
-        this.oem = oem;
-        this.model = model;
-        this.launch_announced = launch_announced;
-        this.launch_status = launch_status;
-        this.body_dimensions = body_dimensions;
-        this.body_weight = body_weight;
-        this.body_sim = body_sim;
-        this.display_type = display_type;
-        this.display_size = display_size;
-        this.display_resolution = display_resolution;
-        this.features_sensors = features_sensors;
-        this.platform_os = platform_os;
-        this.id = id;
-        this.field_titles = field_titles;
-        this.cell_map = cell_map;
+        this._fieldTitles = fieldTitles;
+        this._oem = oem;
+        this._model = model;
+        this._launchAnnounced = launchAnnounced;
+        this._launchStatus = launchStatus;
+        this._bodyDimensions = bodyDimensions;
+        this._bodyWeight = bodyWeight;
+        this._bodySim = bodySim;
+        this._displayType = displayType;
+        this._displaySize = displaySize;
+        this._displayResolution = displayResolution;
+        this._featuresSensors = featuresSensors;
+        this._platformOs = platformOs;
+        this._id = id;
+        this._fieldTitles = fieldTitles;
+        this._cellMap = cellMap;
     }
 
-
-    private Hashtable create_cell_map()
+    /// <summary>
+    /// This method creates a map with column titles as keys and Cell elements as values.
+    /// </summary>
+    /// <returns> The Cell map (for referencing each value by field title) </returns>
+    private Hashtable CreateCellMap()
     {
-        Hashtable temp = new Hashtable();
-        temp.Add(get_field_titles()[0], get_id());
-        temp.Add(get_field_titles()[1], get_oem());
-        temp.Add(get_field_titles()[2], get_model());
-        temp.Add(get_field_titles()[3], get_launch_announced());
-        temp.Add(get_field_titles()[4], get_launch_status());
-        temp.Add(get_field_titles()[5], get_body_dimensions());
-        temp.Add(get_field_titles()[6], get_body_weight());
-        temp.Add(get_field_titles()[7], get_body_sim());
-        temp.Add(get_field_titles()[8], get_display_type());
-        temp.Add(get_field_titles()[9], get_display_size());
-        temp.Add(get_field_titles()[10], get_display_resolution());
-        temp.Add(get_field_titles()[11], get_features_sensors());
-        temp.Add(get_field_titles()[12], get_platform_os());
+        Hashtable temp = new()
+        {
+            { GetFieldTitles()[0], GetId() },
+            { GetFieldTitles()[1], GetOem() },
+            { GetFieldTitles()[2], GetModel() },
+            { GetFieldTitles()[3], GetLaunchAnnounced() },
+            { GetFieldTitles()[4], GetLaunchStatus() },
+            { GetFieldTitles()[5], GetBodyDimensions() },
+            { GetFieldTitles()[6], GetBodyWeight() },
+            { GetFieldTitles()[7], GetBodySim() },
+            { GetFieldTitles()[8], GetDisplayType() },
+            { GetFieldTitles()[9], GetDisplaySize() },
+            { GetFieldTitles()[10], GetDisplayResolution() },
+            { GetFieldTitles()[11], GetFeaturesSensors() },
+            { GetFieldTitles()[12], GetPlatformOs() }
+        };
         return temp;
     }
 
-    public int get_id()
+    /// <summary>
+    /// This method gets the _id (primary key).
+    /// </summary>
+    /// <returns> The _id number </returns>
+    public int GetId()
     {
-        return this.id;
+        return this._id;
     }
 
-    public void set_id(int key)
+    public void SetId(int key)
     {
-        this.id = key;
+        this._id = key;
     }
 
-    public string get_oem()
+    /// <summary>
+    /// This method gets the _oem.
+    /// </summary>
+    /// <returns> The _oem (company name) </returns>
+    public string GetOem()
     {
-        return this.oem;
+        return this._oem;
     }
 
-    public void set_oem(string item)
+    public void SetOem(string item)
     {
-        this.oem = item;
+        this._oem = item;
     }
 
-    public string get_model()
+    /// <summary>
+    /// This method gets the _model name.
+    /// </summary>
+    /// <returns> The _model name  </returns>
+    public string GetModel()
     {
-        return this.model;
+        return this._model;
     }
 
-    public void set_model(string item)
+    public void SetModel(string item)
     {
-        this.model = item;
+        this._model = item;
     }
 
-    public int? get_launch_announced()
+    /// <summary>
+    /// This method gets the year the phone was announced.
+    /// </summary>
+    /// <returns> The year the phone was announced </returns>
+    public int? GetLaunchAnnounced()
     {
-        return this.launch_announced;
+        return this._launchAnnounced;
     }
 
-    public void set_launch_announced(int? item)
+    public void SetLaunchAnnounced(int? item)
     {
-        this.launch_announced = item;
+        this._launchAnnounced = item;
     }
 
-    public string get_launch_status()
+    /// <summary>
+    /// This method gets the year the phone was launched.
+    /// </summary>
+    /// <returns> The year the phone was launched </returns>
+    public string GetLaunchStatus()
     {
-        return this.launch_status;
+        return this._launchStatus;
     }
 
-    public void set_launch_status(string item)
+    public void SetLaunchStatus(string item)
     {
-        this.launch_status = item;
+        this._launchStatus = item;
     }
 
-    public string get_body_dimensions()
+    /// <summary>
+    /// This method gets the dimensions of the phone.
+    /// </summary>
+    /// <returns> The dimensions of the phone </returns>
+    public string GetBodyDimensions()
     {
-        return this.body_dimensions;
+        return this._bodyDimensions;
     }
 
-    public void set_body_dimensions(string item)
+    public void SetBodyDimensions(string item)
     {
-        this.body_dimensions = item;
+        this._bodyDimensions = item;
     }
 
-    public double? get_body_weight()
+    /// <summary>
+    /// This method gets the weight of the phone.
+    /// </summary>
+    /// <returns> The weight of the phone </returns>
+    public double? GetBodyWeight()
     {
-        return this.body_weight;
+        return this._bodyWeight;
     }
 
-    public void set_body_weight(double? item)
+    public void SetBodyWeight(double? item)
     {
-        this.body_weight = item;
+        this._bodyWeight = item;
     }
 
-    public string get_body_sim()
+    /// <summary>
+    /// This method gets the type of sim the phone uses.
+    /// </summary>
+    /// <returns> The type of sim the phone uses </returns>
+    public string GetBodySim()
     {
-        return this.body_sim;
+        return this._bodySim;
     }
 
-    public void set_body_sim(string item)
+    public void SetBodySim(string item)
     {
-        this.body_sim = item;
+        this._bodySim = item;
     }
 
-    public string get_display_type()
+    /// <summary>
+    /// This method gets the type of display the phone uses.
+    /// </summary>
+    /// <returns> The type of display the phone uses </returns>
+    public string GetDisplayType()
     {
-        return this.display_type;
+        return this._displayType;
     }
 
-    public void set_display_type(string item)
+    public void SetDisplayType(string item)
     {
-        this.display_type = item;
+        this._displayType = item;
     }
 
-    public double? get_display_size()
+    /// <summary>
+    /// This method gets the size of the phones display.
+    /// </summary>
+    /// <returns> The size of the phones display </returns>
+    public double? GetDisplaySize()
     {
-        return this.display_size;
+        return this._displaySize;
     }
 
-    public void set_display_size(double? item)
+    public void SetDisplaySize(double? item)
     {
-        this.display_size = item;
+        this._displaySize = item;
     }
 
-    public string get_display_resolution()
+    /// <summary>
+    /// This method gets the resolution of the phones display.
+    /// </summary>
+    /// <returns> The resolution of the phones display </returns>
+    public string GetDisplayResolution()
     {
-        return this.display_resolution;
+        return this._displayResolution;
     }
 
-    public void set_display_resolution(string item)
+    public void SetDisplayResolution(string item)
     {
-        this.display_resolution = item;
+        this._displayResolution = item;
     }
 
-    public int? get_features_sensors()
+    /// <summary>
+    /// This method gets the number of feature sensors a phone has.
+    /// </summary>
+    /// <returns> The number of feature sensors a phone has </returns>
+    public int? GetFeaturesSensors()
     {
-        return this.features_sensors;
+        return this._featuresSensors;
     }
 
-    public void set_features_sensors(int? item)
+    public void SetFeaturesSensors(int? item)
     {
-        this.features_sensors = item;
+        this._featuresSensors = item;
     }
 
-    public string get_platform_os()
+    /// <summary>
+    /// This method gets the name of the OS the phone uses.
+    /// </summary>
+    /// <returns> The name of the OS the phone uses </returns>
+    public string GetPlatformOs()
     {
-        return this.platform_os;
+        return this._platformOs;
     }
 
-    public void set_platform_os(string item)
+    public void SetPlatformOs(string item)
     {
-        this.platform_os = item;
+        this._platformOs = item;
     }
 
-    public List<string> get_field_titles()
+    /// <summary>
+    /// This method gets the list of field (column) titles for the table.
+    /// </summary>
+    /// <returns> The list of field titles </returns>
+    public List<string> GetFieldTitles()
     {
-        return this.field_titles;
+        return this._fieldTitles;
     }
 
-    public void set_field_titles(List<string> headers)
+    public void SetFieldTitles(List<string> headers)
     {
-        this.field_titles = headers;
+        this._fieldTitles = headers;
     }
 
-    public Hashtable get_cell_map()
+    /// <summary>
+    /// This method gets the Cell map for this object.
+    /// </summary>
+    /// <returns> The Cell map for this object </returns>
+    public Hashtable GetCellMap()
     {
-        return this.cell_map;
+        return this._cellMap;
     }
 
-    public void set_cell_map(Hashtable table)
+    public void SetCellMap(Hashtable table)
     {
-        this.cell_map = table;
+        this._cellMap = table;
     }
 
-    public Cell copy()
+    /// <summary>
+    /// This method is used to create a new Copy of an existing Cell object.
+    /// </summary>
+    /// <returns> The Cell Copy </returns>
+    public Cell Copy()
     {
-        return new Cell(id, oem, model, launch_announced, launch_status, body_dimensions, body_weight, body_sim,
-            display_type, display_size, display_resolution, features_sensors, platform_os, field_titles, cell_map);
+        return new Cell(_id, _oem, _model, _launchAnnounced, _launchStatus, _bodyDimensions, _bodyWeight, _bodySim,
+            _displayType, _displaySize, _displayResolution, _featuresSensors, _platformOs, _fieldTitles, _cellMap);
     }
-
-    
 }

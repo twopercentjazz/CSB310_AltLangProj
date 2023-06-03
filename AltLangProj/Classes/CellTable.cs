@@ -490,145 +490,145 @@ public class CellTable
         if (column == 0)
         {
 
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-5}", "null");
             }
             else
             {
-                temp += String.Format("{0,-5}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-5}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 1)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-14}", "null");
             }
             else
             {
-                temp += String.Format("{0,-14}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-14}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 2)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-26}", "null");
             }
             else
             {
-                temp += String.Format("{0,-26}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-26}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 3)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-17}", "null");
             }
             else
             {
-                temp += String.Format("{0,-17}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-17}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 4)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-14}", "null");
             }
             else
             {
-                temp += String.Format("{0,-14}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-14}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 5)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-25}", "null");
             }
             else
             {
-                temp += String.Format("{0,-25}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-25}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 6)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-12}", "null");
             }
             else
             {
-                temp += String.Format("{0,-12}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-12}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 7)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-17}", "null");
             }
             else
             {
-                temp += String.Format("{0,-17}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-17}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 8)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-25}", "null");
             }
             else
             {
-                temp += String.Format("{0,-25}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-25}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 9)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-13}", "null");
             }
             else
             {
-                temp += String.Format("{0,-13}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-13}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 10)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-19}", "null");
             }
             else
             {
-                temp += String.Format("{0,-19}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-19}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 11)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-17}", "null");
             }
             else
             {
-                temp += String.Format("{0,-17}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-17}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         if (column == 12)
         {
-            if (row.get_cell_map()[recordsMap.get_field_titles()[column]] == null)
+            if (row.GetCellMap()[recordsMap.get_field_titles()[column]] == null)
             {
                 temp += String.Format("{0,-32}", "null");
             }
             else
             {
-                temp += String.Format("{0,-32}", row.get_cell_map()[recordsMap.get_field_titles()[column]].ToString());
+                temp += String.Format("{0,-32}", row.GetCellMap()[recordsMap.get_field_titles()[column]].ToString());
             }
         }
         return temp;
@@ -1543,7 +1543,7 @@ public class CellTable
                         Boolean found = false;
                         foreach (string item in filter.getFilterString()[field])
                         {
-                            if (getRecordsMap().get_cell_table()[id].get_oem().Equals(item))
+                            if (getRecordsMap().get_cell_table()[id].GetOem().Equals(item))
                             {
                                 found = true;
                                 break;
@@ -1564,7 +1564,7 @@ public class CellTable
                         Boolean found = false;
                         foreach (string item in filter.getFilterString()[field])
                         {
-                            if (getRecordsMap().get_cell_table()[id].get_model().Equals(item))
+                            if (getRecordsMap().get_cell_table()[id].GetModel().Equals(item))
                             {
                                 found = true;
                                 break;
@@ -1586,7 +1586,7 @@ public class CellTable
                         Boolean found = false;
                         foreach (string item in filter.getFilterString()[field])
                         {
-                            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals(item))
+                            if (getRecordsMap().get_cell_table()[id].GetLaunchStatus().Equals(item))
                             {
                                 found = true;
                                 break;
@@ -1607,7 +1607,7 @@ public class CellTable
                         Boolean found = false;
                         foreach (string item in filter.getFilterString()[field])
                         {
-                            if (getRecordsMap().get_cell_table()[id].get_body_dimensions().Equals(item))
+                            if (getRecordsMap().get_cell_table()[id].GetBodyDimensions().Equals(item))
                             {
                                 found = true;
                                 break;
@@ -1629,7 +1629,7 @@ public class CellTable
                         Boolean found = false;
                         foreach (string item in filter.getFilterString()[field])
                         {
-                            if (getRecordsMap().get_cell_table()[id].get_body_sim().Equals(item))
+                            if (getRecordsMap().get_cell_table()[id].GetBodySim().Equals(item))
                             {
                                 found = true;
                                 break;
@@ -1650,7 +1650,7 @@ public class CellTable
                         Boolean found = false;
                         foreach (string item in filter.getFilterString()[field])
                         {
-                            if (getRecordsMap().get_cell_table()[id].get_display_type().Equals(item))
+                            if (getRecordsMap().get_cell_table()[id].GetDisplayType().Equals(item))
                             {
                                 found = true;
                                 break;
@@ -1671,7 +1671,7 @@ public class CellTable
                         Boolean found = false;
                         foreach (string item in filter.getFilterString()[field])
                         {
-                            if (getRecordsMap().get_cell_table()[id].get_display_resolution().Equals(item))
+                            if (getRecordsMap().get_cell_table()[id].GetDisplayResolution().Equals(item))
                             {
                                 found = true;
                                 break;
@@ -1712,7 +1712,7 @@ public class CellTable
                             Boolean found = false;
                             foreach (int item in filter.getFilterInt()[field])
                             {
-                                if (getRecordsMap().get_cell_table()[id].get_id().Equals(item))
+                                if (getRecordsMap().get_cell_table()[id].GetId().Equals(item))
                                 {
                                     found = true;
                                     break;
@@ -1730,8 +1730,8 @@ public class CellTable
                         {
                             Boolean found = false;
 
-                            if (getRecordsMap().get_cell_table()[id].get_id() >= filter.getFilterIntRange()[field].Key &&
-                                getRecordsMap().get_cell_table()[id].get_id() <= filter.getFilterIntRange()[field].Value)
+                            if (getRecordsMap().get_cell_table()[id].GetId() >= filter.getFilterIntRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].GetId() <= filter.getFilterIntRange()[field].Value)
                             {
                                 found = true;
                             }
@@ -1752,7 +1752,7 @@ public class CellTable
                             Boolean found = false;
                             foreach (int item in filter.getFilterInt()[field])
                             {
-                                if (getRecordsMap().get_cell_table()[id].get_launch_announced().Equals(item))
+                                if (getRecordsMap().get_cell_table()[id].GetLaunchAnnounced().Equals(item))
                                 {
                                     found = true;
                                     break;
@@ -1770,8 +1770,8 @@ public class CellTable
                         {
                             Boolean found = false;
 
-                            if (getRecordsMap().get_cell_table()[id].get_launch_announced() >= filter.getFilterIntRange()[field].Key &&
-                                getRecordsMap().get_cell_table()[id].get_launch_announced() <= filter.getFilterIntRange()[field].Value)
+                            if (getRecordsMap().get_cell_table()[id].GetLaunchAnnounced() >= filter.getFilterIntRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].GetLaunchAnnounced() <= filter.getFilterIntRange()[field].Value)
                             {
                                 found = true;
                             }
@@ -1791,7 +1791,7 @@ public class CellTable
                         foreach (int id in getRecordsMap().get_cell_table().Keys)
                         {
                             
-                            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Cancelled"))
+                            if (getRecordsMap().get_cell_table()[id].GetLaunchStatus().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].GetLaunchStatus().Equals("Cancelled"))
                             {
                                 deleteRecord(id);
                             }
@@ -1800,7 +1800,7 @@ public class CellTable
                                 Boolean found = false;
                                 foreach (int item in filter.getFilterInt()[field])
                                 {
-                                    if (int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()).Equals(item))
+                                    if (int.Parse(getRecordsMap().get_cell_table()[id].GetLaunchStatus()).Equals(item))
                                     {
                                         found = true;
                                         break;
@@ -1818,7 +1818,7 @@ public class CellTable
                         foreach (int id in getRecordsMap().get_cell_table().Keys)
                         {
                             
-                            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Cancelled"))
+                            if (getRecordsMap().get_cell_table()[id].GetLaunchStatus().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].GetLaunchStatus().Equals("Cancelled"))
                             {
                                 deleteRecord(id);
                             }
@@ -1826,8 +1826,8 @@ public class CellTable
                             {
                                 Boolean found = false;
 
-                                if (int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()) >= filter.getFilterIntRange()[field].Key &&
-                                    int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()) <= filter.getFilterIntRange()[field].Value)
+                                if (int.Parse(getRecordsMap().get_cell_table()[id].GetLaunchStatus()) >= filter.getFilterIntRange()[field].Key &&
+                                    int.Parse(getRecordsMap().get_cell_table()[id].GetLaunchStatus()) <= filter.getFilterIntRange()[field].Value)
                                 {
                                     found = true;
                                 }
@@ -1848,7 +1848,7 @@ public class CellTable
                             Boolean found = false;
                             foreach (int item in filter.getFilterInt()[field])
                             {
-                                if (getRecordsMap().get_cell_table()[id].get_features_sensors().Equals(item))
+                                if (getRecordsMap().get_cell_table()[id].GetFeaturesSensors().Equals(item))
                                 {
                                     found = true;
                                     break;
@@ -1866,8 +1866,8 @@ public class CellTable
                         {
                             Boolean found = false;
 
-                            if (getRecordsMap().get_cell_table()[id].get_features_sensors() >= filter.getFilterIntRange()[field].Key &&
-                                getRecordsMap().get_cell_table()[id].get_features_sensors() <= filter.getFilterIntRange()[field].Value)
+                            if (getRecordsMap().get_cell_table()[id].GetFeaturesSensors() >= filter.getFilterIntRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].GetFeaturesSensors() <= filter.getFilterIntRange()[field].Value)
                             {
                                 found = true;
                             }
@@ -1910,7 +1910,7 @@ public class CellTable
                             Boolean found = false;
                             foreach (int item in filter.getFilterDouble()[field])
                             {
-                                if (getRecordsMap().get_cell_table()[id].get_body_weight().Equals(item))
+                                if (getRecordsMap().get_cell_table()[id].GetBodyWeight().Equals(item))
                                 {
                                     found = true;
                                     break;
@@ -1928,8 +1928,8 @@ public class CellTable
                         {
                             Boolean found = false;
 
-                            if (getRecordsMap().get_cell_table()[id].get_body_weight() >= filter.getFilterDoubleRange()[field].Key &&
-                                getRecordsMap().get_cell_table()[id].get_body_weight() <= filter.getFilterDoubleRange()[field].Value)
+                            if (getRecordsMap().get_cell_table()[id].GetBodyWeight() >= filter.getFilterDoubleRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].GetBodyWeight() <= filter.getFilterDoubleRange()[field].Value)
                             {
                                 found = true;
                             }
@@ -1953,7 +1953,7 @@ public class CellTable
                             Boolean found = false;
                             foreach (int item in filter.getFilterDouble()[field])
                             {
-                                if (getRecordsMap().get_cell_table()[id].get_display_size().Equals(item))
+                                if (getRecordsMap().get_cell_table()[id].GetDisplaySize().Equals(item))
                                 {
                                     found = true;
                                     break;
@@ -1971,8 +1971,8 @@ public class CellTable
                         {
                             Boolean found = false;
 
-                            if (getRecordsMap().get_cell_table()[id].get_display_size() >= filter.getFilterDoubleRange()[field].Key &&
-                                getRecordsMap().get_cell_table()[id].get_display_size() <= filter.getFilterDoubleRange()[field].Value)
+                            if (getRecordsMap().get_cell_table()[id].GetDisplaySize() >= filter.getFilterDoubleRange()[field].Key &&
+                                getRecordsMap().get_cell_table()[id].GetDisplaySize() <= filter.getFilterDoubleRange()[field].Value)
                             {
                                 found = true;
                             }
@@ -1997,12 +1997,12 @@ public class CellTable
         CellTable temp = Copy();
         foreach (int id in getRecordsMap().get_cell_table().Keys)
         {
-            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Cancelled"))
+            if (getRecordsMap().get_cell_table()[id].GetLaunchStatus().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].GetLaunchStatus().Equals("Cancelled"))
             {
                 temp.deleteRecord(id);
             }
-            else if (getRecordsMap().get_cell_table()[id].get_launch_announced() >=
-                     int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()))
+            else if (getRecordsMap().get_cell_table()[id].GetLaunchAnnounced() >=
+                     int.Parse(getRecordsMap().get_cell_table()[id].GetLaunchStatus()))
             {
                 temp.deleteRecord(id);
             }
