@@ -136,7 +136,7 @@ public class Cell
     }
 
     /// <summary>
-    /// This method gets the _id (primary key).
+    /// This method gets the id (primary key).
     /// </summary>
     /// <returns> The _id number </returns>
     public int GetId()
@@ -144,34 +144,46 @@ public class Cell
         return this._id;
     }
 
+    /// <summary>
+    /// This method sets the id (primary key).
+    /// </summary>
+    /// <param name="key"> The new id number </param>
     public void SetId(int key)
     {
         this._id = key;
     }
 
     /// <summary>
-    /// This method gets the _oem.
+    /// This method gets the oem.
     /// </summary>
-    /// <returns> The _oem (company name) </returns>
+    /// <returns> The oem (company) name </returns>
     public string GetOem()
     {
         return this._oem;
     }
 
+    /// <summary>
+    /// This method sets the oem.
+    /// </summary>
+    /// <param name="item"> The new oem name </param>
     public void SetOem(string item)
     {
         this._oem = item;
     }
 
     /// <summary>
-    /// This method gets the _model name.
+    /// This method gets the model name.
     /// </summary>
-    /// <returns> The _model name  </returns>
+    /// <returns> The model name </returns>
     public string GetModel()
     {
         return this._model;
     }
 
+    /// <summary>
+    /// This method sets the model name.
+    /// </summary>
+    /// <param name="item"> The new model name </param>
     public void SetModel(string item)
     {
         this._model = item;
@@ -186,6 +198,10 @@ public class Cell
         return this._launchAnnounced;
     }
 
+    /// <summary>
+    /// This method sets the year the phone was announced.
+    /// </summary>
+    /// <param name="item"> The new year the phone was announced </param>
     public void SetLaunchAnnounced(int? item)
     {
         this._launchAnnounced = item;
@@ -200,6 +216,10 @@ public class Cell
         return this._launchStatus;
     }
 
+    /// <summary>
+    /// This method sets the year the phone was launched.
+    /// </summary>
+    /// <param name="item"> The new year the phone was launched </param>
     public void SetLaunchStatus(string item)
     {
         this._launchStatus = item;
@@ -214,6 +234,10 @@ public class Cell
         return this._bodyDimensions;
     }
 
+    /// <summary>
+    /// This method sets the dimensions of the phone.
+    /// </summary>
+    /// <param name="item"> The new dimensions of the phone </param>
     public void SetBodyDimensions(string item)
     {
         this._bodyDimensions = item;
@@ -228,6 +252,10 @@ public class Cell
         return this._bodyWeight;
     }
 
+    /// <summary>
+    /// This method sets the weight of the phone.
+    /// </summary>
+    /// <param name="item"> The new weight of the phone </param>
     public void SetBodyWeight(double? item)
     {
         this._bodyWeight = item;
@@ -242,6 +270,10 @@ public class Cell
         return this._bodySim;
     }
 
+    /// <summary>
+    /// This method sets the type of sim the phone uses.
+    /// </summary>
+    /// <param name="item"> The new type of sim the phone uses </param>
     public void SetBodySim(string item)
     {
         this._bodySim = item;
@@ -256,6 +288,10 @@ public class Cell
         return this._displayType;
     }
 
+    /// <summary>
+    /// This method sets the type of display the phone uses.
+    /// </summary>
+    /// <param name="item"> The new type of display the phone uses </param>
     public void SetDisplayType(string item)
     {
         this._displayType = item;
@@ -270,6 +306,10 @@ public class Cell
         return this._displaySize;
     }
 
+    /// <summary>
+    /// This method sets the size of the phones display.
+    /// </summary>
+    /// <param name="item"> The new size of the phones display </param>
     public void SetDisplaySize(double? item)
     {
         this._displaySize = item;
@@ -284,6 +324,10 @@ public class Cell
         return this._displayResolution;
     }
 
+    /// <summary>
+    /// This method sets the resolution of the phones display.
+    /// </summary>
+    /// <param name="item"> The new resolution of the phones display </param>
     public void SetDisplayResolution(string item)
     {
         this._displayResolution = item;
@@ -298,6 +342,10 @@ public class Cell
         return this._featuresSensors;
     }
 
+    /// <summary>
+    /// This method sets the number of feature sensors a phone has.
+    /// </summary>
+    /// <param name="item"> The new number of feature sensors a phone has </param>
     public void SetFeaturesSensors(int? item)
     {
         this._featuresSensors = item;
@@ -312,6 +360,10 @@ public class Cell
         return this._platformOs;
     }
 
+    /// <summary>
+    /// This method sets the name of the OS the phone uses.
+    /// </summary>
+    /// <param name="item"> The new name of the OS the phone uses </param>
     public void SetPlatformOs(string item)
     {
         this._platformOs = item;
@@ -326,6 +378,10 @@ public class Cell
         return this._fieldTitles;
     }
 
+    /// <summary>
+    /// This method sets the list of field (column) titles for the table.
+    /// </summary>
+    /// <param name="headers"> The new list of field titles </param>
     public void SetFieldTitles(List<string> headers)
     {
         this._fieldTitles = headers;
@@ -340,6 +396,10 @@ public class Cell
         return this._cellMap;
     }
 
+    /// <summary>
+    /// This method sets the Cell map for this object.
+    /// </summary>
+    /// <param name="table"> The new Cell map for this object </param>
     public void SetCellMap(Hashtable table)
     {
         this._cellMap = table;
