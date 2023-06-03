@@ -7,7 +7,7 @@ public class CellRecords
 
     public CellRecords(CellFields cell_table)
     {
-        this.field_titles = cell_table.get_field_titles();
+        this.field_titles = cell_table.GetFieldTitles();
         this.cell_table = create_cell_table(cell_table);
     }
 
@@ -20,15 +20,15 @@ public class CellRecords
     private Dictionary<int, Cell> create_cell_table(CellFields cell_table)
     {
         Dictionary<int, Cell> temp = new Dictionary<int, Cell>();
-        for (int i = 0; i < cell_table.get_id().Count; i++)
+        for (int i = 0; i < cell_table.GetId().Count; i++)
         {
-            Cell record = new Cell(cell_table.get_id()[i], cell_table.get_oem()[i], cell_table.get_model()[i],
-                cell_table.get_launch_announced()[i], cell_table.get_launch_status()[i],
-                cell_table.get_body_dimensions()[i],
-                cell_table.get_body_weight()[i], cell_table.get_body_sim()[i], cell_table.get_display_type()[i],
-                cell_table.get_display_size()[i], cell_table.get_display_resolution()[i],
-                cell_table.get_features_sensors_count()[i],
-                cell_table.get_platform_os()[i], cell_table.get_field_titles());
+            Cell record = new Cell(cell_table.GetId()[i], cell_table.GetOem()[i], cell_table.GetModel()[i],
+                cell_table.GetLaunchAnnounced()[i], cell_table.GetLaunchStatus()[i],
+                cell_table.GetBodyDimensions()[i],
+                cell_table.GetBodyWeight()[i], cell_table.GetBodySim()[i], cell_table.GetDisplayType()[i],
+                cell_table.GetDisplaySize()[i], cell_table.GetDisplayResolution()[i],
+                cell_table.GetFeaturesSensorsCount()[i],
+                cell_table.GetPlatformOs()[i], cell_table.GetFieldTitles());
             temp.Add(i + 1, record);
         }
         return temp;

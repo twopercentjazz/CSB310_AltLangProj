@@ -2,9 +2,6 @@
 
 
 using AltLangProj.Classes;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 
 //ParseCsvFile temp = new ParseCsvFile(@"Input\cells.csv");
 

@@ -1,96 +1,121 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic.CompilerServices;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Collections;
 
 namespace AltLangProj.Classes
 {
     public class CellFields
     {
-        private List<int> id;
-        private List<string> oem;
-        private List<string> model;
-        private List<int?> launch_announced;
-        private List<string> launch_status;
-        private List<string> body_dimensions;
-        private List<double?> body_weight;
-        private List<string> body_sim;
-        private List<string> display_type;
-        private List<double?> display_size;
-        private List<string> display_resolution;
-        private List<string> features_sensors;
-        private List<string> platform_os;
-        private List<string> field_titles;
-        private List<int?> year_of_launch;
-        private List<int?> features_sensors_count;
-        private Hashtable cell_table;
+        private List<int> _id;
+        private List<string> _oem;
+        private List<string> _model;
+        private List<int?> _launchAnnounced;
+        private List<string> _launchStatus;
+        private List<string> _bodyDimensions;
+        private List<double?> _bodyWeight;
+        private List<string> _bodySim;
+        private List<string> _displayType;
+        private List<double?> _displaySize;
+        private List<string> _displayResolution;
+        private List<string> _featuresSensors;
+        private List<string> _platformOs;
+        private List<string> _fieldTitles;
+        private List<int?> _yearOfLaunch;
+        private List<int?> _featuresSensorsCount;
+        private Hashtable _cellTable;
 
+        /// <summary>
+        /// This Constructs a CellFields object.
+        /// </summary>
+        /// <param name="columnData"> All table columns </param>
+        /// <param name="rowData"> All table rows </param>
         public CellFields(List<List<string>> columnData, List<List<string>> rowData)
         {
-            
-            this.oem = columnData[0];
-            this.model = columnData[1];
-            this.launch_announced = columnData[2].Select(s => int.TryParse(s, out var n) ? n : (int?)null).ToList();
-            this.launch_status = columnData[3];
-            this.body_dimensions = columnData[4];
-            this.body_weight = columnData[5].Select(s => double.TryParse(s, out var n) ? n : (double?)null).ToList(); 
-            this.body_sim= columnData[6];
-            this.display_type = columnData[7];
-            this.display_size = columnData[8].Select(s => double.TryParse(s, out var n) ? n : (double?)null).ToList();
-            this.display_resolution = columnData[9];
-            this.features_sensors = columnData[10];
-            this.platform_os = columnData[11];
-            this.id = create_cell_id_column();
-            this.year_of_launch = create_year_of_launch_list();
-            this.features_sensors_count = create_features_sensors_count();
-            this.field_titles = rowData[0];
-            this.field_titles.Insert(0, "id");
-            this.field_titles.Add("year_of_launch");
-            this.field_titles.Add("features_sensors_count");
-            this.cell_table = create_cell_table();
+            this._oem = columnData[0];
+            this._model = columnData[1];
+            this._launchAnnounced = columnData[2].Select(s => int.TryParse(s, out var n) ? n : (int?)null).ToList();
+            this._launchStatus = columnData[3];
+            this._bodyDimensions = columnData[4];
+            this._bodyWeight = columnData[5].Select(s => double.TryParse(s, out var n) ? n : (double?)null).ToList(); 
+            this._bodySim= columnData[6];
+            this._displayType = columnData[7];
+            this._displaySize = columnData[8].Select(s => double.TryParse(s, out var n) ? n : (double?)null).ToList();
+            this._displayResolution = columnData[9];
+            this._featuresSensors = columnData[10];
+            this._platformOs = columnData[11];
+            this._id = CreateCellIdColumn();
+            this._yearOfLaunch = CreateYearOfLaunchList();
+            this._featuresSensorsCount = CreateFeaturesSensorsCountList();
+            this._fieldTitles = rowData[0];
+            this._fieldTitles.Insert(0, "id");
+            this._fieldTitles.Add("year_of_launch");
+            this._fieldTitles.Add("features_sensors_count");
+            this._cellTable = CreateCellTable();
         }
 
-        public CellFields(List<int> id, List<string> oem, List<string> model, List<int?> launch_announced, List<string> launch_status, List<string> body_dimensions, 
-            List<double?> body_weight, List<string> body_sim, List<string> display_type, List<double?> display_size, List<string> display_resolution, List<string> features_sensors, 
-            List<string> platform_os, List<string> field_titles, List<int?> year_of_launch, List<int?> features_sensors_count, Hashtable cell_table)
+        /// <summary>
+        /// This Constructs a CellFields object, and is used to construct a new Copy of an existing CellFields object.
+        /// </summary>
+        /// <param name="id"> The primary key </param>
+        /// <param name="oem"> The company name </param>
+        /// <param name="model"> The _model of the phone</param>
+        /// <param name="launchAnnounced"> The year the phone was announced </param>
+        /// <param name="launchStatus"> The year the phone was released (string) </param>
+        /// <param name="bodyDimensions"> The dimensions of the phone </param>
+        /// <param name="bodyWeight"> The weight of the phone </param>
+        /// <param name="bodySim"> The type of sim the phone uses </param>
+        /// <param name="displayType"> The type of display the phone uses </param>
+        /// <param name="displaySize"> The size of the phones display </param>
+        /// <param name="displayResolution"> The resolution of the phones display </param>
+        /// <param name="featuresSensors"> The sensors the phone uses </param>
+        /// <param name="platformOs"> The operating system the phone uses </param>
+        /// <param name="fieldTitles"> List of all the column titles </param>
+        /// <param name="yearOfLaunch"> The year the phone was released (int) </param>
+        /// <param name="featuresSensorsCount"> The number of sensors the phone uses </param>
+        /// <param name="cellTable"> A table with column titles as keys and the lists of column elements as values </param>
+        public CellFields(List<int> id, List<string> oem, List<string> model, List<int?> launchAnnounced, List<string> launchStatus, List<string> bodyDimensions, 
+            List<double?> bodyWeight, List<string> bodySim, List<string> displayType, List<double?> displaySize, List<string> displayResolution, List<string> featuresSensors, 
+            List<string> platformOs, List<string> fieldTitles, List<int?> yearOfLaunch, List<int?> featuresSensorsCount, Hashtable cellTable)
         {
-            this.oem = oem;
-            this.model = model;
-            this.launch_announced = launch_announced;
-            this.launch_status = launch_status;
-            this.body_dimensions = body_dimensions;
-            this.body_weight = body_weight;
-            this.body_sim = body_sim;
-            this.display_type = display_type;
-            this.display_size = display_size;
-            this.display_resolution = display_resolution;
-            this.features_sensors = features_sensors;
-            this.platform_os = platform_os;
-            this.id = id;
-            this.year_of_launch = year_of_launch;
-            this.features_sensors_count = features_sensors_count;
-            this.field_titles = field_titles;
-            this.cell_table = cell_table;
+            this._oem = oem;
+            this._model = model;
+            this._launchAnnounced = launchAnnounced;
+            this._launchStatus = launchStatus;
+            this._bodyDimensions = bodyDimensions;
+            this._bodyWeight = bodyWeight;
+            this._bodySim = bodySim;
+            this._displayType = displayType;
+            this._displaySize = displaySize;
+            this._displayResolution = displayResolution;
+            this._featuresSensors = featuresSensors;
+            this._platformOs = platformOs;
+            this._id = id;
+            this._yearOfLaunch = yearOfLaunch;
+            this._featuresSensorsCount = featuresSensorsCount;
+            this._fieldTitles = fieldTitles;
+            this._cellTable = cellTable;
         }
 
-        private List<int> create_cell_id_column()
+        /// <summary>
+        /// This method creates the primary key column called id
+        /// </summary>
+        /// <returns> The id column </returns>
+        private List<int> CreateCellIdColumn()
         {
             List<int> temp = new List<int>();
-            for (int i = 1; i <= get_oem().Count; i++)
+            for (int i = 1; i <= GetOem().Count; i++)
             {
                 temp.Add(i);
             }
             return temp;
         }
 
-        private List<int?> create_year_of_launch_list()
+        /// <summary>
+        /// This method creates an int representation of the launch status column.
+        /// </summary>
+        /// <returns> The year of launch column </returns>
+        private List<int?> CreateYearOfLaunchList()
         {
             List<int?> temp = new List<int?>();
-            foreach (string item in get_launch_status())
+            foreach (string item in GetLaunchStatus())
             {
                 if (item == null || item == "Discontinued" || item == "Cancelled")
                 {
@@ -105,10 +130,14 @@ namespace AltLangProj.Classes
             return temp;
         }
 
-        private List<int?> create_features_sensors_count()
+        /// <summary>
+        /// This method creates a column comprised of the count of the features sensors column.
+        /// </summary>
+        /// <returns> The features sensors count column </returns>
+        private List<int?> CreateFeaturesSensorsCountList()
         {
             List<int?> temp = new List<int?>();
-            foreach (string item in get_features_sensors())
+            foreach (string item in GetFeaturesSensors())
             {
                 if (item == null)
                 {
@@ -122,208 +151,349 @@ namespace AltLangProj.Classes
             return temp;
         }
 
-        private Hashtable create_cell_table()
+        /// <summary>
+        /// This method creates a map with column titles as keys and and the lists of column elements as values.
+        /// </summary>
+        /// <returns> The Cell Table (for referencing each column by field title) </returns>
+        private Hashtable CreateCellTable()
         {
-            Hashtable temp = new Hashtable();
-            temp.Add(get_field_titles()[0], get_id());
-            temp.Add(get_field_titles()[1], get_oem());
-            temp.Add(get_field_titles()[2], get_model());
-            temp.Add(get_field_titles()[3], get_launch_announced());
-            temp.Add(get_field_titles()[4], get_launch_status());
-            temp.Add(get_field_titles()[5], get_body_dimensions());
-            temp.Add(get_field_titles()[6], get_body_weight());
-            temp.Add(get_field_titles()[7], get_body_sim());
-            temp.Add(get_field_titles()[8], get_display_type());
-            temp.Add(get_field_titles()[9], get_display_size());
-            temp.Add(get_field_titles()[10], get_display_resolution());
-            temp.Add(get_field_titles()[11], get_features_sensors());
-            temp.Add(get_field_titles()[12], get_platform_os());
-            temp.Add(get_field_titles()[13], get_year_of_launch());
-            temp.Add(get_field_titles()[14], get_features_sensors_count());
+            Hashtable temp = new()
+            {
+                { GetFieldTitles()[0], GetId() },
+                { GetFieldTitles()[1], GetOem() },
+                { GetFieldTitles()[2], GetModel() },
+                { GetFieldTitles()[3], GetLaunchAnnounced() },
+                { GetFieldTitles()[4], GetLaunchStatus() },
+                { GetFieldTitles()[5], GetBodyDimensions() },
+                { GetFieldTitles()[6], GetBodyWeight() },
+                { GetFieldTitles()[7], GetBodySim() },
+                { GetFieldTitles()[8], GetDisplayType() },
+                { GetFieldTitles()[9], GetDisplaySize() },
+                { GetFieldTitles()[10], GetDisplayResolution() },
+                { GetFieldTitles()[11], GetFeaturesSensors() },
+                { GetFieldTitles()[12], GetPlatformOs() },
+                { GetFieldTitles()[13], GetYearOfLaunch() },
+                { GetFieldTitles()[14], GetFeaturesSensorsCount() }
+            };
             return temp;
         }
 
-
-        public List<int> get_id()
+        /// <summary>
+        /// This method gets the id (primary key) column.
+        /// </summary>
+        /// <returns> The id column </returns>
+        public List<int> GetId()
         {
-            return this.id;
+            return this._id;
         }
 
-        public void set_id(List<int> column)
+        /// <summary>
+        /// This method sets the id (primary key) column.
+        /// </summary>
+        /// <param name="column"> The new id column </param>
+        public void SetId(List<int> column)
         {
-            this.id = column;
+            this._id = column;
         }
 
-        public List<string> get_oem()
+        /// <summary>
+        /// This method gets the oem name column.
+        /// </summary>
+        /// <returns> The oem (company) name column </returns>
+        public List<string> GetOem()
         {
-            return this.oem;
+            return this._oem;
         }
 
-        public void set_oem(List<string> column)
+        /// <summary>
+        /// This method sets the oem name column.
+        /// </summary>
+        /// <param name="column"> The new oem name column </param>
+        public void SetOem(List<string> column)
         {
-            this.oem = column;
+            this._oem = column;
         }
 
-        public List<string> get_model()
+        /// <summary>
+        /// This method gets the model name column.
+        /// </summary>
+        /// <returns> The model name column </returns>
+        public List<string> GetModel()
         {
-            return this.model;
+            return this._model;
         }
 
-        public void set_model(List<string> column)
+        /// <summary>
+        /// This method sets the model name column.
+        /// </summary>
+        /// <param name="column"> The new model name column </param>
+        public void SetModel(List<string> column)
         {
-            this.model = column;
+            this._model = column;
         }
 
-        public List<int?> get_launch_announced()
+        /// <summary>
+        /// This method gets launched announced column.
+        /// </summary>
+        /// <returns> The launched announced column </returns>
+        public List<int?> GetLaunchAnnounced()
         {
-            return this.launch_announced;
+            return this._launchAnnounced;
         }
 
-        public void set_launch_announced(List<int?> column)
+        /// <summary>
+        /// This method sets launched announced column.
+        /// </summary>
+        /// <param name="column"> The new launched announced column</param>
+        public void SetLaunchAnnounced(List<int?> column)
         {
-            this.launch_announced = column;
+            this._launchAnnounced = column;
         }
 
-        public List<string> get_launch_status()
+        /// <summary>
+        /// This method gets the launch status column.
+        /// </summary>
+        /// <returns> The launch status column </returns>
+        public List<string> GetLaunchStatus()
         {
-            return this.launch_status;
+            return this._launchStatus;
         }
 
-        public void set_launch_status(List<string> column)
+        /// <summary>
+        /// This method sets the launch status column.
+        /// </summary>
+        /// <param name="column"> The new launch status column </param>
+        public void SetLaunchStatus(List<string> column)
         {
-            this.launch_status = column;
+            this._launchStatus = column;
         }
 
-        public List<string> get_body_dimensions()
+        /// <summary>
+        /// This method gets the body dimensions column.
+        /// </summary>
+        /// <returns> The body dimensions column </returns>
+        public List<string> GetBodyDimensions()
         {
-            return this.body_dimensions;
+            return this._bodyDimensions;
         }
 
-        public void set_body_dimensions(List<string> column)
+        /// <summary>
+        /// This method sets the body dimensions column.
+        /// </summary>
+        /// <param name="column"> The new body dimensions column </param>
+        public void SetBodyDimensions(List<string> column)
         {
-            this.body_dimensions = column;
+            this._bodyDimensions = column;
         }
 
-        public List<double?> get_body_weight()
+        /// <summary>
+        /// This method gets the body weight column.
+        /// </summary>
+        /// <returns> The body weight column </returns>
+        public List<double?> GetBodyWeight()
         {
-            return this.body_weight;
+            return this._bodyWeight;
         }
 
-        public void set_body_weight(List<double?> column)
+        /// <summary>
+        /// This method sets the body weight column.
+        /// </summary>
+        /// <param name="column"> The new body weight column </param>
+        public void SetBodyWeight(List<double?> column)
         {
-            this.body_weight = column;
+            this._bodyWeight = column;
         }
 
-        public List<string> get_body_sim()
+        /// <summary>
+        /// This method gets the body sim column.
+        /// </summary>
+        /// <returns> The body sim column </returns>
+        public List<string> GetBodySim()
         {
-            return this.body_sim;
+            return this._bodySim;
         }
 
-        public void set_body_sim(List<string> column)
+        /// <summary>
+        /// This method sets the body sim column.
+        /// </summary>
+        /// <param name="column"> The new body sim column </param>
+        public void SetBodySim(List<string> column)
         {
-            this.body_sim = column;
+            this._bodySim = column;
         }
 
-        public List<string> get_display_type()
+        /// <summary>
+        /// This method gets the display type column.
+        /// </summary>
+        /// <returns> The display type column </returns>
+        public List<string> GetDisplayType()
         {
-            return this.display_type;
+            return this._displayType;
         }
 
-        public void set_display_type(List<string> column)
+        /// <summary>
+        /// This method sets the display type column.
+        /// </summary>
+        /// <param name="column"> The new display type column </param>
+        public void SetDisplayType(List<string> column)
         {
-            this.display_type = column;
+            this._displayType = column;
         }
 
-        public List<double?> get_display_size()
+        /// <summary>
+        /// This method gets the display size column.
+        /// </summary>
+        /// <returns> The display size column </returns>
+        public List<double?> GetDisplaySize()
         {
-            return this.display_size;
+            return this._displaySize;
         }
 
-        public void set_display_size(List<double?> column)
+        /// <summary>
+        /// This method sets the display size column.
+        /// </summary>
+        /// <param name="column"> The new display size column </param>
+        public void SetDisplaySize(List<double?> column)
         {
-            this.display_size = column;
+            this._displaySize = column;
         }
 
-        public List<string> get_display_resolution()
+        /// <summary>
+        /// This method gets the display resolution column.
+        /// </summary>
+        /// <returns> The display resolution column </returns>
+        public List<string> GetDisplayResolution()
         {
-            return this.display_resolution;
+            return this._displayResolution;
         }
 
-        public void set_display_resolution(List<string> column)
+        /// <summary>
+        /// This method sets the display resolution column.
+        /// </summary>
+        /// <param name="column"> The new display resolution column </param>
+        public void SetDisplayResolution(List<string> column)
         {
-            this.display_resolution = column;
+            this._displayResolution = column;
         }
 
-        public List<string> get_features_sensors()
+        /// <summary>
+        /// This method gets the features sensors column.
+        /// </summary>
+        /// <returns> The features sensors column </returns>
+        public List<string> GetFeaturesSensors()
         {
-            return this.features_sensors;
+            return this._featuresSensors;
         }
 
-        public void set_features_sensors(List<string> column)
+        /// <summary>
+        /// This method sets the features sensors column.
+        /// </summary>
+        /// <param name="column"> The new features sensors column </param>
+        public void SetFeaturesSensors(List<string> column)
         {
-            this.features_sensors = column;
+            this._featuresSensors = column;
         }
 
-        public List<string> get_field_titles()
+        /// <summary>
+        /// This method gets the list of field (column) titles for the table.
+        /// </summary>
+        /// <returns> The list of field titles </returns>
+        public List<string> GetFieldTitles()
         {
-            return this.field_titles;
+            return this._fieldTitles;
         }
 
-        public void set_field_titles(List<string> headers)
+        /// <summary>
+        /// This method sets the list of field (column) titles for the table.
+        /// </summary>
+        /// <param name="headers"> The new list of field titles </param>
+        public void SetFieldTitles(List<string> headers)
         {
-            this.field_titles = headers;
+            this._fieldTitles = headers;
         }
 
-        public List<string> get_platform_os()
+        /// <summary>
+        /// This method gets the platform os column.
+        /// </summary>
+        /// <returns> The platform os column </returns>
+        public List<string> GetPlatformOs()
         {
-            return this.platform_os;
+            return this._platformOs;
         }
 
-        public void set_platform_os(List<string> column)
+        /// <summary>
+        /// This method sets the platform os column.
+        /// </summary>
+        /// <param name="column"> The platform os column </param>
+        public void SetPlatformOs(List<string> column)
         {
-            this.platform_os = column;
+            this._platformOs = column;
         }
 
-        public Hashtable get_cell_table()
+        /// <summary>
+        /// This method gets the Cell Table (organized by field).
+        /// </summary>
+        /// <returns> The Cell Table </returns>
+        public Hashtable GetCellTable()
         {
-            return this.cell_table;
+            return this._cellTable;
         }
 
-        public void set_cell_table(Hashtable table)
+        /// <summary>
+        /// This method sets the Cell Table (organized by field).
+        /// </summary>
+        /// <param name="table"> The new Cell Table </param>
+        public void SetCellTable(Hashtable table)
         {
-            this.cell_table = table;
+            this._cellTable = table;
         }
 
-        public List<int?> get_year_of_launch()
+        /// <summary>
+        /// This method gets the year of launch column (int version of launch status column).
+        /// </summary>
+        /// <returns> The year of launch column </returns>
+        public List<int?> GetYearOfLaunch()
         {
-            return this.year_of_launch;
+            return this._yearOfLaunch;
         }
 
-        public void set_year_of_launch(List<int?> column)
+        /// <summary>
+        /// This method sets the year of launch column (int version of launch status column).
+        /// </summary>
+        /// <param name="column"> The new year of launch column </param>
+        public void SetYearOfLaunch(List<int?> column)
         {
-            this.year_of_launch = column;
+            this._yearOfLaunch = column;
         }
 
-        public List<int?> get_features_sensors_count()
+        /// <summary>
+        /// This method gets the features sensors count column.
+        /// This represents the count found using the features sensors column.
+        /// </summary>
+        /// <returns> The features sensors count column </returns>
+        public List<int?> GetFeaturesSensorsCount()
         {
-            return this.features_sensors_count;
+            return this._featuresSensorsCount;
         }
 
-        public void set_features_sensors_count(List<int?> column)
+        /// <summary>
+        /// This method sets the features sensors count column.
+        /// </summary>
+        /// <param name="column"> The new features sensors count column </param>
+        public void SetFeaturesSensorsCount(List<int?> column)
         {
-            this.features_sensors_count = column;
+            this._featuresSensorsCount = column;
         }
 
-
-
-
-        public CellFields copy()
+        /// <summary>
+        /// This method is used to create a new Copy of an existing CellFields object.
+        /// </summary>
+        /// <returns> The CellFields Copy </returns>
+        public CellFields Copy()
         {
-            return new CellFields(id, oem, model, launch_announced, launch_status, body_dimensions,
-                body_weight, body_sim, display_type, display_size, display_resolution, features_sensors,
-                platform_os, field_titles, year_of_launch, features_sensors_count, cell_table);
+            return new CellFields(_id, _oem, _model, _launchAnnounced, _launchStatus, _bodyDimensions,
+                _bodyWeight, _bodySim, _displayType, _displaySize, _displayResolution, _featuresSensors,
+                _platformOs, _fieldTitles, _yearOfLaunch, _featuresSensorsCount, _cellTable);
         }
-
     }
-
 }
