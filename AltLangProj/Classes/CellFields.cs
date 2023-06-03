@@ -161,7 +161,7 @@ namespace AltLangProj.Classes
         }
 
         /// <summary>
-        /// This method creates a map with column titles as keys and and the lists of column elements as values.
+        /// This method creates a table with column titles as keys and and the lists of column elements as values.
         /// </summary>
         /// <returns> The Cell Table (for referencing each column by field title) </returns>
         private Hashtable CreateCellTable()

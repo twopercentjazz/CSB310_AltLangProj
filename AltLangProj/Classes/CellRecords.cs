@@ -1,22 +1,43 @@
 ﻿namespace AltLangProj.Classes;
 
+/// <summary>
+/// This class represents a row oriented version of the cell phone table. This class is used to build one of 
+/// the two table representations used in the CellTable class.
+/// 
+/// Note: This class contains additional methods used to display properly aligned header titles and formatted
+/// borders for printing console output. 
+/// </summary>
 public class CellRecords
 {
     private Dictionary<int, Cell> _cellTable;
     private List<string> _fieldTitles;
 
+    /// <summary>
+    /// This Constructs a CellRecords object.
+    /// </summary>
+    /// <param name="cellTable"> A table with column titles as keys and the lists of column elements as values </param>
     public CellRecords(CellFields cellTable)
     {
         this._fieldTitles = cellTable.GetFieldTitles();
         this._cellTable = CreateCellTable(cellTable);
     }
 
+    /// <summary>
+    /// This Constructs a CellRecords object, and is used to construct a new Copy of an existing CellRecords object.
+    /// </summary>
+    /// <param name="cellTable"> A table with column titles as keys and the lists of column elements as values </param>
+    /// <param name="fieldTitles"> List of all the column titles</param>
     public CellRecords(Dictionary<int, Cell> cellTable, List<string> fieldTitles)
     {
         this._fieldTitles = fieldTitles;
         this._cellTable = cellTable;
     }
 
+    /// <summary>
+    /// This method creates a table with id numbers as keys and records (Cell objects) as values.
+    /// </summary>
+    /// <param name="cellTable"></param>
+    /// <returns> The Cell Table (for referencing each record by id number) </returns>
     private Dictionary<int, Cell> CreateCellTable(CellFields cellTable)
     {
         Dictionary<int, Cell> temp = new Dictionary<int, Cell>();
@@ -70,6 +91,10 @@ public class CellRecords
         this._fieldTitles = headers;
     }
 
+    /// <summary>
+    /// This method creates a string of all the column titles (for displaying the table).
+    /// </summary>
+    /// <returns> The column titles </returns>
     public string HeadersToString()
     {
         string temp = "";
@@ -83,6 +108,11 @@ public class CellRecords
         return temp;
     }
 
+    /// <summary>
+    /// This method creates a string of specific given column titles (for displaying the table).
+    /// </summary>
+    /// <param name="headersList"> A list of column titles to display </param>
+    /// <returns> The column titles </returns>
     public string CustomHeadersToString(string[] headersList)
     {
         string temp = "";
@@ -93,6 +123,11 @@ public class CellRecords
         return temp;
     }
 
+    /// <summary>
+    /// This method formats a column title name with specific alignment requirements (for displaying the table).
+    /// </summary>
+    /// <param name="title"> The column title to format </param>
+    /// <returns> The formatted column title name </returns>
     public string TitleString(string title)
     {
         string temp = "";
@@ -151,6 +186,11 @@ public class CellRecords
         return temp;
     }
 
+    /// <summary>
+    /// This method creates a border with variable length (for displaying the table).
+    /// </summary>
+    /// <param name="s"> The string used to set the border size </param>
+    /// <returns> The table border string </returns>
     public string TableBorder(string s)
     {
         string temp = "";
@@ -158,7 +198,6 @@ public class CellRecords
         {
             temp += "-";
         }
-
         return temp;
     }
 
