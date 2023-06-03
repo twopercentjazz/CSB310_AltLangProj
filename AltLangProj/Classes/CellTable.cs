@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Xml.Linq;
 using Microsoft.VisualBasic;
@@ -13,17 +14,22 @@ public class CellTable
     private CellRecords recordsMap;
     private CellFields fieldsMap;
     private int nextId;
+    private string filePath;
 
 
     public CellTable(string filePath)
     {
-        ParseCsvFile parser = new ParseCsvFile(@"Input\cells.csv");
-        CleanCellData cleanData = new CleanCellData(parser.getColumnData(), parser.getRowData()[0]);
-        CellFields fields = new CellFields(cleanData.getCleanColumnData(), parser.getRowData());
-        CellRecords records = new CellRecords(fields);
-        this.recordsMap = records;
-        this.fieldsMap = fields;
-        this.nextId = getRecordsMap().get_cell_table().Count + 1;
+        ParseCsvFile parser = new ParseCsvFile(filePath);
+        if (File.Exists(filePath))
+        {
+            CleanCellData cleanData = new CleanCellData(parser.getColumnData(), parser.getRowData()[0]);
+            CellFields fields = new CellFields(cleanData.getCleanColumnData(), parser.getRowData());
+            CellRecords records = new CellRecords(fields);
+            this.recordsMap = records;
+            this.fieldsMap = fields;
+            this.nextId = getRecordsMap().get_cell_table().Count + 1;
+            this.filePath = filePath;
+        }
     }
 
     public CellTable(CellRecords records, CellFields fields, int nextId)
@@ -113,6 +119,12 @@ public class CellTable
             i++;
         }
         Console.WriteLine(customMultiRecordString(temp, fields));
+    }
+
+    public void printFeatureSensorList(int id)
+    {
+        int index = getFieldsMap().get_id().IndexOf(id);
+        Console.WriteLine("Record " + id + " has the following feature sensors: " + getFieldsMap().get_features_sensors()[index]);
     }
 
     public void printFrequencyTable(string field)
@@ -223,7 +235,7 @@ public class CellTable
         }
     }
 
-    public void printAvgPerOem(string avgField)
+    public string printAvgPerOem(string avgField)
     {
         
         List<string> unique = findCount(getFieldsMap().get_oem()).Keys.ToList();
@@ -247,7 +259,129 @@ public class CellTable
         }
 
         printAvgTable(avg, "oem", avgField);
+        return findHighestAvgOem(avg);
 
+    }
+
+    public string findHighestAvgOem(Dictionary<string, double> temp)
+    {
+        return temp.Aggregate((x, y) =>
+            x.Value > y.Value ? x : y).Key;
+    }
+
+    public void printTableSize()
+    {
+        Console.WriteLine("\nThe table includes " + getRecordsCount() + " records (rows)");
+        Console.WriteLine("\nThe table includes " + (getFieldsCount() - 2) + " fields (columns)");
+    }
+
+    public void printTableStats()
+    {
+        string avg = "Average: ";
+        string med = "Median: ";
+        string mode = "Mode: ";
+        string count = " (count: ";
+        string unique = "Unique Elements: ";
+        string header = "Table Statistics";
+        string border1 = getRecordsMap().tableBorder(header);
+        Console.WriteLine("\n" + header + "\n" + border1);
+        printTableSize();
+        Console.WriteLine();
+        for (int i = 1; i < getRecordsMap().get_field_titles().Count - 2; i++)
+        {
+            string columnHeader = "Stats for " + getRecordsMap().get_field_titles()[i] + " field (Data Type: " + getType(getRecordsMap().get_field_titles()[i]) + ")";
+            string border = getRecordsMap().tableBorder(columnHeader);
+            Console.WriteLine("\n" + columnHeader + "\n" + border);
+            if (getRecordsMap().get_field_titles()[i] == "oem")
+            {
+                Console.WriteLine(mode + getModeOem() + count + getOemElementCount(getModeOem()) + ")" );
+                Console.WriteLine(unique + getOemUniqueCount());
+
+            }
+            else if (getRecordsMap().get_field_titles()[i] == "model")
+            {
+                Console.WriteLine(mode + getModeModel() + count + getModelElementCount(getModeModel()) + ")");
+                Console.WriteLine(unique + getModelUniqueCount());
+            }
+            else if (getRecordsMap().get_field_titles()[i] == "launch_announced")
+            {
+                Console.WriteLine(mode + getModeLaunchAnnounced() + count + getLaunchAnnouncedElementCount((int)getModeLaunchAnnounced()) + ")");
+                Console.WriteLine(unique + getOemUniqueCount());
+            }
+            else if (getRecordsMap().get_field_titles()[i] == "launch_status")
+            {
+                Console.WriteLine(mode + getModeLaunchStatus() + count + getLaunchStatusElementCount(getModeLaunchStatus()) + ")");
+                Console.WriteLine(unique + getLaunchStatusUniqueCount());
+            }
+            else if (getRecordsMap().get_field_titles()[i] == "body_dimensions")
+            {
+                Console.WriteLine(mode + getModeBodyDimensions() + count + getBodyDimensionsElementCount(getModeBodyDimensions()) + ")");
+                Console.WriteLine(unique + getBodyDimensionsUniqueCount());
+            }
+            else if (getRecordsMap().get_field_titles()[i] == "body_weight")
+            {
+                Console.WriteLine(avg + getAvgBodyWeight());
+                Console.WriteLine(med + getMedianBodyWeight());
+                Console.WriteLine(mode + getModeBodyWeight() + count + getBodyWeightElementCount(getModeBodyWeight()) + ")");
+                Console.WriteLine(unique + getBodyWeightUniqueCount());
+            }
+            else if (getRecordsMap().get_field_titles()[i] == "body_sim")
+            {
+                Console.WriteLine(mode + getModeBodySim() + count + getBodySimElementCount(getModeBodySim()) + ")");
+                Console.WriteLine(unique + getBodySimUniqueCount());
+            }
+            else if (getRecordsMap().get_field_titles()[i] == "display_type")
+            {
+                Console.WriteLine(mode + getModeDisplayType() + count + getDisplayTypeElementCount(getModeDisplayType()) + ")");
+                Console.WriteLine(unique + getDisplayTypeUniqueCount());
+            }
+            else if (getRecordsMap().get_field_titles()[i] == "display_size")
+            {
+                Console.WriteLine(avg + getAvgDisplaySize());
+                Console.WriteLine(med + getMedianDisplaySize());
+                Console.WriteLine(mode + getModeDisplaySize() + count + getDisplaySizeElementCount(getModeDisplaySize()) + ")");
+                Console.WriteLine(unique + getDisplaySizeUniqueCount());
+            }
+            else if (getRecordsMap().get_field_titles()[i] == "display_resolution")
+            {
+                Console.WriteLine(mode + getModeDisplayResolution() + count + getDisplayResolutionElementCount(getModeDisplayResolution()) + ")");
+                Console.WriteLine(unique + getDisplayResolutionUniqueCount());
+            }
+            else if (getRecordsMap().get_field_titles()[i] == "features_sensors")
+            {
+                Console.WriteLine(avg + getAvgFeaturesSensorsCount());
+                Console.WriteLine(med + getMedianFeaturesSensorsCount());
+                Console.WriteLine(mode + getModeFeaturesSensorsCount() + count + getFeaturesSensorsCountElementCount((int)getModeFeaturesSensorsCount()) + ")");
+                Console.WriteLine(unique + getFeaturesSensorsUniqueCount());
+            }
+            else if (getRecordsMap().get_field_titles()[i] == "platform_os")
+            {
+                Console.WriteLine(mode + getModePlatformOs() + count + getPlatformOsElementCount(getModePlatformOs()) + ")");
+                Console.WriteLine(unique + getPlatformOsUniqueCount());
+            }
+            Console.WriteLine();
+        }
+
+        
+    }
+
+    public string getType(string field)
+    {
+        string type;
+        string temp = getFieldsMap().get_cell_table()[field].ToString();
+        if (temp.Contains("Int"))
+        {
+            type = "Integer";
+        }
+        else if (temp.Contains("Double"))
+        {
+            type = "Double";
+        }
+        else
+        {
+            type = "String";
+        }
+        return type;
     }
 
     public String toString()
@@ -994,7 +1128,18 @@ public class CellTable
             }
         }
         temp.Sort();
-        return temp[temp.Count / 2];
+        double median;
+        if (temp.Count % 2 == 1)
+        {
+            median = temp[temp.Count / 2];
+        }
+        else
+        {
+            double m1 = temp[(temp.Count / 2) - 1];
+            double m2 = temp[temp.Count / 2];
+            median = (m1 + m2) / 2;
+        }
+        return median;
     }
 
     private double calcMode(List<double?> nums)
@@ -1162,10 +1307,11 @@ public class CellTable
         return calcMode(temp);
     }
 
-    public double getModeLaunchStatus()
+    public string getModeLaunchStatus()
     {
-        List<double?> temp = getFieldsMap().get_year_of_launch().ConvertAll(x => (double?)x);
-        return calcMode(temp);
+        //List<double?> temp = getFieldsMap().get_year_of_launch().ConvertAll(x => (double?)x);
+        //return calcMode(temp);
+        return calcMode(getFieldsMap().get_launch_status());
     }
 
     public string getModeOem()
@@ -1284,77 +1430,77 @@ public class CellTable
 
     public int getFieldsCount()
     {
-        return fieldsMap.get_cell_table().Count;
+        return recordsMap.get_field_titles().Count;
     }
 
 
-    public int getBodyWeightUniqueCount(double item)
+    public int getBodyWeightUniqueCount()
     {
         Dictionary<double, int> temp = findCount(getFieldsMap().get_body_weight());
         return temp.Count;
     }
 
-    public int getDisplaySizeUniqueCount(double item)
+    public int getDisplaySizeUniqueCount()
     {
         Dictionary<double, int> temp = findCount(getFieldsMap().get_display_size());
         return temp.Count;
     }
 
-    public int getFeaturesSensorsUniqueCount(int item)
+    public int getFeaturesSensorsUniqueCount()
     {
         Dictionary<int, int> temp = findCount(getFieldsMap().get_features_sensors_count());
         return temp.Count;
     }
 
-    public int getLaunchAnnouncedUniqueCount(int item)
+    public int getLaunchAnnouncedUniqueCount()
     {
         Dictionary<int, int> temp = findCount(getFieldsMap().get_launch_announced());
         return temp.Count;
     }
 
-    public int getLaunchStatusUniqueCount(string item)
+    public int getLaunchStatusUniqueCount()
     {
         Dictionary<string, int> temp = findCount(getFieldsMap().get_launch_status());
         return temp.Count;
     }
 
-    public int getOemUniqueCount(string item)
+    public int getOemUniqueCount()
     {
         Dictionary<string, int> temp = findCount(getFieldsMap().get_oem());
         return temp.Count;
     }
 
-    public int getModelUniqueCount(string item)
+    public int getModelUniqueCount()
     {
         Dictionary<string, int> temp = findCount(getFieldsMap().get_model());
         return temp.Count;
     }
 
-    public int getBodyDimensionsUniqueCount(string item)
+    public int getBodyDimensionsUniqueCount()
     {
         Dictionary<string, int> temp = findCount(getFieldsMap().get_body_dimensions());
         return temp.Count;
     }
 
-    public int getBodySimUniqueCount(string item)
+    public int getBodySimUniqueCount()
     {
         Dictionary<string, int> temp = findCount(getFieldsMap().get_body_sim());
         return temp.Count;
     }
 
-    public int getDisplayTypeUniqueCount(string item)
+    public int getDisplayTypeUniqueCount()
     {
         Dictionary<string, int> temp = findCount(getFieldsMap().get_display_type());
         return temp.Count;
     }
 
-    public int getDisplayResolutionUniqueCount(string item)
+    public int getDisplayResolutionUniqueCount()
     {
         Dictionary<string, int> temp = findCount(getFieldsMap().get_display_resolution());
         return temp.Count;
     }
 
-    public int getPlatformOsUniqueCount(string item)
+    public int getPlatformOsUniqueCount()
     {
         Dictionary<string, int> temp = findCount(getFieldsMap().get_platform_os());
         return temp.Count;
@@ -1374,7 +1520,7 @@ public class CellTable
 
     public CellTable Copy()
     {
-        return new CellTable(@"Input\cells.csv");
+        return new CellTable(this.filePath);  
     }
 
     public CellTable createQueryTable(FilterParameters filter)
@@ -1844,6 +1990,24 @@ public class CellTable
 
         }
 
+    }
+
+    public CellTable getPhonesLaunchedAfterAnnouncedTable()
+    {
+        CellTable temp = Copy();
+        foreach (int id in getRecordsMap().get_cell_table().Keys)
+        {
+            if (getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Discontinued") || getRecordsMap().get_cell_table()[id].get_launch_status().Equals("Cancelled"))
+            {
+                temp.deleteRecord(id);
+            }
+            else if (getRecordsMap().get_cell_table()[id].get_launch_announced() >=
+                     int.Parse(getRecordsMap().get_cell_table()[id].get_launch_status()))
+            {
+                temp.deleteRecord(id);
+            }
+        }
+        return temp;
     }
 
 
