@@ -20,7 +20,7 @@ public class CellTable
     public CellTable(string filePath)
     {
         ParseCsvFile parser = new ParseCsvFile(filePath);
-        if (File.Exists(filePath))
+        if (File.Exists(filePath) && new FileInfo(filePath).Length != 0)
         {
             CleanCellData cleanData = new CleanCellData(parser.getColumnData(), parser.getRowData()[0]);
             CellFields fields = new CellFields(cleanData.getCleanColumnData(), parser.getRowData());

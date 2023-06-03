@@ -14,3 +14,4 @@ C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\
 C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\AltLangProj.genruntimeconfig.cache
 C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\obj\Debug\net7.0\ref\AltLangProj.dll
 C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\Resources\Input\cells.csv
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\Resources\Input\empty.csv
