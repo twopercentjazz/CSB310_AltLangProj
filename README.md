@@ -1,6 +1,6 @@
 # CSB310 C# Langauge Project (Java/Python Alternative)
 
-> ### Project Organization
+> ### Visual Studio Project Organization
 > <pre>
 > AltLangProj  
 >  |   |   |  
