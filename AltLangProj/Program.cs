@@ -50,6 +50,8 @@ foreach (var item in test.get_cell_id())
 
 CellTable test = new CellTable(@"test");
 
+CellTable test2 = new CellTable(@"Resources\Input\empty.csv");
+
 
 CellTable cell = new CellTable(@"Resources\Input\cells.csv");
 
