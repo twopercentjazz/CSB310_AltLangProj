@@ -13,8 +13,8 @@ public class CellTable
         ParseCsvFile parser = new ParseCsvFile(filePath);
         if (File.Exists(filePath) && new FileInfo(filePath).Length != 0)
         {
-            CleanCellData cleanData = new CleanCellData(parser.getColumnData(), parser.getRowData()[0]);
-            CellFields fields = new CellFields(cleanData.getCleanColumnData(), parser.getRowData());
+            CleanCellData cleanData = new CleanCellData(parser.GetColumnData(), parser.GetRowData()[0]);
+            CellFields fields = new CellFields(cleanData.GetCleanColumnData(), parser.GetRowData());
             CellRecords records = new CellRecords(fields);
             this.recordsMap = records;
             this.fieldsMap = fields;
@@ -287,7 +287,6 @@ public class CellTable
             {
                 Console.WriteLine(mode + getModeOem() + count + getOemElementCount(getModeOem()) + ")" );
                 Console.WriteLine(unique + getOemUniqueCount());
-
             }
             else if (getRecordsMap().GetFieldTitles()[i] == "model")
             {
@@ -311,7 +310,7 @@ public class CellTable
             }
             else if (getRecordsMap().GetFieldTitles()[i] == "body_weight")
             {
-                Console.WriteLine(avg + getAvgBodyWeight());
+                Console.WriteLine(avg + String.Format("{0:0.00}", getAvgBodyWeight()));
                 Console.WriteLine(med + getMedianBodyWeight());
                 Console.WriteLine(mode + getModeBodyWeight() + count + getBodyWeightElementCount(getModeBodyWeight()) + ")");
                 Console.WriteLine(unique + getBodyWeightUniqueCount());
@@ -328,7 +327,7 @@ public class CellTable
             }
             else if (getRecordsMap().GetFieldTitles()[i] == "display_size")
             {
-                Console.WriteLine(avg + getAvgDisplaySize());
+                Console.WriteLine(avg + String.Format("{0:0.00}", getAvgDisplaySize()));
                 Console.WriteLine(med + getMedianDisplaySize());
                 Console.WriteLine(mode + getModeDisplaySize() + count + getDisplaySizeElementCount(getModeDisplaySize()) + ")");
                 Console.WriteLine(unique + getDisplaySizeUniqueCount());
@@ -340,7 +339,7 @@ public class CellTable
             }
             else if (getRecordsMap().GetFieldTitles()[i] == "features_sensors")
             {
-                Console.WriteLine(avg + getAvgFeaturesSensorsCount());
+                Console.WriteLine(avg + String.Format("{0:0.00}", getAvgFeaturesSensorsCount()));
                 Console.WriteLine(med + getMedianFeaturesSensorsCount());
                 Console.WriteLine(mode + getModeFeaturesSensorsCount() + count + getFeaturesSensorsCountElementCount((int)getModeFeaturesSensorsCount()) + ")");
                 Console.WriteLine(unique + getFeaturesSensorsUniqueCount());

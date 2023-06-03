@@ -5,19 +5,19 @@ using AltLangProj.Classes;
 
 //ParseCsvFile temp = new ParseCsvFile(@"Input\cells.csv");
 
-//Console.WriteLine(temp.getRowData().Count);
-//Console.WriteLine(temp.getRowData()[0].Count);
-//Console.WriteLine(temp.getColumnData().Count);
-//Console.WriteLine(temp.getColumnData()[0].Count);
+//Console.WriteLine(temp.GetRowData().Count);
+//Console.WriteLine(temp.GetRowData()[0].Count);
+//Console.WriteLine(temp.GetColumnData().Count);
+//Console.WriteLine(temp.GetColumnData()[0].Count);
 
 
-//CleanCellData clean = new CleanCellData(temp.getColumnData(), temp.getRowData()[0]);
+//CleanCellData clean = new CleanCellData(temp.GetColumnData(), temp.GetRowData()[0]);
 
-//Console.WriteLine(clean.getCleanColumnData().Count);
-//Console.WriteLine(clean.getCleanColumnData()[2][3] == null);
-//Console.WriteLine(clean.getCleanColumnData()[2][886]);
+//Console.WriteLine(clean.GetCleanColumnData().Count);
+//Console.WriteLine(clean.GetCleanColumnData()[2][3] == null);
+//Console.WriteLine(clean.GetCleanColumnData()[2][886]);
 
-//CellFields test = new CellFields(clean.getCleanColumnData(), temp.getRowData());
+//CellFields test = new CellFields(clean.GetCleanColumnData(), temp.GetRowData());
 
 
 /*
@@ -223,8 +223,8 @@ cell5.printTableStats();
 Console.WriteLine();
 
 ParseCsvFile parser = new ParseCsvFile(@"Resources\Input\cells.csv");
-CleanCellData cleanData = new CleanCellData(parser.getColumnData(), parser.getRowData()[0]);
-cleanData.printHasMissingData();
+CleanCellData cleanData = new CleanCellData(parser.GetColumnData(), parser.GetRowData()[0]);
+cleanData.PrintHasMissingData();
 
 
 Console.ReadKey();

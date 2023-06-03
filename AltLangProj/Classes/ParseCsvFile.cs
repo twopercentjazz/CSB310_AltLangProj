@@ -9,8 +9,8 @@ namespace AltLangProj.Classes;
 /// </summary>
 public class ParseCsvFile
 {
-    private List<List<string>> rowData;
-    private List<List<string>> columnData;
+    private List<List<string>> _rowData;
+    private List<List<string>> _columnData;
 
     /// <summary>
     /// This Constructs a new ParseCsvFile object.
@@ -18,16 +18,16 @@ public class ParseCsvFile
     /// <param name="filePath"> The filepath for a csv file </param>
     public ParseCsvFile(string filePath)
     {
-        this.rowData = new List<List<string>>();
-        this.columnData = new List<List<string>>();
-        parse(filePath);
+        this._rowData = new List<List<string>>();
+        this._columnData = new List<List<string>>();
+        ParseFile(filePath);
     }
 
     /// <summary>
     /// This method parses a csv file, storing the data.
     /// </summary>
     /// <param name="filePath"> The filepath for a csv file </param>
-    public void parse(string filePath)
+    public void ParseFile(string filePath)
     {
         // avoid file not found exception
         if (File.Exists(filePath))
@@ -46,18 +46,17 @@ public class ParseCsvFile
                     {
                         string line = reader.ReadLine();
                         var values = Regex.Split(line, "[,]{1}(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
-                        this.rowData.Add(values.ToList());
+                        this._rowData.Add(values.ToList());
                     }
                 }
-
-                for (int i = 0; i < this.rowData[0].Count; i++)
+                for (int i = 0; i < this._rowData[0].Count; i++)
                 {
                     List<string> tempList = new List<string>();
-                    for (int j = 1; j < this.rowData.Count; j++)
+                    for (int j = 1; j < this._rowData.Count; j++)
                     {
-                        tempList.Add(rowData.ElementAt(j).ElementAt(i));
+                        tempList.Add(_rowData.ElementAt(j).ElementAt(i));
                     }
-                    columnData.Add(tempList);
+                    _columnData.Add(tempList);
                 }
             }
         }
@@ -71,17 +70,17 @@ public class ParseCsvFile
     /// This method gets the parsed row data.
     /// </summary>
     /// <returns> A matrix of row data </returns>
-    public List<List<string>> getRowData()
+    public List<List<string>> GetRowData()
     {
-        return this.rowData;
+        return this._rowData;
     }
 
     /// <summary>
     /// This method gets the parsed column data.
     /// </summary>
     /// <returns> A matrix of column data </returns>
-    public List<List<string>> getColumnData()
+    public List<List<string>> GetColumnData()
     {
-        return this.columnData;
+        return this._columnData;
     }
 }

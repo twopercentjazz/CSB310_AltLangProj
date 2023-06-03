@@ -2,17 +2,40 @@
 
 namespace AltLangProj.Classes;
 
+/// <summary>
+/// This Class cleans the data that was parsed from the given 'cells' csv file.
+///
+/// Note: I separated this method from the ParseCsvFile class, so the ParseCsvFile class
+/// could be reused for parsing other csv files. In addition to cleaning the data, the class
+/// includes a method for verifying that all the missing data was replaced (with null). Also, in an
+/// effort to display a cell record so that it all fits nicely in the console (when fullscreen) I
+/// further cleaned some of the descriptive (string) data that I wasn't using for any analysis. For
+/// one example, the body dimensions data now just displays the dimensions in mm (stripping the alternative
+/// measurement in inches).   
+/// </summary>
 public class CleanCellData
 {
-    private List<List<string>> cleanColumnData;
+    private List<List<string>> _cleanColumnData;
 
+    /// <summary>
+    /// This Constructs a CleanCellData object.
+    /// </summary>
+    /// <param name="columnData"> The parsed data (column oriented) </param>
+    /// <param name="headers"> The list of column titles </param>
     public  CleanCellData(List<List<string>> columnData, List<string> headers)
     {
-        cleanColumnData = new List<List<string>>();
-        cleanData(columnData, headers);
+        _cleanColumnData = new List<List<string>>();
+        CleanData(columnData, headers);
     }
 
-    private void cleanData(List<List<string>> columnData, List<string> headers)
+    /// <summary>
+    /// This method cleans the data parsed from the given 'cells' csv file.
+    /// Note: because each column has the same data type, I implemented this
+    /// method to clean the data by column.
+    /// </summary>
+    /// <param name="columnData"> The parsed data (column oriented) </param>
+    /// <param name="headers"> The list of column titles </param>
+    private void CleanData(List<List<string>> columnData, List<string> headers)
     {
         for (int i = 0; i < columnData.Count; i++)
         {
@@ -29,7 +52,7 @@ public class CleanCellData
                 }
                 else if (headers[i] == "launch_announced" || headers[i] == "launch_status")
                 {
-                    Regex r = new Regex(@"\b\d{4}\b");
+                    Regex r = new(@"\b\d{4}\b");
                     Match m = r.Match(columnData[i][j]);
                     if (m.Success)
                     {
@@ -47,11 +70,10 @@ public class CleanCellData
                             temp.Add(null);
                         }
                     }
-
                 }
                 else if (headers[i] == "body_weight" || headers[i] == "display_size")
                 {
-                    Regex r = new Regex(@"([^\s]+)");
+                    Regex r = new (@"([^\s]+)");
                     Match m = r.Match(columnData[i][j]);
                     if (m.Success)
                     {
@@ -75,7 +97,6 @@ public class CleanCellData
                     {
                         temp.Add(columnData.ElementAt(i).ElementAt(j).Split("(")[0].Split(",")[0].Replace("\"", ""));
                     }
-
                     int size = temp.Count() - 1;
                     string tempDimension = temp[size].Replace(" mm", "").Replace("mm", "") + "mm";
                     temp[size] = tempDimension;
@@ -88,7 +109,6 @@ public class CleanCellData
                     {
                         temp[size] = null;
                     }
-
                 }
                 else if (headers[i] == "body_sim")
                 {
@@ -115,29 +135,36 @@ public class CleanCellData
                     temp.Add(columnData.ElementAt(i).ElementAt(j).Replace("\"", ""));
                 }
             }
-            cleanColumnData.Add(temp);
+            _cleanColumnData.Add(temp);
         }
     }
 
-    public List<List<string>> getCleanColumnData()
+    /// <summary>
+    /// This method gets the cleaned data (column oriented)
+    /// </summary>
+    /// <returns> A matrix of clean column data </returns>
+    public List<List<string>> GetCleanColumnData()
     {
-        return this.cleanColumnData;
+        return this._cleanColumnData;
     }
 
-    public Boolean hasMissingData()
+    /// <summary>
+    /// This method checks that the cleaned data had all missing data replaced (with null).
+    /// </summary>
+    /// <returns> True if there is missing data, and False otherwise </returns>
+    public Boolean HasMissingData()
     {
         Boolean missingData = false;
-        foreach (List<string> columnData in cleanColumnData)
+        foreach (List<string> columnData in _cleanColumnData)
         {
             foreach (string element in columnData)
             {
-                if (element == "" || element == "-")
+                if (element is "" or "-")
                 {
                     missingData = true;
                     break;
                 }
             }
-
             if (missingData)
             {
                 break;
@@ -146,9 +173,12 @@ public class CleanCellData
         return missingData;
     }
 
-    public void printHasMissingData()
+    /// <summary>
+    /// This method prints whether or not there is any missing data (after the data is cleaned).
+    /// </summary>
+    public void PrintHasMissingData()
     {
-        if (hasMissingData())
+        if (HasMissingData())
         {
             Console.WriteLine("[The data has missing values]");
         }
