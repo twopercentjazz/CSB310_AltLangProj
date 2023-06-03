@@ -45,3 +45,35 @@
 > 
 > </pre>
 
+### Explain how your programming language handles...
+> <pre>
+> -  object-oriented programming
+>
+> -  file ingestion
+>
+> -  conditional statements
+>
+> -  assignment statements
+>
+> -  loops
+>
+> -  subprograms
+>
+> -  unit testing
+>
+> -  exception handling
+> </pre>
+
+### List 3 libraries you used (if applicable) and explain them. 
+> <pre>
+> 
+> </pre>
+
+### Answer the following questions...
+> <pre>
+> 
+> </pre>
+
+
+
+
