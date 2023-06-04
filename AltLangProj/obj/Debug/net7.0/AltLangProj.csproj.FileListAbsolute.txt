@@ -18,3 +18,7 @@ C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\
 C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\Resources\Git Screenshots\Git_Commiting_Screenshot.png
 C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\Resources\Git Screenshots\Git_Pushing_Screenshot.png
 C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\Resources\Git Screenshots\Git_Staging_Screenshot.png
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\Resources\Report Assets\Report_Q1.png
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\Resources\Report Assets\Report_Q2.png
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\Resources\Report Assets\Report_Q3.png
+C:\Users\chris\Desktop\CSB310\Project2\AltLangProj\AltLangProj\bin\Debug\net7.0\Resources\Report Assets\Report_Q4.png

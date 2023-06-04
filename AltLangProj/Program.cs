@@ -228,4 +228,3 @@ Console.WriteLine("[CalcMode Test successful]\n");
 
 Console.WriteLine("[All unit tests passed]\n");
 Console.ReadKey();
-
