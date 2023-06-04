@@ -65,7 +65,10 @@
 
 ### Why did you pick this programming language?
 > <pre>
-> 
+> For this project I chose to explore the C# programming language because it is a widely used 
+> general-purpose high level language used to build a wide range of applications and web-based 
+> services. For example, the language is commonly used for backend services, Windows applications, 
+> website development, and game development. 
 > </pre>
 
 ### Explain how your programming language handles...
