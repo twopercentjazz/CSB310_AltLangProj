@@ -86,7 +86,9 @@
 
 ### Explain how your programming language handles...
 > <pre>
-> 
+> Because this project has us exploring a languge that is an alternative to Java, and because
+> Java is my primary frame of reference when it comes to programming, I will explore the 
+> following concepts as they relate to Java (similarities/differences). 
 > </pre>
 > <pre>
 > -  object-oriented programming
