@@ -4,7 +4,9 @@
 /// This class represents a Cell Table and contains both a column oriented and a row oriented representation
 /// of the Cell Table.
 ///
-/// Note: most of my required additional methods are found in this class. 
+/// Note: most of my required additional methods are found in this class. I demonstrate the use of these methods
+/// by running the Program.cs class. My methods experiment with both the row oriented table and the column
+/// oriented table. 
 /// </summary>
 public class CellTable
 {
@@ -157,7 +159,14 @@ public class CellTable
     /// <param name="id"> The record id to print </param>
     public void PrintRecord(int id)
     {
-        Console.WriteLine(RecordString(GetRecordsMap().GetCellTable()[id]));
+        if (GetRecordsMap().GetCellTable().ContainsKey(id))
+        {
+            Console.WriteLine(RecordString(GetRecordsMap().GetCellTable()[id]));
+        }
+        else
+        {
+            Console.WriteLine("[a record with the given id does not exist]");
+        }
     }
 
     /// <summary>
@@ -290,7 +299,7 @@ public class CellTable
     private void PrintFrequencyTable(List<string> element, List<int> count, string field)
     {
         string header = String.Format("{0,-38}{1}", "unique_" + field + "_elements", "element_count  ");
-        string border = GetRecordsMap().TableBorder(header);
+        string border = CellRecords.TableBorder(header);
         Console.WriteLine(border);
         Console.WriteLine(header);
         Console.WriteLine(border);
@@ -311,7 +320,7 @@ public class CellTable
     private void PrintAvgTable(Dictionary<string, double> values, string sortField, string avgField)
     {
         string header = String.Format("{0,-38}{1}", "unique_" + sortField + "_elements", avgField + "_avg  ");
-        string border = GetRecordsMap().TableBorder(header);
+        string border = CellRecords.TableBorder(header);
         Console.WriteLine(border);
         Console.WriteLine(header);
         Console.WriteLine(border);
@@ -401,14 +410,14 @@ public class CellTable
         string count = " (count: ";
         string unique = "Unique Elements: ";
         string header = "Table Statistics";
-        string border1 = GetRecordsMap().TableBorder(header);
+        string border1 = CellRecords.TableBorder(header);
         Console.WriteLine("\n" + header + "\n" + border1);
         PrintTableSize();
         Console.WriteLine();
         for (int i = 1; i < GetRecordsMap().GetFieldTitles().Count - 2; i++)
         {
             string columnHeader = "Stats for " + GetRecordsMap().GetFieldTitles()[i] + " field (Data Type: " + GetType(GetRecordsMap().GetFieldTitles()[i]) + ")";
-            string border = GetRecordsMap().TableBorder(columnHeader);
+            string border = CellRecords.TableBorder(columnHeader);
             Console.WriteLine("\n" + columnHeader + "\n" + border);
             if (GetRecordsMap().GetFieldTitles()[i] == "oem")
             {
@@ -521,7 +530,7 @@ public class CellTable
                 }
             }
             temp += "\n";
-            temp += GetRecordsMap().TableBorder(GetRecordsMap().HeadersToString());
+            temp += CellRecords.TableBorder(GetRecordsMap().HeadersToString());
         }
         return temp;
     }
@@ -542,7 +551,7 @@ public class CellTable
             }
         }
         temp += "\n";
-        temp += GetRecordsMap().TableBorder(GetRecordsMap().HeadersToString());
+        temp += CellRecords.TableBorder(GetRecordsMap().HeadersToString());
         return temp;
     }
 
@@ -555,7 +564,7 @@ public class CellTable
     public string CustomRecordString(Cell record, string[] fields)
     {
         string temp = "";
-        string border = GetRecordsMap().TableBorder(GetRecordsMap().CustomHeadersToString(fields));
+        string border = CellRecords.TableBorder(GetRecordsMap().CustomHeadersToString(fields));
         string headers = GetRecordsMap().CustomHeadersToString(fields);
         temp += border + "\n";
         temp += headers + "\n";
@@ -578,7 +587,7 @@ public class CellTable
     public string CustomMultiRecordString(Cell[] records, string[] fields)
     {
         string temp = "";
-        string border = GetRecordsMap().TableBorder(GetRecordsMap().CustomHeadersToString(fields));
+        string border = CellRecords.TableBorder(GetRecordsMap().CustomHeadersToString(fields));
         string headers = GetRecordsMap().CustomHeadersToString(fields);
         temp += border + "\n";
         temp += headers + "\n";
@@ -613,7 +622,7 @@ public class CellTable
                 }
             }
             temp += "\n";
-            temp += GetRecordsMap().TableBorder(GetRecordsMap().HeadersToString());
+            temp += CellRecords.TableBorder(GetRecordsMap().HeadersToString());
         }
         return temp;
     }
@@ -625,7 +634,7 @@ public class CellTable
     public string DefaultFieldsString()
     {
         string temp = "";
-        string border = GetRecordsMap().TableBorder(GetRecordsMap().HeadersToString());
+        string border = CellRecords.TableBorder(GetRecordsMap().HeadersToString());
         string headers = GetRecordsMap().HeadersToString();
         temp += border;
         temp += headers + "\n";
@@ -1031,6 +1040,19 @@ public class CellTable
     {
         DeleteRecordFromRecordMap(id);
         DeleteRecordFromFieldMap(id);
+    }
+
+    /// <summary>
+    /// This method deletes multiple records from the Table (from both table representations).
+    /// </summary>
+    /// <param name="id"> The record id list to delete </param>
+    public void DeleteRecord(int[] id)
+    {
+        foreach (int record in id)
+        {
+            DeleteRecordFromRecordMap(record);
+            DeleteRecordFromFieldMap(record);
+        }
     }
 
     /// <summary>

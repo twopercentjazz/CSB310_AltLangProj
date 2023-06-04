@@ -191,7 +191,7 @@ public class CellRecords
     /// </summary>
     /// <param name="s"> The string used to set the border size </param>
     /// <returns> The table border string </returns>
-    public string TableBorder(string s)
+    public static string TableBorder(string s)
     {
         string temp = "";
         for (int i = 0; i < s.Length; i++)

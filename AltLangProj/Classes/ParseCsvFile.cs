@@ -35,7 +35,7 @@ public class ParseCsvFile
             // avoid parsing an empty file
             if (new FileInfo(filePath).Length == 0)
             {
-                Console.WriteLine("File Is Empty");
+                Console.WriteLine("[File Is Empty]");
             }
             else
             {
@@ -62,7 +62,7 @@ public class ParseCsvFile
         }
         else
         {
-            Console.WriteLine("File Does Not Exist");
+            Console.WriteLine("[File Does Not Exist]");
         }
     }
 
