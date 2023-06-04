@@ -150,139 +150,50 @@ string m3 = "These next tests are used to answer the four questions required for
 Console.WriteLine(m3 + "\n" + CellRecords.TableBorder(m3) + "\n");
 Console.WriteLine();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//cell.PrintCellTable();
-
-
-//cell.PrintRecord(1);
-//Console.WriteLine();
-//cell.PrintRecord(500);
-//Console.WriteLine();
-//cell.PrintRecord(1000);
-//Console.WriteLine();
-
-
-//cell.PrintMultipleRecords(new int[] {1, 500, 1000});
-
-//cell.PrintCustomString(1, new string[] { "id", "model", "oem" });
-
-//cell.PrintCustomMultipleRecords(new int[] { 1, 500, 1000 }, new string[] { "id", "platform_os", "oem" });
-
-//cell.DeleteRecord(5);
-
-
-//cell.AddRecord(null, null, null, "poop", null, null, null, null, null, null, "a,b,c", null);
-
-/*
-foreach (string VARIABLE in cell.GetFieldsMap().GetFeaturesSensors())
-{
-    if (VARIABLE == null)
-    {
-        Console.WriteLine("null");
-    }
-    else
-    {
-        Console.WriteLine(VARIABLE);
-    }
-    
-}
-*/
-
-
-
-
-//cell.PrintCellTable("oem");
-
-//cell.PrintCellTable();
-
-///////////////////////////////
-
-FilterParameters query4 = new FilterParameters();
-query4.GetFilterIntRange().Add("launch_status", new KeyValuePair<int,int>(2000, 2030));
-//query.GetFilterInt().Add("launch_status", new []{2020});
-
-
-
-CellTable cell2 = cell.CreateQueryTable(query4);
-
-
-cell2.PrintCellTable("launch_status");
-
-cell2.PrintFrequencyTable("launch_status");
-
-Console.WriteLine("\nThis year had the most phones launched in the 2000's:  " + cell2.GetModeLaunchStatus());
-
-/////////////////////////////
-
-Console.WriteLine();
-
-FilterParameters query2 = new FilterParameters();
-query2.GetFilterInt().Add("features_sensors", new[]{1});
-
-CellTable cell3 = cell.CreateQueryTable(query2);
-
-cell3.PrintCellTable();
-
-cell3.PrintFrequencyTable("features_sensors");
-
-Console.WriteLine("\nThis is the number of phones with only one feature sensor:  " + cell3.GetFeaturesSensorsCountElementCount(1));
-
-
-/////////////////////////////////////
-
-Console.WriteLine();
-
-
+// 1
+string m4 = "1. What company has the highest average weight of the phone body?";
+Console.WriteLine(m4 + "\n" + CellRecords.TableBorder(m4) + "\n");
+Console.WriteLine("Using this table...");
 Console.WriteLine("\nThe company (oem) with the highest average weight of the phone body: " + cell.PrintAvgPerOemTable("body_weight"));
-
-///////////////////////////////////////////
-
+Console.WriteLine();
 Console.WriteLine();
 
-CellTable cell4 = cell.GetPhonesLaunchedAfterAnnouncedTable();
-
-cell4.PrintTableSize(); ////////////
-
-//cell4.PrintCellTable();
-
-cell4.PrintCustomMultipleRecords(cell4.GetRecordsMap().GetCellTable().Keys.ToArray(), new []{"id", "oem", "model", "launch_announced", "launch_status"});
-
-
-///////////////////////////////////
-
+// 2
 Console.WriteLine();
-cell4.PrintCellTable();
-cell4.PrintFeatureSensorList(835);
+string m5 = "2. Was there any phones that were announced in one year and released in another? What are they? Give me the oem and models?";
+Console.WriteLine(m5 + "\n" + CellRecords.TableBorder(m5) + "\n");
+Console.WriteLine("Create new custom query table to solve this...");
+CellTable queryTable2 = cell.GetPhonesLaunchedAfterAnnouncedTable();
+Console.WriteLine("[query table was successfully created from cell table]\n");
+Console.WriteLine("The oem and models of the phones that were announced in one year and released later are represented in the table below...");
+queryTable2.PrintCustomMultipleRecords(queryTable2.GetRecordsMap().GetCellTable().Keys.ToArray(), new[] { "oem", "model", "launch_announced", "launch_status" });
+Console.WriteLine();
 
-Console.WriteLine(cell4.GetType("body_weight"));
+// 3
+Console.WriteLine();
+string m6 = "3. How many phones have only one feature sensor?";
+Console.WriteLine(m6 + "\n" + CellRecords.TableBorder(m6) + "\n");
+Console.WriteLine("Using this table...");
+cell.PrintFrequencyTable("features_sensors");
+Console.WriteLine("\nThis is the number of phones with only one feature sensor:  " + cell.GetFeaturesSensorsCountElementCount(1));
+Console.WriteLine();
+
+// 4 
+Console.WriteLine();
+Console.WriteLine();
+string m7 = "4. What year had the most phones launched in the 2000s?";
+Console.WriteLine(m7 + "\n" + CellRecords.TableBorder(m7) + "\n");
+Console.WriteLine("Create new query table to solve this...");
+FilterParameters query3 = new FilterParameters();
+query3.GetFilterIntRange().Add("launch_status", new KeyValuePair<int, int>(2000, 2030));
+CellTable queryTable3 = cell.CreateQueryTable(query3);
+Console.WriteLine("[query table was successfully created from cell table]\n");
+Console.WriteLine("Using this table...");
+queryTable3.PrintFrequencyTable("launch_status");
+Console.WriteLine("\nThis year had the most phones launched in the 2000's:  " + queryTable3.GetModeLaunchStatus());
 
 
 
-////////////////////////////////////////////
 
 
 
