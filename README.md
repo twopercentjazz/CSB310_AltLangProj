@@ -53,20 +53,30 @@
 
 ### Explain how your programming language handles...
 > <pre>
+> 
+> </pre>
+> <pre>
 > -  object-oriented programming
->
+> </pre>
+> <pre>
 > -  file ingestion
->
+> </pre>
+> <pre>
 > -  conditional statements
->
+> </pre>
+> <pre>
 > -  assignment statements
->
+> </pre>
+> <pre>
 > -  loops
->
+> </pre>
+> <pre>
 > -  subprograms
->
+> </pre>
+> <pre>
 > -  unit testing
->
+> </pre>
+> <pre>
 > -  exception handling
 > </pre>
 
@@ -74,8 +84,20 @@
 > <pre>
 > 
 > </pre>
+> <pre>
+> 
+> </pre>
+> <pre>
+> 
+> </pre>
+> <pre>
+> 
+> </pre>
 
 ### Answer the following questions...
+> <pre>
+> 
+> </pre>
 > <pre>
 > 1. What company has the highest average weight of the phone body?
 >
