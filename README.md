@@ -111,12 +111,20 @@
 > <pre>
 > conditional statements
 >
-> In my experience C# handles 
+> In my experience C# handles conditional statements very similarly to Java. To elaborate, 
+> C# supports the usual logical conditions from mathematics, and the if, if-else, and else 
+> statements all work like they do in Java (including nesting conditinals).  
 > </pre>
 > <pre>
 > assignment statements
 >
-> In my experience C# handles 
+> In my experience C# handles assignment statements very similarly to Java. To elaborate,
+> in both languages you can assign a variable to a value using the equals sign (and accessing
+> these assigned variables follow the same rules of scoping in both languages). Also, both 
+> languages are strongly typed, meaning that variable assignment must be associated with a 
+> data type. In C# you can implicity assign a data type using the var keyword (but I think 
+> java has added this functionality, but it's not a convention I use in Java). In C# you 
+> can also make primitive data types nullable, which I found helpful for this project. 
 > </pre>
 > <pre>
 > loops
