@@ -128,7 +128,7 @@
 > <pre>
 > 3. How many phones have only one feature sensor?
 >
->    432 
+>    432 (have only one feature sensor)
 > </pre>
 > ![Report_Q3](https://github.com/twopercentjazz/CSB310_AltLangProj/assets/49768882/7959a91f-68fe-45b1-b086-0cfb8c289371)
 > <pre>
