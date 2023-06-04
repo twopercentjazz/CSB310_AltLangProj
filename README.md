@@ -15,7 +15,7 @@
 >  |         |  
 >  |         |=== Report Assets  <------------------>  (Folder Containing Screenshots for Report)  
 >  |  
->  |=== Classes  <---------------------------------->  (Folder Containing the Classes for the Project)  
+>  |=== Classes  <---------------------------------->  (Folder Containing the Classes for the Project)
 >          |  
 >          |=== Cell.cs  <-------------------------->  (Class representing one cell record)  
 >          |  
@@ -23,7 +23,7 @@
 >          |  
 >          |=== CellRecords.cs  <------------------->  (Class representing a row oriented table)  
 >          |  
->          |=== CellTable.cs  <--------------------->  (Class where I implemented my additional methods)  
+>          |=== CellTable.cs  <--------------------->  (Class where I implemented my additional methods)
 >          |  
 >          |=== CleanCellData.cs  <----------------->  (Class to clean cell data)  
 >          |  
