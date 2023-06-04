@@ -4,7 +4,8 @@
 /// This class represents a Cell Table and contains both a column oriented and a row oriented representation
 /// of the Cell Table.
 ///
-/// Note: most of my required additional methods are found in this class. 
+/// Note: most of my required additional methods are found in this class. I demonstrate the use of these methods
+/// by running the Program.cs class.
 /// </summary>
 public class CellTable
 {
@@ -157,7 +158,14 @@ public class CellTable
     /// <param name="id"> The record id to print </param>
     public void PrintRecord(int id)
     {
-        Console.WriteLine(RecordString(GetRecordsMap().GetCellTable()[id]));
+        if (GetRecordsMap().GetCellTable().ContainsKey(id))
+        {
+            Console.WriteLine(RecordString(GetRecordsMap().GetCellTable()[id]));
+        }
+        else
+        {
+            Console.WriteLine("[a record with the given id does not exist]");
+        }
     }
 
     /// <summary>

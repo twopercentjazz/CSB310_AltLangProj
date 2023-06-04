@@ -3,51 +3,50 @@
 
 using AltLangProj.Classes;
 
-//ParseCsvFile temp = new ParseCsvFile(@"Input\cells.csv");
 
-//Console.WriteLine(temp.GetRowData().Count);
-//Console.WriteLine(temp.GetRowData()[0].Count);
-//Console.WriteLine(temp.GetColumnData().Count);
-//Console.WriteLine(temp.GetColumnData()[0].Count);
+/* first I will test...
+ 1. That a parsed/cleaned file isn't missing data, should display [The data doesn't have missing values] 
+ 2. To demonstrate that my code catches when a file doesn't exist, should display [File Does Not Exist]
+ 3. To demonstrate that my code catches when a file is empty, should display [File Is Empty]
+ */
+
+Console.WriteLine("These first tests check for bad input and displays a message to the console:\n");
+
+// 1
+ParseCsvFile parser = new ParseCsvFile(@"Resources\Input\cells.csv");
+CleanCellData cleanData = new CleanCellData(parser.GetColumnData(), parser.GetRowData()[0]);
+cleanData.PrintHasMissingData();
+Console.WriteLine();
+
+// 2
+CellTable fileDoesntExist = new CellTable(@"test");
+Console.WriteLine();
+
+// 3
+CellTable fileIsEmpty = new CellTable(@"Resources\Input\empty.csv");
+Console.WriteLine();
 
 
-//CleanCellData clean = new CleanCellData(temp.GetColumnData(), temp.GetRowData()[0]);
+/* next I will test...
+ 1. That a parsed/cleaned file isn't missing data, should display [The data doesn't have missing values] 
+ 2. To demonstrate that my code catches when a file doesn't exist, should display [File Does Not Exist]
+ 3. To demonstrate that my code catches when a file is empty, should display [File Is Empty]
+ */
 
-//Console.WriteLine(clean.GetCleanColumnData().Count);
-//Console.WriteLine(clean.GetCleanColumnData()[2][3] == null);
-//Console.WriteLine(clean.GetCleanColumnData()[2][886]);
-
-//CellFields test = new CellFields(clean.GetCleanColumnData(), temp.GetRowData());
-
-
-/*
-int count = 2;
-Console.WriteLine(test.get_initial_fields()[0]);
-foreach (var item in test.get_cell_id())
-{   Console.Write(count + " ");
-    if (item == null)
-    {
-        Console.Write("null");
-    }
-    else
-    {
-        Console.Write(item);
-    }
-    Console.WriteLine();
-    count++;
-
-}
-*/
+Console.WriteLine("These first tests check for bad input and displays a message to the console:\n");
 
 
 
 
-// @"Input\cells.csv"
 
 
-CellTable test = new CellTable(@"test");
 
-CellTable test2 = new CellTable(@"Resources\Input\empty.csv");
+
+
+
+
+
+
 
 
 CellTable cell = new CellTable(@"Resources\Input\cells.csv");
@@ -92,52 +91,7 @@ foreach (string VARIABLE in cell.GetFieldsMap().GetFeaturesSensors())
 */
 
 
-//cell.PrintCellTable();
-/*
-Console.WriteLine();
 
-Console.WriteLine(cell.GetAvgBodyWeight());
-
-Console.WriteLine(cell.GetAvgDisplaySize());
-
-Console.WriteLine(cell.GetAvgFeaturesSensorsCount());
-
-Console.WriteLine();
-
-Console.WriteLine(cell.GetMedianBodyWeight());
-
-Console.WriteLine(cell.GetMedianDisplaySize());
-
-Console.WriteLine(cell.GetMedianFeaturesSensorsCount());
-
-Console.WriteLine();
-
-Console.WriteLine(cell.GetModeOem());
-
-Console.WriteLine(cell.GetModeModel());
-
-Console.WriteLine(cell.GetModeLaunchAnnounced());
-
-Console.WriteLine(cell.GetModeLaunchStatus());
-
-Console.WriteLine(cell.GetModeBodyDimensions());
-
-Console.WriteLine(cell.GetModeBodyWeight());
-
-Console.WriteLine(cell.GetModeBodySim());
-
-Console.WriteLine(cell.GetModeDisplayType());
-
-Console.WriteLine(cell.GetModeDisplaySize());
-
-Console.WriteLine(cell.GetModeDisplayResolution());
-
-Console.WriteLine(cell.GetModeFeaturesSensorsCount());
-
-Console.WriteLine(cell.GetModePlatformOs());
-
-Console.WriteLine();
-*/
 
 //cell.PrintCellTable("oem");
 
@@ -222,9 +176,7 @@ cell5.PrintTableStats();
 
 Console.WriteLine();
 
-ParseCsvFile parser = new ParseCsvFile(@"Resources\Input\cells.csv");
-CleanCellData cleanData = new CleanCellData(parser.GetColumnData(), parser.GetRowData()[0]);
-cleanData.PrintHasMissingData();
+
 
 
 Console.ReadKey();
