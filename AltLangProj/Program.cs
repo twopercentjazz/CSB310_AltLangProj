@@ -5,19 +5,19 @@ using AltLangProj.Classes;
 
 //ParseCsvFile temp = new ParseCsvFile(@"Input\cells.csv");
 
-//Console.WriteLine(temp.getRowData().Count);
-//Console.WriteLine(temp.getRowData()[0].Count);
-//Console.WriteLine(temp.getColumnData().Count);
-//Console.WriteLine(temp.getColumnData()[0].Count);
+//Console.WriteLine(temp.GetRowData().Count);
+//Console.WriteLine(temp.GetRowData()[0].Count);
+//Console.WriteLine(temp.GetColumnData().Count);
+//Console.WriteLine(temp.GetColumnData()[0].Count);
 
 
-//CleanCellData clean = new CleanCellData(temp.getColumnData(), temp.getRowData()[0]);
+//CleanCellData clean = new CleanCellData(temp.GetColumnData(), temp.GetRowData()[0]);
 
-//Console.WriteLine(clean.getCleanColumnData().Count);
-//Console.WriteLine(clean.getCleanColumnData()[2][3] == null);
-//Console.WriteLine(clean.getCleanColumnData()[2][886]);
+//Console.WriteLine(clean.GetCleanColumnData().Count);
+//Console.WriteLine(clean.GetCleanColumnData()[2][3] == null);
+//Console.WriteLine(clean.GetCleanColumnData()[2][886]);
 
-//CellFields test = new CellFields(clean.getCleanColumnData(), temp.getRowData());
+//CellFields test = new CellFields(clean.GetCleanColumnData(), temp.GetRowData());
 
 
 /*
@@ -146,8 +146,8 @@ Console.WriteLine();
 ///////////////////////////////
 
 FilterParameters query = new FilterParameters();
-query.getFilterIntRange().Add("launch_status", new KeyValuePair<int,int>(2000, 2030));
-//query.getFilterInt().Add("launch_status", new []{2020});
+query.GetFilterIntRange().Add("launch_status", new KeyValuePair<int,int>(2000, 2030));
+//query.GetFilterInt().Add("launch_status", new []{2020});
 
 
 
@@ -165,7 +165,7 @@ Console.WriteLine("\nThis year had the most phones launched in the 2000's:  " + 
 Console.WriteLine();
 
 FilterParameters query2 = new FilterParameters();
-query2.getFilterInt().Add("features_sensors", new[]{1});
+query2.GetFilterInt().Add("features_sensors", new[]{1});
 
 CellTable cell3 = cell.createQueryTable(query2);
 
@@ -193,7 +193,7 @@ cell4.printTableSize(); ////////////
 
 //cell4.printCellTable();
 
-cell4.printCustomMultipleRecords(cell4.getRecordsMap().get_cell_table().Keys.ToArray(), new []{"id", "oem", "model", "launch_announced", "launch_status"});
+cell4.printCustomMultipleRecords(cell4.getRecordsMap().GetCellTable().Keys.ToArray(), new []{"id", "oem", "model", "launch_announced", "launch_status"});
 
 
 ///////////////////////////////////
@@ -210,7 +210,7 @@ Console.WriteLine(cell4.getType("body_weight"));
 
 
 FilterParameters query3 = new FilterParameters();
-query3.getFilterString().Add("oem", new []{"Google", "Sony"});
+query3.GetFilterString().Add("oem", new []{"Google", "Sony"});
 
 CellTable cell5 = cell.createQueryTable(query3);
 
@@ -223,8 +223,8 @@ cell5.printTableStats();
 Console.WriteLine();
 
 ParseCsvFile parser = new ParseCsvFile(@"Resources\Input\cells.csv");
-CleanCellData cleanData = new CleanCellData(parser.getColumnData(), parser.getRowData()[0]);
-cleanData.printHasMissingData();
+CleanCellData cleanData = new CleanCellData(parser.GetColumnData(), parser.GetRowData()[0]);
+cleanData.PrintHasMissingData();
 
 
 Console.ReadKey();
