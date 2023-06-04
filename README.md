@@ -99,16 +99,22 @@
 
 ### List 3 libraries you used (if applicable) and explain them. 
 > <pre>
-> 
+> For my project all of the libraries used were part of the System namespace.
 > </pre>
 > <pre>
-> 
+> System.Diagnostics
+>
+> This provides classes that allow you to interact with system processes, event logs, and
+> performance counters. It also provides classes that allow you to debug you application and
+> trace the execution of your code. I used this library for the latter reason so I could write
+> unit tests using the Debug.Assert method. I used them to test the functionality of my analytic
+> methods that calulate the mean, median, and mode.
 > </pre>
 > <pre>
-> 
+> System.Text.RegularExpressions
 > </pre>
 > <pre>
-> 
+> System.Collections
 > </pre>
 
 ### Answer the following questions...
