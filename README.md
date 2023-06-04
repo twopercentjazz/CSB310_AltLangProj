@@ -129,12 +129,19 @@
 > <pre>
 > loops
 >
-> In my experience C# handles 
+> In my experience C# handles loops very similarly to Java. To elaborate, both for loops and 
+> while loops use the same syntax and seem to function the same way in both languages. I did
+> notice that the for each loop in C# has a slightly differrent syntax than in Java though. 
 > </pre>
 > <pre>
 > subprograms
 >
-> In my experience C# handles 
+> In my experience C# handles subprograms very similarly to Java. To elaborate, in both 
+> languages you have to declare data types for parameters and return statements (or void
+> if the subprogram doesn't return anything). Also, in both languages methods can be 
+> declared as static (or not). Method calls are also the same in both languages. 
+> Additionally, both languages allow for method overloading, but in C# method overriding 
+> uses a different syntax than in Java.
 > </pre>
 > <pre>
 > unit testing
