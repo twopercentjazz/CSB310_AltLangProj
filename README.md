@@ -3,33 +3,33 @@
 ### Visual Studio Project Organization:
 > <pre>
 >  
-> AltLangProj  <------------------------------------>  (The Visual Studio Project)  
+> AltLangProj  <--------------------------------->  (The Visual Studio Project)  
 >  |   |   |  
->  |   |   |=== Program.cs  <----------------------->  (The Main Program Driver)  
+>  |   |   |=== Program.cs  <-------------------->  (The Main Program Driver)  
 >  |   |  
->  |   |=== Resources  <---------------------------->  (Folder Containing Project Resources)  
+>  |   |=== Resources  <------------------------->  (Folder Containing Project Resources)  
 >  |         |  |  |
->  |         |  |  |=== Git Screenshots  <---------->  (Folder Containing Required Git Screenshots)  
+>  |         |  |  |=== Git Screenshots  <------->  (Folder Containing Required Git Screenshots)  
 >  |         |  |  
->  |         |  |=== Input  <----------------------->  (Folder Containing Input csv Files)  
+>  |         |  |=== Input  <-------------------->  (Folder Containing Input csv Files)  
 >  |         |  
->  |         |=== Report Assets  <------------------>  (Folder Containing Screenshots for Report)  
+>  |         |=== Report Assets  <--------------->  (Folder Containing Screenshots for Report)  
 >  |  
->  |=== Classes  <---------------------------------->  (Folder Containing the Classes for the Project)
+>  |=== Classes  <------------------------------->  (Folder Containing the Classes for the Project)
 >          |  
->          |=== Cell.cs  <-------------------------->  (Class representing one cell record)  
+>          |=== Cell.cs  <----------------------->  (Class representing one cell record)  
 >          |  
->          |=== CellFields.cs  <-------------------->  (Class representing a column oriented table)  
+>          |=== CellFields.cs  <----------------->  (Class representing a column oriented table)  
 >          |  
->          |=== CellRecords.cs  <------------------->  (Class representing a row oriented table)  
+>          |=== CellRecords.cs  <---------------->  (Class representing a row oriented table)  
 >          |  
->          |=== CellTable.cs  <--------------------->  (Class where I implemented my additional methods)
+>          |=== CellTable.cs  <------------------>  (Class where I implemented my additional methods)
 >          |  
->          |=== CleanCellData.cs  <----------------->  (Class to clean cell data)  
+>          |=== CleanCellData.cs  <-------------->  (Class to clean cell data)  
 >          |  
->          |=== FilterParameter.cs  <--------------->  (Class to filter results)  
+>          |=== FilterParameter.cs  <------------>  (Class to filter results)  
 >          |  
->          |=== ParseCsvFile.cs  <------------------>  (Class to parse csv file)  
+>          |=== ParseCsvFile.cs  <--------------->  (Class to parse csv file)  
 >  
 > </pre>
 
