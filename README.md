@@ -112,9 +112,16 @@
 > </pre>
 > <pre>
 > System.Text.RegularExpressions
+>
+> This contains classes that represent ASCII and Unicode character encodings. It provides regular
+> expression functionality that may be used from any platform or language that runs within the .NET
+> framework. I used this library for regular expressions by using the Regex class. I used this to
+> aid in cleaning the data that was parsed from the cells csv file. 
 > </pre>
 > <pre>
 > System.Collections
+>
+>
 > </pre>
 
 ### Answer the following questions...
