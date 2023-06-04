@@ -236,7 +236,7 @@ public class CellTable
         foreach (string oem in unique)
         {
             FilterParameters company = new FilterParameters();
-            company.getFilterString().Add("oem", new []{oem});
+            company.GetFilterString().Add("oem", new []{oem});
             CellTable temp = createQueryTable(company);
             if (avgField == "body_weight")
             {
@@ -1518,16 +1518,16 @@ public class CellTable
 
     public void updateTableWhere(FilterParameters filter)
     {
-        if (filter.getFilterString().Count != 0)
+        if (filter.GetFilterString().Count != 0)
         {
-            foreach (string field in filter.getFilterString().Keys)
+            foreach (string field in filter.GetFilterString().Keys)
             {
                 if (field == "oem")
                 {
                     foreach (int id in getRecordsMap().GetCellTable().Keys)
                     {
                         Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
+                        foreach (string item in filter.GetFilterString()[field])
                         {
                             if (getRecordsMap().GetCellTable()[id].GetOem().Equals(item))
                             {
@@ -1548,7 +1548,7 @@ public class CellTable
                     foreach (int id in getRecordsMap().GetCellTable().Keys)
                     {
                         Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
+                        foreach (string item in filter.GetFilterString()[field])
                         {
                             if (getRecordsMap().GetCellTable()[id].GetModel().Equals(item))
                             {
@@ -1570,7 +1570,7 @@ public class CellTable
                     foreach (int id in getRecordsMap().GetCellTable().Keys)
                     {
                         Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
+                        foreach (string item in filter.GetFilterString()[field])
                         {
                             if (getRecordsMap().GetCellTable()[id].GetLaunchStatus().Equals(item))
                             {
@@ -1591,7 +1591,7 @@ public class CellTable
                     foreach (int id in getRecordsMap().GetCellTable().Keys)
                     {
                         Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
+                        foreach (string item in filter.GetFilterString()[field])
                         {
                             if (getRecordsMap().GetCellTable()[id].GetBodyDimensions().Equals(item))
                             {
@@ -1613,7 +1613,7 @@ public class CellTable
                     foreach (int id in getRecordsMap().GetCellTable().Keys)
                     {
                         Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
+                        foreach (string item in filter.GetFilterString()[field])
                         {
                             if (getRecordsMap().GetCellTable()[id].GetBodySim().Equals(item))
                             {
@@ -1634,7 +1634,7 @@ public class CellTable
                     foreach (int id in getRecordsMap().GetCellTable().Keys)
                     {
                         Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
+                        foreach (string item in filter.GetFilterString()[field])
                         {
                             if (getRecordsMap().GetCellTable()[id].GetDisplayType().Equals(item))
                             {
@@ -1655,7 +1655,7 @@ public class CellTable
                     foreach (int id in getRecordsMap().GetCellTable().Keys)
                     {
                         Boolean found = false;
-                        foreach (string item in filter.getFilterString()[field])
+                        foreach (string item in filter.GetFilterString()[field])
                         {
                             if (getRecordsMap().GetCellTable()[id].GetDisplayResolution().Equals(item))
                             {
@@ -1675,28 +1675,28 @@ public class CellTable
 
         }
 
-        if (filter.getFilterInt().Count != 0 || filter.getFilterIntRange().Count != 0)
+        if (filter.GetFilterInt().Count != 0 || filter.GetFilterIntRange().Count != 0)
         {
             string[] keys;
-            if (filter.getFilterInt().Count > 0)
+            if (filter.GetFilterInt().Count > 0)
             {
-                keys = filter.getFilterInt().Keys.ToArray();
+                keys = filter.GetFilterInt().Keys.ToArray();
             }
             else
             {
-                keys = filter.getFilterIntRange().Keys.ToArray();
+                keys = filter.GetFilterIntRange().Keys.ToArray();
             }
             foreach (string field in keys)
             {
 
                 if (field == "id")
                 {
-                    if (filter.getFilterInt().Count > 0)
+                    if (filter.GetFilterInt().Count > 0)
                     {
                         foreach (int id in getRecordsMap().GetCellTable().Keys)
                         {
                             Boolean found = false;
-                            foreach (int item in filter.getFilterInt()[field])
+                            foreach (int item in filter.GetFilterInt()[field])
                             {
                                 if (getRecordsMap().GetCellTable()[id].GetId().Equals(item))
                                 {
@@ -1716,8 +1716,8 @@ public class CellTable
                         {
                             Boolean found = false;
 
-                            if (getRecordsMap().GetCellTable()[id].GetId() >= filter.getFilterIntRange()[field].Key &&
-                                getRecordsMap().GetCellTable()[id].GetId() <= filter.getFilterIntRange()[field].Value)
+                            if (getRecordsMap().GetCellTable()[id].GetId() >= filter.GetFilterIntRange()[field].Key &&
+                                getRecordsMap().GetCellTable()[id].GetId() <= filter.GetFilterIntRange()[field].Value)
                             {
                                 found = true;
                             }
@@ -1731,12 +1731,12 @@ public class CellTable
                 }
                 else if (field == "launch_announced")
                 {
-                    if (filter.getFilterInt().Count > 0)
+                    if (filter.GetFilterInt().Count > 0)
                     {
                         foreach (int id in getRecordsMap().GetCellTable().Keys)
                         {
                             Boolean found = false;
-                            foreach (int item in filter.getFilterInt()[field])
+                            foreach (int item in filter.GetFilterInt()[field])
                             {
                                 if (getRecordsMap().GetCellTable()[id].GetLaunchAnnounced().Equals(item))
                                 {
@@ -1756,8 +1756,8 @@ public class CellTable
                         {
                             Boolean found = false;
 
-                            if (getRecordsMap().GetCellTable()[id].GetLaunchAnnounced() >= filter.getFilterIntRange()[field].Key &&
-                                getRecordsMap().GetCellTable()[id].GetLaunchAnnounced() <= filter.getFilterIntRange()[field].Value)
+                            if (getRecordsMap().GetCellTable()[id].GetLaunchAnnounced() >= filter.GetFilterIntRange()[field].Key &&
+                                getRecordsMap().GetCellTable()[id].GetLaunchAnnounced() <= filter.GetFilterIntRange()[field].Value)
                             {
                                 found = true;
                             }
@@ -1772,7 +1772,7 @@ public class CellTable
                 }
                 else if (field == "launch_status")
                 {
-                    if (filter.getFilterInt().Count > 0)
+                    if (filter.GetFilterInt().Count > 0)
                     {
                         foreach (int id in getRecordsMap().GetCellTable().Keys)
                         {
@@ -1784,7 +1784,7 @@ public class CellTable
                             else
                             {
                                 Boolean found = false;
-                                foreach (int item in filter.getFilterInt()[field])
+                                foreach (int item in filter.GetFilterInt()[field])
                                 {
                                     if (int.Parse(getRecordsMap().GetCellTable()[id].GetLaunchStatus()).Equals(item))
                                     {
@@ -1812,8 +1812,8 @@ public class CellTable
                             {
                                 Boolean found = false;
 
-                                if (int.Parse(getRecordsMap().GetCellTable()[id].GetLaunchStatus()) >= filter.getFilterIntRange()[field].Key &&
-                                    int.Parse(getRecordsMap().GetCellTable()[id].GetLaunchStatus()) <= filter.getFilterIntRange()[field].Value)
+                                if (int.Parse(getRecordsMap().GetCellTable()[id].GetLaunchStatus()) >= filter.GetFilterIntRange()[field].Key &&
+                                    int.Parse(getRecordsMap().GetCellTable()[id].GetLaunchStatus()) <= filter.GetFilterIntRange()[field].Value)
                                 {
                                     found = true;
                                 }
@@ -1827,12 +1827,12 @@ public class CellTable
                 }
                 else if (field == "features_sensors")
                 {
-                    if (filter.getFilterInt().Count > 0)
+                    if (filter.GetFilterInt().Count > 0)
                     {
                         foreach (int id in getRecordsMap().GetCellTable().Keys)
                         {
                             Boolean found = false;
-                            foreach (int item in filter.getFilterInt()[field])
+                            foreach (int item in filter.GetFilterInt()[field])
                             {
                                 if (getRecordsMap().GetCellTable()[id].GetFeaturesSensors().Equals(item))
                                 {
@@ -1852,8 +1852,8 @@ public class CellTable
                         {
                             Boolean found = false;
 
-                            if (getRecordsMap().GetCellTable()[id].GetFeaturesSensors() >= filter.getFilterIntRange()[field].Key &&
-                                getRecordsMap().GetCellTable()[id].GetFeaturesSensors() <= filter.getFilterIntRange()[field].Value)
+                            if (getRecordsMap().GetCellTable()[id].GetFeaturesSensors() >= filter.GetFilterIntRange()[field].Key &&
+                                getRecordsMap().GetCellTable()[id].GetFeaturesSensors() <= filter.GetFilterIntRange()[field].Value)
                             {
                                 found = true;
                             }
@@ -1873,28 +1873,28 @@ public class CellTable
 
         }
 
-        if (filter.getFilterDouble().Count != 0 || filter.getFilterDoubleRange().Count != 0)
+        if (filter.GetFilterDouble().Count != 0 || filter.GetFilterDoubleRange().Count != 0)
         {
             string[] keys;
-            if (filter.getFilterDouble().Count > 0)
+            if (filter.GetFilterDouble().Count > 0)
             {
-                keys = filter.getFilterDouble().Keys.ToArray();
+                keys = filter.GetFilterDouble().Keys.ToArray();
             }
             else
             {
-                keys = filter.getFilterDoubleRange().Keys.ToArray();
+                keys = filter.GetFilterDoubleRange().Keys.ToArray();
             }
 
             foreach (string field in keys)
             {
                 if (field == "body_weight")
                 {
-                    if (filter.getFilterDouble().Count > 0)
+                    if (filter.GetFilterDouble().Count > 0)
                     {
                         foreach (int id in getRecordsMap().GetCellTable().Keys)
                         {
                             Boolean found = false;
-                            foreach (int item in filter.getFilterDouble()[field])
+                            foreach (int item in filter.GetFilterDouble()[field])
                             {
                                 if (getRecordsMap().GetCellTable()[id].GetBodyWeight().Equals(item))
                                 {
@@ -1914,8 +1914,8 @@ public class CellTable
                         {
                             Boolean found = false;
 
-                            if (getRecordsMap().GetCellTable()[id].GetBodyWeight() >= filter.getFilterDoubleRange()[field].Key &&
-                                getRecordsMap().GetCellTable()[id].GetBodyWeight() <= filter.getFilterDoubleRange()[field].Value)
+                            if (getRecordsMap().GetCellTable()[id].GetBodyWeight() >= filter.GetFilterDoubleRange()[field].Key &&
+                                getRecordsMap().GetCellTable()[id].GetBodyWeight() <= filter.GetFilterDoubleRange()[field].Value)
                             {
                                 found = true;
                             }
@@ -1932,12 +1932,12 @@ public class CellTable
 
                 else if (field == "display_size")
                 {
-                    if (filter.getFilterDouble().Count > 0)
+                    if (filter.GetFilterDouble().Count > 0)
                     {
                         foreach (int id in getRecordsMap().GetCellTable().Keys)
                         {
                             Boolean found = false;
-                            foreach (int item in filter.getFilterDouble()[field])
+                            foreach (int item in filter.GetFilterDouble()[field])
                             {
                                 if (getRecordsMap().GetCellTable()[id].GetDisplaySize().Equals(item))
                                 {
@@ -1957,8 +1957,8 @@ public class CellTable
                         {
                             Boolean found = false;
 
-                            if (getRecordsMap().GetCellTable()[id].GetDisplaySize() >= filter.getFilterDoubleRange()[field].Key &&
-                                getRecordsMap().GetCellTable()[id].GetDisplaySize() <= filter.getFilterDoubleRange()[field].Value)
+                            if (getRecordsMap().GetCellTable()[id].GetDisplaySize() >= filter.GetFilterDoubleRange()[field].Key &&
+                                getRecordsMap().GetCellTable()[id].GetDisplaySize() <= filter.GetFilterDoubleRange()[field].Value)
                             {
                                 found = true;
                             }

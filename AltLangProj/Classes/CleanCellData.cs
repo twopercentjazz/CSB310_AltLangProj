@@ -135,7 +135,7 @@ public class CleanCellData
                     temp.Add(columnData.ElementAt(i).ElementAt(j).Replace("\"", ""));
                 }
             }
-            _cleanColumnData.Add(temp);
+            this._cleanColumnData.Add(temp);
         }
     }
 
@@ -146,6 +146,15 @@ public class CleanCellData
     public List<List<string>> GetCleanColumnData()
     {
         return this._cleanColumnData;
+    }
+
+    /// <summary>
+    /// This method sets the cleaned data (column oriented)
+    /// </summary>
+    /// <param name="data"> A new matrix of column data </param>
+    public void SetCleanColumnData(List<List<string>> data)
+    {
+        this._cleanColumnData = data;
     }
 
     /// <summary>
@@ -178,13 +187,8 @@ public class CleanCellData
     /// </summary>
     public void PrintHasMissingData()
     {
-        if (HasMissingData())
-        {
-            Console.WriteLine("[The data has missing values]");
-        }
-        else
-        {
-            Console.WriteLine("[The data doesn't have missing values]");
-        }
+        Console.WriteLine(HasMissingData()
+            ? "[The data has missing values]"
+            : "[The data doesn't have missing values]");
     }
 }

@@ -76,11 +76,29 @@ public class ParseCsvFile
     }
 
     /// <summary>
+    /// This method sets the row data.
+    /// </summary>
+    /// <param name="data"> The new row data </param>
+    public void SetRowData(List<List<string>> data)
+    {
+        this._rowData = data;
+    }
+
+    /// <summary>
     /// This method gets the parsed column data.
     /// </summary>
     /// <returns> A matrix of column data </returns>
     public List<List<string>> GetColumnData()
     {
         return this._columnData;
+    }
+
+    /// <summary>
+    /// This method sets the column data.
+    /// </summary>
+    /// <param name="data"> The new column data </param>
+    public void SetColumnData(List<List<string>> data)
+    {
+        this._columnData = data;
     }
 }

@@ -146,8 +146,8 @@ Console.WriteLine();
 ///////////////////////////////
 
 FilterParameters query = new FilterParameters();
-query.getFilterIntRange().Add("launch_status", new KeyValuePair<int,int>(2000, 2030));
-//query.getFilterInt().Add("launch_status", new []{2020});
+query.GetFilterIntRange().Add("launch_status", new KeyValuePair<int,int>(2000, 2030));
+//query.GetFilterInt().Add("launch_status", new []{2020});
 
 
 
@@ -165,7 +165,7 @@ Console.WriteLine("\nThis year had the most phones launched in the 2000's:  " + 
 Console.WriteLine();
 
 FilterParameters query2 = new FilterParameters();
-query2.getFilterInt().Add("features_sensors", new[]{1});
+query2.GetFilterInt().Add("features_sensors", new[]{1});
 
 CellTable cell3 = cell.createQueryTable(query2);
 
@@ -210,7 +210,7 @@ Console.WriteLine(cell4.getType("body_weight"));
 
 
 FilterParameters query3 = new FilterParameters();
-query3.getFilterString().Add("oem", new []{"Google", "Sony"});
+query3.GetFilterString().Add("oem", new []{"Google", "Sony"});
 
 CellTable cell5 = cell.createQueryTable(query3);
 
