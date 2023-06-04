@@ -1,7 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-
+using System.Security.Cryptography.X509Certificates;
 using AltLangProj.Classes;
+// When running this console application driver I recommend full screening the console
 
 
 /* first I will test...
@@ -9,47 +10,135 @@ using AltLangProj.Classes;
  2. To demonstrate that my code catches when a file doesn't exist, should display [File Does Not Exist]
  3. To demonstrate that my code catches when a file is empty, should display [File Is Empty]
  */
-
-Console.WriteLine("These first tests check for bad input and displays a message to the console:\n");
+string m1 = "These first tests check for bad input and displays a message to the console";
+Console.WriteLine(m1 + "\n" + CellRecords.TableBorder(m1) + "\n");
 
 // 1
+Console.WriteLine("Checking my cleaned data...");
 ParseCsvFile parser = new ParseCsvFile(@"Resources\Input\cells.csv");
 CleanCellData cleanData = new CleanCellData(parser.GetColumnData(), parser.GetRowData()[0]);
 cleanData.PrintHasMissingData();
 Console.WriteLine();
 
 // 2
+Console.WriteLine("Checking a bad file path...");
 CellTable fileDoesntExist = new CellTable(@"test");
 Console.WriteLine();
 
 // 3
+Console.WriteLine("Checking an empty file...");
 CellTable fileIsEmpty = new CellTable(@"Resources\Input\empty.csv");
 Console.WriteLine();
 
 
 /* next I will test...
- 1. That a parsed/cleaned file isn't missing data, should display [The data doesn't have missing values] 
+ 1. Creating a Cell Table
+ 2. Print a single record (if record doesn't exist displays message)
+ 3. As I mentioned in my cell class comments, for the sake of saving space I display the 
+    features sensors count in place of the actual feature sensors when displaying a 
+    record to the console, so I created a method to print this information
+ 4. print multiple records
+ 5. print custom multiple records (only displaying given fields)
+ 6. Because 1000 records take up a lot of screen real estate, I will demo my other methods by 
+    first creating a smaller query table where the oem is either "Lenovo" or "Sony" and the 
+    launch_status is "2019" or "2020"
+    (to learn more about creating queries see my FilterParameters class for details)
+ 7. Print entire query table
+ 8. print entire query table sorted on any given column
+ 9. Delete record
+10. Add record
+
  2. To demonstrate that my code catches when a file doesn't exist, should display [File Does Not Exist]
  3. To demonstrate that my code catches when a file is empty, should display [File Is Empty]
  */
 
-Console.WriteLine("These first tests check for bad input and displays a message to the console:\n");
+Console.WriteLine();
+string m2 = "These next tests demonstrate the use of my series of methods";
+Console.WriteLine(m2 + "\n" + CellRecords.TableBorder(m2));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 1
 CellTable cell = new CellTable(@"Resources\Input\cells.csv");
+Console.WriteLine("[cell table was successfully created from cells.csv file]\n");
+
+// 2
+Console.WriteLine("Print record with record id 2000...");
+cell.PrintRecord(2000);
+Console.WriteLine();
+Console.WriteLine("\nPrint record with record id 5...");
+cell.PrintRecord(5);
+
+// 3
+Console.WriteLine("Retrieve features sensors description for record above...");
+cell.PrintFeatureSensorList(5);
+Console.WriteLine();
+
+// 4
+Console.WriteLine("\nPrint multiple records with record id 1, 500, and 1000...");
+cell.PrintMultipleRecords(new []{1,500,1000});
+Console.WriteLine();
+
+// 5
+Console.WriteLine("Print the same multiple records above but only show id, oem, and launch status columns...");
+cell.PrintCustomMultipleRecords(new[] { 1, 500, 1000 }, new []{"id", "oem", "launch_status"});
+Console.WriteLine();
+
+// 6
+Console.WriteLine("Create new query table that only includes the 'Lenovo' and 'Sony' oem with the years of '2019' or '2020' launch_status...");
+FilterParameters query = new FilterParameters();
+query.GetFilterString().Add("oem", new[] { "Sony", "Lenovo" });
+query.GetFilterString().Add("launch_status", new []{"2019", "2020"});
+CellTable queryTable = cell.CreateQueryTable(query);
+Console.WriteLine("[query table was successfully created from cell table]\n");
+
+// 7
+Console.WriteLine("Print entire query table...");
+queryTable.PrintCellTable();
+Console.WriteLine();
+
+// 8
+Console.WriteLine("Print entire query table sorted on 'body_weight' column (can sort on any column)...");
+queryTable.PrintCellTable("body_weight");
+Console.WriteLine();
+
+// 9
+Console.WriteLine("Delete the last 5 records from the table above...");
+queryTable.DeleteRecord(new []{160, 159, 165, 164, 166});
+Console.WriteLine("[records deleted successfully]\n");
+Console.WriteLine("Print entire query table sorted on 'body_weight' again to see records were deleted...");
+queryTable.PrintCellTable("body_weight");
+Console.WriteLine();
+
+// 10
+Console.WriteLine("Add a new record for the iphone 11...");
+queryTable.AddRecord("Apple", "Iphone 11", 2019, "2019", "150 x 75 x 8 mm", 194, "Dual SIM", 
+    "IPS LCD Touchscreen", 6.1, "1792 x 828 px", "V1, V2, V3", "Apple iOS");
+Console.WriteLine("[record added successfully]\n");
+Console.WriteLine("Print entire query table sorted on 'body_weight' again to that the new record was added...");
+queryTable.PrintCellTable("body_weight");
+Console.WriteLine();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -99,13 +188,13 @@ foreach (string VARIABLE in cell.GetFieldsMap().GetFeaturesSensors())
 
 ///////////////////////////////
 
-FilterParameters query = new FilterParameters();
-query.GetFilterIntRange().Add("launch_status", new KeyValuePair<int,int>(2000, 2030));
+FilterParameters query4 = new FilterParameters();
+query4.GetFilterIntRange().Add("launch_status", new KeyValuePair<int,int>(2000, 2030));
 //query.GetFilterInt().Add("launch_status", new []{2020});
 
 
 
-CellTable cell2 = cell.CreateQueryTable(query);
+CellTable cell2 = cell.CreateQueryTable(query4);
 
 
 cell2.PrintCellTable("launch_status");
@@ -163,18 +252,6 @@ Console.WriteLine(cell4.GetType("body_weight"));
 ////////////////////////////////////////////
 
 
-FilterParameters query3 = new FilterParameters();
-query3.GetFilterString().Add("oem", new []{"Google", "Sony"});
-
-CellTable cell5 = cell.CreateQueryTable(query3);
-
-cell5.PrintCellTable();
-
-cell5.PrintTableStats();
-
-//Console.WriteLine(cell5.GetType("features_sensors"));
-
-Console.WriteLine();
 
 
 
