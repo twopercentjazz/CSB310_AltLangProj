@@ -69,6 +69,19 @@
 > general-purpose high-level language. C# is versatile in the industry and it is used today 
 > to build a wide range of applications and web-based services. For example, C# is commonly used 
 > for backend services, Windows applications, website development, and game development. 
+>
+> The primary reason I was interested in taking a deep dive into C# was for game development.
+> As a hobbyist game developer that uses the Unity game development engine, which uses C# for
+> scripting, I wanted to better understand the tools at my disposal and step up my game to 
+> build better experiences (until now I only had peripheral experience with the language 
+> because you can accomplish a lot with the GUI, but you can better customize an experience
+> by writing more of your own code). 
+>
+> Additionally, I was interested in exploring C# for pratical reasons. To elaborate, I've heard 
+> C# being called Java's sister language and I thought it would be useful to learn a language 
+> that was similair to Java because it is the language I am most familair with, and I would
+> like to get comfortable with as many languages as possible before schools over, as to pad
+> my resume with a larger skillset. 
 > </pre>
 
 ### Explain how your programming language handles...
