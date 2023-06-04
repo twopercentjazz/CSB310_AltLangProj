@@ -96,45 +96,45 @@ foreach (string VARIABLE in cell.GetFieldsMap().GetFeaturesSensors())
 /*
 Console.WriteLine();
 
-Console.WriteLine(cell.getAvgBodyWeight());
+Console.WriteLine(cell.GetAvgBodyWeight());
 
-Console.WriteLine(cell.getAvgDisplaySize());
+Console.WriteLine(cell.GetAvgDisplaySize());
 
-Console.WriteLine(cell.getAvgFeaturesSensorsCount());
-
-Console.WriteLine();
-
-Console.WriteLine(cell.getMedianBodyWeight());
-
-Console.WriteLine(cell.getMedianDisplaySize());
-
-Console.WriteLine(cell.getMedianFeaturesSensorsCount());
+Console.WriteLine(cell.GetAvgFeaturesSensorsCount());
 
 Console.WriteLine();
 
-Console.WriteLine(cell.getModeOem());
+Console.WriteLine(cell.GetMedianBodyWeight());
 
-Console.WriteLine(cell.getModeModel());
+Console.WriteLine(cell.GetMedianDisplaySize());
 
-Console.WriteLine(cell.getModeLaunchAnnounced());
+Console.WriteLine(cell.GetMedianFeaturesSensorsCount());
 
-Console.WriteLine(cell.getModeLaunchStatus());
+Console.WriteLine();
 
-Console.WriteLine(cell.getModeBodyDimensions());
+Console.WriteLine(cell.GetModeOem());
 
-Console.WriteLine(cell.getModeBodyWeight());
+Console.WriteLine(cell.GetModeModel());
 
-Console.WriteLine(cell.getModeBodySim());
+Console.WriteLine(cell.GetModeLaunchAnnounced());
 
-Console.WriteLine(cell.getModeDisplayType());
+Console.WriteLine(cell.GetModeLaunchStatus());
 
-Console.WriteLine(cell.getModeDisplaySize());
+Console.WriteLine(cell.GetModeBodyDimensions());
 
-Console.WriteLine(cell.getModeDisplayResolution());
+Console.WriteLine(cell.GetModeBodyWeight());
 
-Console.WriteLine(cell.getModeFeaturesSensorsCount());
+Console.WriteLine(cell.GetModeBodySim());
 
-Console.WriteLine(cell.getModePlatformOs());
+Console.WriteLine(cell.GetModeDisplayType());
+
+Console.WriteLine(cell.GetModeDisplaySize());
+
+Console.WriteLine(cell.GetModeDisplayResolution());
+
+Console.WriteLine(cell.GetModeFeaturesSensorsCount());
+
+Console.WriteLine(cell.GetModePlatformOs());
 
 Console.WriteLine();
 */
@@ -151,14 +151,14 @@ query.GetFilterIntRange().Add("launch_status", new KeyValuePair<int,int>(2000, 2
 
 
 
-CellTable cell2 = cell.createQueryTable(query);
+CellTable cell2 = cell.CreateQueryTable(query);
 
 
 cell2.PrintCellTable("launch_status");
 
 cell2.PrintFrequencyTable("launch_status");
 
-Console.WriteLine("\nThis year had the most phones launched in the 2000's:  " + cell2.getModeLaunchStatus());
+Console.WriteLine("\nThis year had the most phones launched in the 2000's:  " + cell2.GetModeLaunchStatus());
 
 /////////////////////////////
 
@@ -167,13 +167,13 @@ Console.WriteLine();
 FilterParameters query2 = new FilterParameters();
 query2.GetFilterInt().Add("features_sensors", new[]{1});
 
-CellTable cell3 = cell.createQueryTable(query2);
+CellTable cell3 = cell.CreateQueryTable(query2);
 
 cell3.PrintCellTable();
 
 cell3.PrintFrequencyTable("features_sensors");
 
-Console.WriteLine("\nThis is the number of phones with only one feature sensor:  " + cell3.getFeaturesSensorsCountElementCount(1));
+Console.WriteLine("\nThis is the number of phones with only one feature sensor:  " + cell3.GetFeaturesSensorsCountElementCount(1));
 
 
 /////////////////////////////////////
@@ -187,7 +187,7 @@ Console.WriteLine("\nThe company (oem) with the highest average weight of the ph
 
 Console.WriteLine();
 
-CellTable cell4 = cell.getPhonesLaunchedAfterAnnouncedTable();
+CellTable cell4 = cell.GetPhonesLaunchedAfterAnnouncedTable();
 
 cell4.PrintTableSize(); ////////////
 
@@ -212,7 +212,7 @@ Console.WriteLine(cell4.GetType("body_weight"));
 FilterParameters query3 = new FilterParameters();
 query3.GetFilterString().Add("oem", new []{"Google", "Sony"});
 
-CellTable cell5 = cell.createQueryTable(query3);
+CellTable cell5 = cell.CreateQueryTable(query3);
 
 cell5.PrintCellTable();
 
