@@ -121,7 +121,11 @@
 > <pre>
 > System.Collections
 >
->
+> This contains interfaces and classes that define various collections of objects, such as lists,
+> queues, bit arrays, hash tables, and dictionaries. I used this library for the Hashtable class,
+> which represents a collection of key/value pairs that are organized based on the hash code of 
+> the key. I used this to create the column oriented cell table because the values are allowed to
+> have different data types.
 > </pre>
 
 ### Answer the following questions...
