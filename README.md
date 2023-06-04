@@ -80,8 +80,8 @@
 > Additionally, I was interested in exploring C# for pratical reasons. To elaborate, I've heard 
 > C# being called Java's sister language and I thought it would be useful to learn a language 
 > that was similair to Java because it is the language I am most familair with, and I would
-> like to get comfortable with as many languages as possible before schools over, as to pad
-> my resume with a larger skillset. 
+> like to get comfortable with as many languages as possible before schools over (to pad my
+> resume with a larger skill set). 
 > </pre>
 
 ### Explain how your programming language handles...
