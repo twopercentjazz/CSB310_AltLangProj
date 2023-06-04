@@ -1,13 +1,22 @@
 ﻿namespace AltLangProj.Classes;
 
+/// <summary>
+/// This class represents a Cell Table, and contains both a column oriented and a row oriented representation
+/// of the Cell Table.
+///
+/// Note: most of my required additional methods are found in this class. 
+/// </summary>
 public class CellTable
 {
-    private CellRecords recordsMap;
-    private CellFields fieldsMap;
-    private int nextId;
-    private string filePath;
+    private CellRecords _recordsMap;
+    private CellFields _fieldsMap;
+    private int _nextId;
+    private string _filePath;
 
-
+    /// <summary>
+    /// This Constructs a CellTable object.
+    /// </summary>
+    /// <param name="filePath"> The filepath for the given cells csv file </param>
     public CellTable(string filePath)
     {
         ParseCsvFile parser = new ParseCsvFile(filePath);
@@ -16,54 +25,71 @@ public class CellTable
             CleanCellData cleanData = new CleanCellData(parser.GetColumnData(), parser.GetRowData()[0]);
             CellFields fields = new CellFields(cleanData.GetCleanColumnData(), parser.GetRowData());
             CellRecords records = new CellRecords(fields);
-            this.recordsMap = records;
-            this.fieldsMap = fields;
-            this.nextId = getRecordsMap().GetCellTable().Count + 1;
-            this.filePath = filePath;
+            this._recordsMap = records;
+            this._fieldsMap = fields;
+            this._nextId = getRecordsMap().GetCellTable().Count + 1;
+            this._filePath = filePath;
+        }
+        else
+        {
+            this._recordsMap = null;
+            this._fieldsMap = null;
+            this._nextId = 0;
+            this._filePath = "";
         }
     }
 
-    public CellTable(CellRecords records, CellFields fields, int nextId)
+    public CellTable(CellRecords records, CellFields fields, int nextId, string filePath)
     {
-        this.recordsMap = records;
-        this.fieldsMap = fields;
-        this.nextId = nextId;
+        this._recordsMap = records;
+        this._fieldsMap = fields;
+        this._nextId = nextId;
+        this._filePath = filePath;
     }
-
 
     public CellRecords getRecordsMap()
     {
-        return this.recordsMap;
+        return this._recordsMap;
     }
 
     public void setRecordsMap(CellRecords recordsMap)
     {
-        this.recordsMap = recordsMap;
+        this._recordsMap = recordsMap;
     }
 
     public CellFields getFieldsMap()
     {
-        return this.fieldsMap;
+        return this._fieldsMap;
     }
 
     public void setFieldsMap(CellFields fieldsMap)
     {
-        this.fieldsMap = fieldsMap;
+        this._fieldsMap = fieldsMap;
     }
 
     public int getNextId()
     {
-        return this.nextId;
+        return this._nextId;
     }
 
     public void setNextId(int nextId)
     {
-        this.nextId = nextId;
+        this._nextId = nextId;
     }
 
     public void incrementNextId()
     {
-        this.nextId++;
+        this._nextId++;
+    }
+
+    public string GetFilePath()
+    {
+        return this._filePath; 
+    }
+
+    public void SetFilePath(string filePath)
+    {
+        this._filePath = filePath;
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -215,7 +241,6 @@ public class CellTable
 
     private List<string> convertToString(List<int> intList, List<double> doubleList)
     {
-
         if (intList != null)
         {
             return intList.ConvertAll<string>(x => x.ToString());
@@ -228,11 +253,8 @@ public class CellTable
 
     public string printAvgPerOem(string avgField)
     {
-        
         List<string> unique = findCount(getFieldsMap().GetOem()).Keys.ToList();
-
         Dictionary<string, double> avg = new Dictionary<string, double>();
-
         foreach (string oem in unique)
         {
             FilterParameters company = new FilterParameters();
@@ -246,12 +268,9 @@ public class CellTable
             {
                 avg.Add(oem, temp.getAvgDisplaySize());
             }
-            
         }
-
         printAvgTable(avg, "oem", avgField);
         return findHighestAvgOem(avg);
-
     }
 
     public string findHighestAvgOem(Dictionary<string, double> temp)
@@ -351,8 +370,6 @@ public class CellTable
             }
             Console.WriteLine();
         }
-
-        
     }
 
     public string getType(string field)
@@ -377,11 +394,11 @@ public class CellTable
     public String toString()
     {
         string temp = defaultFieldsString();
-        foreach (Cell record in this.recordsMap.GetCellTable().Values)
+        foreach (Cell record in this._recordsMap.GetCellTable().Values)
         {
-            for (int i = 0; i < recordsMap.GetFieldTitles().Count - 2; i++)
+            for (int i = 0; i < _recordsMap.GetFieldTitles().Count - 2; i++)
             {
-                if (recordsMap.GetFieldTitles()[i] != "year_of_launch" && recordsMap.GetFieldTitles()[i] != "features_sensors_count")
+                if (_recordsMap.GetFieldTitles()[i] != "year_of_launch" && _recordsMap.GetFieldTitles()[i] != "features_sensors_count")
                 {
                     temp += elementString(i, record);
                 }
@@ -395,9 +412,9 @@ public class CellTable
     public string recordString(Cell record)
     {
         string temp = defaultFieldsString();
-        for (int i = 0; i < recordsMap.GetFieldTitles().Count - 2; i++)
+        for (int i = 0; i < _recordsMap.GetFieldTitles().Count - 2; i++)
         {
-            if (recordsMap.GetFieldTitles()[i] != "year_of_launch" && recordsMap.GetFieldTitles()[i] != "features_sensors_count")
+            if (_recordsMap.GetFieldTitles()[i] != "year_of_launch" && _recordsMap.GetFieldTitles()[i] != "features_sensors_count")
             {
                 temp += elementString(i, record);
             }
@@ -437,7 +454,6 @@ public class CellTable
             foreach (string field in fields)
             {
                 temp += elementString(getRecordsMap().GetFieldTitles().IndexOf(field), record);
-                
             }
             temp += "\n";
             temp += border + "\n";
@@ -450,9 +466,9 @@ public class CellTable
         string temp = defaultFieldsString();
         foreach (Cell record in records)
         {
-            for (int i = 0; i < recordsMap.GetFieldTitles().Count - 2; i++)
+            for (int i = 0; i < _recordsMap.GetFieldTitles().Count - 2; i++)
             {
-                if (recordsMap.GetFieldTitles()[i] != "year_of_launch" && recordsMap.GetFieldTitles()[i] != "features_sensors_count")
+                if (_recordsMap.GetFieldTitles()[i] != "year_of_launch" && _recordsMap.GetFieldTitles()[i] != "features_sensors_count")
                 {
                     temp += elementString(i, record);
                 }
@@ -479,151 +495,149 @@ public class CellTable
         string temp = "";
         if (column == 0)
         {
-
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-5}", "null");
             }
             else
             {
-                temp += String.Format("{0,-5}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-5}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 1)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-14}", "null");
             }
             else
             {
-                temp += String.Format("{0,-14}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-14}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 2)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-26}", "null");
             }
             else
             {
-                temp += String.Format("{0,-26}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-26}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 3)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-17}", "null");
             }
             else
             {
-                temp += String.Format("{0,-17}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-17}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 4)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-14}", "null");
             }
             else
             {
-                temp += String.Format("{0,-14}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-14}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 5)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-25}", "null");
             }
             else
             {
-                temp += String.Format("{0,-25}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-25}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 6)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-12}", "null");
             }
             else
             {
-                temp += String.Format("{0,-12}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-12}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 7)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-17}", "null");
             }
             else
             {
-                temp += String.Format("{0,-17}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-17}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 8)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-25}", "null");
             }
             else
             {
-                temp += String.Format("{0,-25}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-25}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 9)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-13}", "null");
             }
             else
             {
-                temp += String.Format("{0,-13}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-13}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 10)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-19}", "null");
             }
             else
             {
-                temp += String.Format("{0,-19}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-19}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 11)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-17}", "null");
             }
             else
             {
-                temp += String.Format("{0,-17}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-17}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         if (column == 12)
         {
-            if (row.GetCellMap()[recordsMap.GetFieldTitles()[column]] == null)
+            if (row.GetCellMap()[_recordsMap.GetFieldTitles()[column]] == null)
             {
                 temp += String.Format("{0,-32}", "null");
             }
             else
             {
-                temp += String.Format("{0,-32}", row.GetCellMap()[recordsMap.GetFieldTitles()[column]].ToString());
+                temp += String.Format("{0,-32}", row.GetCellMap()[_recordsMap.GetFieldTitles()[column]].ToString());
             }
         }
         return temp;
     }
-
 
     public int[] getIdListSorted(string field)
     {
@@ -638,17 +652,12 @@ public class CellTable
                 temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
-
             foreach (KeyValuePair<int, int> item in temp2.OrderBy(key => key.Value))
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
-
-
-        
         else if (field == "oem")
         {
             List<string> temp = (List<string>)getFieldsMap().GetCellTable()[field];
@@ -660,16 +669,12 @@ public class CellTable
                 temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
-
             foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
-
-
         else if (field == "model")
         {
             List<string> temp = (List<string>)getFieldsMap().GetCellTable()[field];
@@ -681,16 +686,12 @@ public class CellTable
                 temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
-
             foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
-
-
         else if (field == "launch_announced")
         {
             List<int?> temp = (List<int?>)getFieldsMap().GetCellTable()[field];
@@ -702,16 +703,12 @@ public class CellTable
                 temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
-
             foreach (KeyValuePair<int, int?> item in temp2.OrderBy(key => key.Value))
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
-
-
         else if (field == "launch_status")
         {
             List<string> temp = (List<string>)getFieldsMap().GetCellTable()[field];
@@ -723,12 +720,10 @@ public class CellTable
                 temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
-
             foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
         else if (field == "body_dimensions")
@@ -742,12 +737,10 @@ public class CellTable
                 temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
-
             foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
         else if (field == "body_weight")
@@ -761,12 +754,10 @@ public class CellTable
                 temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
-
             foreach (KeyValuePair<int, double?> item in temp2.OrderBy(key => key.Value))
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
         else if (field == "body_sim")
@@ -780,12 +771,10 @@ public class CellTable
                 temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
-
             foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
         else if (field == "display_type")
@@ -823,7 +812,6 @@ public class CellTable
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
         else if (field == "display_resolution")
@@ -837,12 +825,10 @@ public class CellTable
                 temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
-
             foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
         else if (field == "features_sensors")
@@ -856,12 +842,10 @@ public class CellTable
                 temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
-
             foreach (KeyValuePair<int, int?> item in temp2.OrderBy(key => key.Value))
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
         else if (field == "platform_os")
@@ -875,23 +859,14 @@ public class CellTable
                 temp2.Add(getFieldsMap().GetId()[i], item);
                 i++;
             }
-
             foreach (KeyValuePair<int, string> item in temp2.OrderBy(key => key.Value))
             {
                 temp3.Add(item.Key);
             }
-
             return temp3.ToArray();
         }
-
         return null;
-
     }
-
-    
-
-    ///////////////////////////////////////////////////////////////////////////////////
-
 
     public void deleteRecord(int id)
     {
@@ -1080,14 +1055,6 @@ public class CellTable
         }
     }
 
-
-
-    
-    //////////////////////////////////////////////////////////////////////////////////////////
-    
-
-
-
     private double calcAvg(List<double?> nums)
     {
         double sum = 0;
@@ -1143,10 +1110,8 @@ public class CellTable
                 {
                     temp.Add((double)num, 1);
                 }
-                
             }
         }
-
         return temp.Aggregate((x, y) => 
             x.Value > y.Value ? x : y).Key;
     }
@@ -1166,10 +1131,8 @@ public class CellTable
                 {
                     temp.Add(element, 1);
                 }
-
             }
         }
-
         return temp.Aggregate((x, y) =>
             x.Value > y.Value ? x : y).Key;
     }
@@ -1191,7 +1154,6 @@ public class CellTable
                 }
             }
         }
-
         return temp;
     }
 
@@ -1210,7 +1172,6 @@ public class CellTable
                 {
                     temp.Add(element, 1);
                 }
-
             }
         }
         return temp;
@@ -1231,13 +1192,10 @@ public class CellTable
                 {
                     temp.Add((double)num, 1);
                 }
-
             }
         }
         return temp;
     }
-
-
 
     public double getAvgBodyWeight()
     {
@@ -1295,8 +1253,6 @@ public class CellTable
 
     public string getModeLaunchStatus()
     {
-        //List<double?> temp = getFieldsMap().GetYearOfLaunch().ConvertAll(x => (double?)x);
-        //return calcMode(temp);
         return calcMode(getFieldsMap().GetLaunchStatus());
     }
 
@@ -1407,18 +1363,15 @@ public class CellTable
         return temp[item];
     }
 
-
-
     public int getRecordsCount()
     {
-        return recordsMap.GetCellTable().Count;
+        return _recordsMap.GetCellTable().Count;
     }
 
     public int getFieldsCount()
     {
-        return recordsMap.GetFieldTitles().Count;
+        return _recordsMap.GetFieldTitles().Count;
     }
-
 
     public int getBodyWeightUniqueCount()
     {
@@ -1492,21 +1445,14 @@ public class CellTable
         return temp.Count;
     }
 
-
-
-
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////
-
     public CellTable Copy(int flag)
     {
-        return new CellTable(this.recordsMap.Copy(), this.fieldsMap.Copy(), this.nextId);
+        return new CellTable(this._recordsMap.Copy(), this._fieldsMap.Copy(), this._nextId, this._filePath);
     }
 
     public CellTable Copy()
     {
-        return new CellTable(this.filePath);  
+        return new CellTable(this._filePath);  
     }
 
     public CellTable createQueryTable(FilterParameters filter)
@@ -1541,8 +1487,6 @@ public class CellTable
                         }
                     }
                 }
-
-
                 else if (field == "model")
                 {
                     foreach (int id in getRecordsMap().GetCellTable().Keys)
@@ -1561,10 +1505,7 @@ public class CellTable
                             deleteRecord(id);
                         }
                     }
-
-
                 }
-
                 else if (field == "launch_status")
                 {
                     foreach (int id in getRecordsMap().GetCellTable().Keys)
@@ -1583,8 +1524,6 @@ public class CellTable
                             deleteRecord(id);
                         }
                     }
-
-
                 }
                 else if (field == "body_dimensions")
                 {
@@ -1604,10 +1543,7 @@ public class CellTable
                             deleteRecord(id);
                         }
                     }
-
-
                 }
-
                 else if (field == "body_sim")
                 {
                     foreach (int id in getRecordsMap().GetCellTable().Keys)
@@ -1626,8 +1562,6 @@ public class CellTable
                             deleteRecord(id);
                         }
                     }
-
-
                 }
                 else if (field == "display_type")
                 {
@@ -1647,8 +1581,6 @@ public class CellTable
                             deleteRecord(id);
                         }
                     }
-
-
                 }
                 else if (field == "display_resolution")
                 {
@@ -1668,13 +1600,9 @@ public class CellTable
                             deleteRecord(id);
                         }
                     }
-
                 }
             }
-
-
         }
-
         if (filter.GetFilterInt().Count != 0 || filter.GetFilterIntRange().Count != 0)
         {
             string[] keys;
@@ -1688,7 +1616,6 @@ public class CellTable
             }
             foreach (string field in keys)
             {
-
                 if (field == "id")
                 {
                     if (filter.GetFilterInt().Count > 0)
@@ -1725,7 +1652,6 @@ public class CellTable
                             {
                                 deleteRecord(id);
                             }
-
                         }
                     }
                 }
@@ -1765,10 +1691,8 @@ public class CellTable
                             {
                                 deleteRecord(id);
                             }
-
                         }
                     }
-
                 }
                 else if (field == "launch_status")
                 {
@@ -1776,7 +1700,6 @@ public class CellTable
                     {
                         foreach (int id in getRecordsMap().GetCellTable().Keys)
                         {
-                            
                             if (getRecordsMap().GetCellTable()[id].GetLaunchStatus().Equals("Discontinued") || getRecordsMap().GetCellTable()[id].GetLaunchStatus().Equals("Cancelled"))
                             {
                                 deleteRecord(id);
@@ -1803,7 +1726,6 @@ public class CellTable
                     {
                         foreach (int id in getRecordsMap().GetCellTable().Keys)
                         {
-                            
                             if (getRecordsMap().GetCellTable()[id].GetLaunchStatus().Equals("Discontinued") || getRecordsMap().GetCellTable()[id].GetLaunchStatus().Equals("Cancelled"))
                             {
                                 deleteRecord(id);
@@ -1861,18 +1783,11 @@ public class CellTable
                             {
                                 deleteRecord(id);
                             }
-
                         }
                     }
-
-
                 }
-
             }
-
-
         }
-
         if (filter.GetFilterDouble().Count != 0 || filter.GetFilterDoubleRange().Count != 0)
         {
             string[] keys;
@@ -1884,7 +1799,6 @@ public class CellTable
             {
                 keys = filter.GetFilterDoubleRange().Keys.ToArray();
             }
-
             foreach (string field in keys)
             {
                 if (field == "body_weight")
@@ -1923,13 +1837,9 @@ public class CellTable
                             {
                                 deleteRecord(id);
                             }
-
                         }
                     }
-
-
                 }
-
                 else if (field == "display_size")
                 {
                     if (filter.GetFilterDouble().Count > 0)
@@ -1966,16 +1876,11 @@ public class CellTable
                             {
                                 deleteRecord(id);
                             }
-
                         }
                     }
-
-
                 }
             }
-
         }
-
     }
 
     public CellTable getPhonesLaunchedAfterAnnouncedTable()
@@ -1995,9 +1900,4 @@ public class CellTable
         }
         return temp;
     }
-
-
-
-
-
 }
