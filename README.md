@@ -160,11 +160,11 @@
 > <pre>
 > exception handling
 >
-> In my experience C# handles exceptions very similarly to Java. To elaborate, both 
-> languages have built in exceptions that you can handle using try/catch blocks or throw 
-> statements. You can also avoid throwing exceptions by performing conditional checks before 
-> executing your code and if they fail you can display a console message for the user instead of
-> throwing the exception and interrupting your program. 
+> In my experience C# handles exceptions very similarly to Java. To elaborate, both languages 
+> have built in exceptions that you can handle using try/catch blocks or throw statements. You 
+> can also avoid throwing exceptions by performing conditional checks before executing your code 
+> and if they fail you can display a console message for the user instead of throwing the exception 
+> and interrupting your program. 
 > </pre>
 
 ### List 3 libraries you used (if applicable) and explain them. 
