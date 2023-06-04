@@ -47,9 +47,17 @@ Console.WriteLine();
  8. print entire query table sorted on any given column
  9. Delete record
 10. Add record
-
- 2. To demonstrate that my code catches when a file doesn't exist, should display [File Does Not Exist]
- 3. To demonstrate that my code catches when a file is empty, should display [File Is Empty]
+11. Display table stats including:
+        - table row count
+        - table column count
+        - Per field:
+                - Data type (for each)
+                - unique element count (for each)
+                - mode (for each)
+                - mode frequency count (for each)
+                - mean (for numeric columns)
+                - median (for numeric columns)
+ 12. Print frequency table
  */
 
 Console.WriteLine();
@@ -109,12 +117,37 @@ queryTable.PrintCellTable("body_weight");
 Console.WriteLine();
 
 // 10
-Console.WriteLine("Add a new record for the iphone 11...");
+Console.WriteLine("Add a new record for the Apple iphone 11...");
 queryTable.AddRecord("Apple", "Iphone 11", 2019, "2019", "150 x 75 x 8 mm", 194, "Dual SIM", 
     "IPS LCD Touchscreen", 6.1, "1792 x 828 px", "V1, V2, V3", "Apple iOS");
 Console.WriteLine("[record added successfully]\n");
-Console.WriteLine("Print entire query table sorted on 'body_weight' again to that the new record was added...");
-queryTable.PrintCellTable("body_weight");
+Console.WriteLine("Print entire query table sorted on 'oem' to see that the new record was added...");
+queryTable.PrintCellTable("oem");
+Console.WriteLine();
+
+// 11
+Console.WriteLine("Display Statistics for this query table (including data types for verification)...");
+queryTable.PrintTableStats();
+Console.WriteLine();
+
+// 12
+Console.WriteLine();
+Console.WriteLine("To get more details about the frequency of elements you can print a frequency chart, here is the chart for the oem column...");
+queryTable.PrintFrequencyTable("oem");
+Console.WriteLine();
+Console.WriteLine();
+
+
+/* next I will answer the report questions...
+ 1. What company has the highest average weight of the phone body?
+ 2. Was there any phones that were announced in one year and released in another? What are they? Give me the oem and models?
+ 3. How many phones have only one feature sensor?
+ 4. What year had the most phones launched in the 2000s?
+ */
+
+Console.WriteLine();
+string m3 = "These next tests are used to answer the four questions required for the report";
+Console.WriteLine(m3 + "\n" + CellRecords.TableBorder(m3) + "\n");
 Console.WriteLine();
 
 
