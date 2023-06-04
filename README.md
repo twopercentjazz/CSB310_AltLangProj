@@ -116,7 +116,7 @@
 > This contains classes that represent ASCII and Unicode character encodings. It provides regular
 > expression functionality that may be used from any platform or language that runs within the .NET
 > framework. I used this library for regular expressions by using the Regex class and the Replace 
-> and Match methods. I used these to aid in cleaning the data that was parsed from the cells csv file. 
+> and Match methods. I used these to aid in cleaning the data that was parsed from the csv file. 
 > </pre>
 > <pre>
 > System.Collections
