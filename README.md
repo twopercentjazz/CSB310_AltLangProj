@@ -32,6 +32,21 @@
 >          |=== ParseCsvFile.cs  <------------------>  (Class to parse csv file)  
 >  
 > </pre>
+
+### Git Requirment Screenshots:
+> <pre>
+> 1. Staging
+> </pre>
+> ![Git_Staging_Screenshot](https://github.com/twopercentjazz/CSB310_AltLangProj/assets/49768882/7174de4b-62c7-45eb-971f-0cc1239611a6)
+> <pre>
+> 2. Commiting
+> </pre>
+> ![Git_Commiting_Screenshot](https://github.com/twopercentjazz/CSB310_AltLangProj/assets/49768882/cbf1d54b-78af-45f3-8e02-042f0bda1e4b)
+> <pre>
+> 3. Pushing
+> </pre>
+> ![Git_Pushing_Screenshot](https://github.com/twopercentjazz/CSB310_AltLangProj/assets/49768882/bb20bcdc-ebd2-4d12-992c-36c0c47ca2f6)
+
 # Project Report
 
 ### Which Programming Language and version did you pick?
