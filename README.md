@@ -67,8 +67,8 @@
 > <pre>
 > For this project I chose to explore the C# programming language because it is a widely used 
 > general-purpose high-level language. C# is versatile in the industry and it is used today 
-> to build a wide range of applications and web-based services. For example, C# is commonly used 
-> for backend services, Windows applications, website development, and game development. 
+> to build a wide range of applications and web-based services. For example, C# is commonly 
+> used for backend services, Windows applications, website development, and game development. 
 >
 > The primary reason I was interested in taking a deep dive into C# was for game development.
 > As a hobbyist game developer that uses the Unity game development engine, which uses C# for
@@ -91,28 +91,52 @@
 > following concepts as they relate to Java (similarities/differences). 
 > </pre>
 > <pre>
-> -  object-oriented programming
+> object-oriented programming
+>
+> In my experience C# handles incorporating OOP concepts very similarly to Java. To elaborate,
+> C# uses classes and objects, inheritance, encapsulation, and polymorphism. There are some 
+> minor syntax differences between the languages but there is robust documentation for 
+> C# online so it was easy to find what I needed. Visual Studio made it easy to organize 
+> my classes, similar to using IntelliJ IDEA. 
 > </pre>
 > <pre>
-> -  file ingestion
+> file ingestion
+>
+> In my experience C# handles file ingestion (particularly for csv/text) very similarly to
+> Java. To elaborate, like Java, C# has a File class that lets you check if a file exists 
+> before ingesting the data. To ingest the file I used a Stream Reader in C#, where I use
+> the Buffer Reader in Java. One difference was that in C# you can perfrom file ingestion
+> in a Using block so you don't have to explicitly close the Reader object after use.
 > </pre>
 > <pre>
-> -  conditional statements
+> conditional statements
+>
+> In my experience C# handles 
 > </pre>
 > <pre>
-> -  assignment statements
+> assignment statements
+>
+> In my experience C# handles 
 > </pre>
 > <pre>
-> -  loops
+> loops
+>
+> In my experience C# handles 
 > </pre>
 > <pre>
-> -  subprograms
+> subprograms
+>
+> In my experience C# handles 
 > </pre>
 > <pre>
-> -  unit testing
+> unit testing
+>
+> In my experience C# handles 
 > </pre>
 > <pre>
-> -  exception handling
+> exception handling
+>
+> In my experience C# handles 
 > </pre>
 
 ### List 3 libraries you used (if applicable) and explain them. 
