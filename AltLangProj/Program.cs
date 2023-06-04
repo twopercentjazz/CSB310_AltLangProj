@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 using AltLangProj.Classes;
 // When running this console application driver I recommend full screening the console
@@ -191,23 +192,40 @@ Console.WriteLine("[query table was successfully created from cell table]\n");
 Console.WriteLine("Using this table...");
 queryTable3.PrintFrequencyTable("launch_status");
 Console.WriteLine("\nThis year had the most phones launched in the 2000's:  " + queryTable3.GetModeLaunchStatus());
+Console.WriteLine();
 
+/* next I will use Debug Asserts to create my 3 required unit tests...
+ 1. Test calcAvg
+ 2. Test CalcMedian
+ 3. Test CalcMode
+ */
 
+Console.WriteLine();
+Console.WriteLine();
+string m8 = "These next tests are my three required unit tests (using Debug Asserts)";
+Console.WriteLine(m8 + "\n" + CellRecords.TableBorder(m8) );
+Console.WriteLine();
 
+List<double?> testData = new List<double?> {1,1,2,2,2,3,4};
 
+// 1
+Console.WriteLine("Test CalcAvg method...");
+double test1 = cell.CalcAvg(testData);
+Debug.Assert(test1.Equals(15.0 / 7.0));
+Console.WriteLine("[CalcAvg Test successful]\n");
 
+// 2
+Console.WriteLine("Test CalcMedian method...");
+double test2 = cell.CalcMedian(testData);
+Debug.Assert(test2.Equals(2));
+Console.WriteLine("[CalcMedian Test successful]\n");
 
+// 3
+Console.WriteLine("Test CalcMode method...");
+double test3 = cell.CalcMode(testData);
+Debug.Assert(test3.Equals(2));
+Console.WriteLine("[CalcMode Test successful]\n");
 
-
-
+Console.WriteLine("[All unit tests passed]\n");
 Console.ReadKey();
-
-
-
-
-
-
-
-
-
 

@@ -1328,7 +1328,7 @@ public class CellTable
         double median;
         if (temp.Count % 2 == 1)
         {
-            median = temp[temp.Count / 2];
+            median = temp[(int)(temp.Count / 2)];
         }
         else
         {
