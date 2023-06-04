@@ -16,19 +16,19 @@
 >  |  
 >  |=== Classes  <---------------------------------->  (Folder Containing the Classes for the Project)
 >          |  
->          |=== Cell.cs  <-------------------------->  (
+>          |=== Cell.cs  <-------------------------->  (Class representing one cell record)
 >          |  
->          |=== CellFields.cs  <-------------------->  (
+>          |=== CellFields.cs  <-------------------->  (Class representing a column oriented table)
 >          |  
->          |=== CellRecords.cs  <------------------->  (
+>          |=== CellRecords.cs  <------------------->  (Class representing a row oriented table)
 >          |  
->          |=== CellTable.cs  <--------------------->  (
+>          |=== CellTable.cs  <--------------------->  (Class where I implemented my additional methods)
 >          |  
->          |=== CleanCellData.cs  <----------------->  (
+>          |=== CleanCellData.cs  <----------------->  (Class to clean cell data)
 >          |  
->          |=== FilterParameter.cs  <--------------->  (
+>          |=== FilterParameter.cs  <--------------->  (Class to filter results)
 >          |  
->          |=== ParseCsvFile.cs  <------------------>  (
+>          |=== ParseCsvFile.cs  <------------------>  (Class to parse csv file)
 > </pre>
 # Project Report
 
