@@ -1081,18 +1081,18 @@ public class CellTable
     /// <summary>
     /// This method adds a new record to the Table (to both table representations).
     /// </summary>
-    /// <param name="oem"></param>
-    /// <param name="model"></param>
-    /// <param name="launch_announced"></param>
-    /// <param name="launch_status"></param>
-    /// <param name="body_dimensions"></param>
-    /// <param name="body_weight"></param>
-    /// <param name="body_sim"></param>
-    /// <param name="display_type"></param>
-    /// <param name="display_size"></param>
-    /// <param name="display_resolution"></param>
-    /// <param name="features_sensors"></param>
-    /// <param name="platform_os"></param>
+    /// <param name="oem"> The company name </param>
+    /// <param name="model"> The _model of the phone</param>
+    /// <param name="launch_announced"> The year the phone was announced </param>
+    /// <param name="launch_status"> The year the phone was released (string) </param>
+    /// <param name="body_dimensions"> The dimensions of the phone </param>
+    /// <param name="body_weight"> The weight of the phone </param>
+    /// <param name="body_sim"> The type of sim the phone uses </param>
+    /// <param name="display_type"> The type of display the phone uses </param>
+    /// <param name="display_size"> The size of the phones display </param>
+    /// <param name="display_resolution"> The resolution of the phones display </param>
+    /// <param name="features_sensors"> The sensors the phone uses </param>
+    /// <param name="platform_os"> The operating system the phone uses </param>
     public void AddRecord(string oem, string model, int? launch_announced, string launch_status, string body_dimensions,
         double? body_weight, string body_sim, string display_type, double? display_size, string display_resolution,
         string features_sensors, string platform_os)
@@ -1105,20 +1105,20 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method adds a new record to the record map.
     /// </summary>
-    /// <param name="oem"></param>
-    /// <param name="model"></param>
-    /// <param name="launch_announced"></param>
-    /// <param name="launch_status"></param>
-    /// <param name="body_dimensions"></param>
-    /// <param name="body_weight"></param>
-    /// <param name="body_sim"></param>
-    /// <param name="display_type"></param>
-    /// <param name="display_size"></param>
-    /// <param name="display_resolution"></param>
-    /// <param name="features_sensors"></param>
-    /// <param name="platform_os"></param>
+    /// <param name="oem"> The company name </param>
+    /// <param name="model"> The _model of the phone</param>
+    /// <param name="launch_announced"> The year the phone was announced </param>
+    /// <param name="launch_status"> The year the phone was released (string) </param>
+    /// <param name="body_dimensions"> The dimensions of the phone </param>
+    /// <param name="body_weight"> The weight of the phone </param>
+    /// <param name="body_sim"> The type of sim the phone uses </param>
+    /// <param name="display_type"> The type of display the phone uses </param>
+    /// <param name="display_size"> The size of the phones display </param>
+    /// <param name="display_resolution"> The resolution of the phones display </param>
+    /// <param name="features_sensors"> The sensors the phone uses </param>
+    /// <param name="platform_os"> The operating system the phone uses </param>
     private void AddRecordToRecordMap(string oem, string model, int? launch_announced, string launch_status, string body_dimensions,
         double? body_weight, string body_sim, string display_type, double? display_size, string display_resolution,
         string features_sensors, string platform_os)
@@ -1137,20 +1137,20 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method adds a new record to the field map.
     /// </summary>
-    /// <param name="oem"></param>
-    /// <param name="model"></param>
-    /// <param name="launch_announced"></param>
-    /// <param name="launch_status"></param>
-    /// <param name="body_dimensions"></param>
-    /// <param name="body_weight"></param>
-    /// <param name="body_sim"></param>
-    /// <param name="display_type"></param>
-    /// <param name="display_size"></param>
-    /// <param name="display_resolution"></param>
-    /// <param name="features_sensors"></param>
-    /// <param name="platform_os"></param>
+    /// <param name="oem"> The company name </param>
+    /// <param name="model"> The _model of the phone</param>
+    /// <param name="launch_announced"> The year the phone was announced </param>
+    /// <param name="launch_status"> The year the phone was released (string) </param>
+    /// <param name="body_dimensions"> The dimensions of the phone </param>
+    /// <param name="body_weight"> The weight of the phone </param>
+    /// <param name="body_sim"> The type of sim the phone uses </param>
+    /// <param name="display_type"> The type of display the phone uses </param>
+    /// <param name="display_size"> The size of the phones display </param>
+    /// <param name="display_resolution"> The resolution of the phones display </param>
+    /// <param name="features_sensors"> The sensors the phone uses </param>
+    /// <param name="platform_os"> The operating system the phone uses </param>
     private void AddRecordToFieldMap(string oem, string model, int? launch_announced, string launch_status, string body_dimensions,
         double? body_weight, string body_sim, string display_type, double? display_size, string display_resolution,
         string features_sensors, string platform_os)
@@ -1268,10 +1268,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method calculates the avg of a list of numbers.
     /// </summary>
-    /// <param name="nums"></param>
-    /// <returns></returns>
+    /// <param name="nums"> The numbers to average </param>
+    /// <returns> The average value </returns>
     public double CalcAvg(List<double?> nums)
     {
         double sum = 0;
@@ -1288,10 +1288,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method calculates the median of a list of numbers.
     /// </summary>
-    /// <param name="nums"></param>
-    /// <returns></returns>
+    /// <param name="nums"> The numbers to find the median of </param>
+    /// <returns> The median value  </returns>
     public double CalcMedian(List<double?> nums)
     {
         List<double> temp = new List<double>();
@@ -1318,10 +1318,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method calculates the mode of a list of numbers.
     /// </summary>
-    /// <param name="nums"></param>
-    /// <returns></returns>
+    /// <param name="nums"> The numbers to find the mode of </param>
+    /// <returns> The mode value </returns>
     public double CalcMode(List<double?> nums)
     {
         Dictionary<double,int> temp = new Dictionary<double, int>();
@@ -1344,10 +1344,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method calculates the mode of a list of strings.
     /// </summary>
-    /// <param name="elements"></param>
-    /// <returns></returns>
+    /// <param name="elements"> The strings to find the mode of </param>
+    /// <returns> The mode string </returns>
     public string CalcMode(List<string> elements)
     {
         Dictionary<string, int> temp = new Dictionary<string, int>();
@@ -1370,10 +1370,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method finds the frequency count for all unique int numbers in a list.
     /// </summary>
-    /// <param name="nums"></param>
-    /// <returns></returns>
+    /// <param name="nums"> The numbers to find the count of </param>
+    /// <returns> A dictionary with elements as keys and counts as values </returns>
     public Dictionary<int, int> FindCount(List<int?> nums)
     {
         Dictionary<int, int> temp = new Dictionary<int, int>();
@@ -1395,10 +1395,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method finds the frequency count for all unique strings in a list.
     /// </summary>
-    /// <param name="elements"></param>
-    /// <returns></returns>
+    /// <param name="elements"> The strings to find the count of </param>
+    /// <returns> A dictionary with elements as keys and counts as values </returns>
     public Dictionary<string, int> FindCount(List<string> elements)
     {
         Dictionary<string, int> temp = new Dictionary<string, int>();
@@ -1420,10 +1420,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method finds the frequency count for all unique double numbers in a list.
     /// </summary>
-    /// <param name="nums"></param>
-    /// <returns></returns>
+    /// <param name="nums"> The numbers to find the count of </param>
+    /// <returns> A dictionary with elements as keys and counts as values </returns>
     public Dictionary<double, int> FindCount(List<double?> nums)
     {
         Dictionary<double, int> temp = new Dictionary<double, int>();
@@ -1445,27 +1445,27 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the average body weight.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The average body weight.</returns>
     public double GetAvgBodyWeight()
     {
         return CalcAvg(GetFieldsMap().GetBodyWeight());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the average display size.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The average display size </returns>
     public double GetAvgDisplaySize()
     {
         return CalcAvg(GetFieldsMap().GetDisplaySize());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the average features sensors count.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The average features sensors count </returns>
     public double GetAvgFeaturesSensorsCount()
     {
         List<double?> temp = GetFieldsMap().GetFeaturesSensorsCount().ConvertAll(x => (double?)x);
@@ -1473,27 +1473,27 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the median body weight.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The median body weight.</returns>
     public double GetMedianBodyWeight()
     {
         return CalcMedian(GetFieldsMap().GetBodyWeight());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the median display size.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The median display size </returns>
     public double GetMedianDisplaySize()
     {
         return CalcMedian(GetFieldsMap().GetDisplaySize());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the median features sensors count.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The median features sensors count </returns>
     public double GetMedianFeaturesSensorsCount()
     {
         List<double?> temp = GetFieldsMap().GetFeaturesSensorsCount().ConvertAll(x => (double?)x);
@@ -1501,27 +1501,27 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of the body weight.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of the body weight </returns>
     public double GetModeBodyWeight()
     {
         return CalcMode(GetFieldsMap().GetBodyWeight());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of the display size.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of the display size </returns>
     public double GetModeDisplaySize()
     {
         return CalcMode(GetFieldsMap().GetDisplaySize());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of the features sensors count.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of the features sensors count </returns>
     public double GetModeFeaturesSensorsCount()
     {
         List<double?> temp = GetFieldsMap().GetFeaturesSensorsCount().ConvertAll(x => (double?)x);
@@ -1529,9 +1529,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of launch announced.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of launch announced </returns>
     public double GetModeLaunchAnnounced()
     {
         List<double?> temp = GetFieldsMap().GetLaunchAnnounced().ConvertAll(x => (double?)x);
@@ -1539,82 +1539,82 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of the launch status.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of the launch status </returns>
     public string GetModeLaunchStatus()
     {
         return CalcMode(GetFieldsMap().GetLaunchStatus());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of the oem.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of the oem </returns>
     public string GetModeOem()
     {
         return CalcMode(GetFieldsMap().GetOem());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of the model.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of the model </returns>
     public string GetModeModel()
     {
         return CalcMode(GetFieldsMap().GetModel());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of the body dimensions.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of the body dimensions </returns>
     public string GetModeBodyDimensions()
     {
         return CalcMode(GetFieldsMap().GetBodyDimensions());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of the body sim.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of the body sim </returns>
     public string GetModeBodySim()
     {
         return CalcMode(GetFieldsMap().GetBodySim());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of the display type.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of the display type </returns>
     public string GetModeDisplayType()
     {
         return CalcMode(GetFieldsMap().GetDisplayType());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of the display resolution.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of the display resolution </returns>
     public string GetModeDisplayResolution()
     {
         return CalcMode(GetFieldsMap().GetDisplayResolution());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the mode of the platform os.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The mode of the platform os </returns>
     public string GetModePlatformOs()
     {
         return CalcMode(GetFieldsMap().GetPlatformOs());
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for body weight.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetBodyWeightElementCount(double item)
     {
         Dictionary<double,int> temp = FindCount(GetFieldsMap().GetBodyWeight());
@@ -1622,10 +1622,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for display size.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetDisplaySizeElementCount(double item)
     {
         Dictionary<double, int> temp = FindCount(GetFieldsMap().GetDisplaySize());
@@ -1633,10 +1633,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for the features sensors count.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetFeaturesSensorsCountElementCount(int item)
     {
         Dictionary<int, int> temp = FindCount(GetFieldsMap().GetFeaturesSensorsCount());
@@ -1644,10 +1644,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for launced announced.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetLaunchAnnouncedElementCount(int item)
     {
         Dictionary<int, int> temp = FindCount(GetFieldsMap().GetLaunchAnnounced());
@@ -1655,10 +1655,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for launch status.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetLaunchStatusElementCount(string item)
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetLaunchStatus());
@@ -1666,10 +1666,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for oem.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetOemElementCount(string item)
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetOem());
@@ -1677,10 +1677,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for model.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetModelElementCount(string item)
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetModel());
@@ -1688,10 +1688,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for body dimensions.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetBodyDimensionsElementCount(string item)
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetBodyDimensions());
@@ -1699,10 +1699,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for body sim.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetBodySimElementCount(string item)
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetBodySim());
@@ -1710,10 +1710,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for display type.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetDisplayTypeElementCount(string item)
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetDisplayType());
@@ -1721,10 +1721,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for display resolution.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetDisplayResolutionElementCount(string item)
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetDisplayResolution());
@@ -1732,10 +1732,10 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the given item for platform os.
     /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
+    /// <param name="item"> The item to count </param>
+    /// <returns> The value of the count </returns>
     public int GetPlatformOsElementCount(string item)
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetPlatformOs());
@@ -1743,27 +1743,27 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the rows in the table.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The row count </returns>
     public int GetRecordsCount()
     {
         return _recordsMap.GetCellTable().Count;
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of the columns in the table.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The column count </returns>
     public int GetFieldsCount()
     {
         return _recordsMap.GetFieldTitles().Count;
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from body weight.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetBodyWeightUniqueCount()
     {
         Dictionary<double, int> temp = FindCount(GetFieldsMap().GetBodyWeight());
@@ -1771,9 +1771,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from display size.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetDisplaySizeUniqueCount()
     {
         Dictionary<double, int> temp = FindCount(GetFieldsMap().GetDisplaySize());
@@ -1781,9 +1781,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from feature sensors.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetFeaturesSensorsUniqueCount()
     {
         Dictionary<int, int> temp = FindCount(GetFieldsMap().GetFeaturesSensorsCount());
@@ -1791,9 +1791,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from launch announced.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetLaunchAnnouncedUniqueCount()
     {
         Dictionary<int, int> temp = FindCount(GetFieldsMap().GetLaunchAnnounced());
@@ -1801,9 +1801,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from launch status.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetLaunchStatusUniqueCount()
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetLaunchStatus());
@@ -1811,9 +1811,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from oem.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetOemUniqueCount()
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetOem());
@@ -1821,9 +1821,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from model.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetModelUniqueCount()
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetModel());
@@ -1831,9 +1831,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from body dimensions.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetBodyDimensionsUniqueCount()
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetBodyDimensions());
@@ -1841,9 +1841,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from body sim.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetBodySimUniqueCount()
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetBodySim());
@@ -1851,9 +1851,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from display type.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetDisplayTypeUniqueCount()
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetDisplayType());
@@ -1861,9 +1861,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from display resolution.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetDisplayResolutionUniqueCount()
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetDisplayResolution());
@@ -1871,9 +1871,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method gets the count of unique items from platform os.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The value of the count </returns>
     public int GetPlatformOsUniqueCount()
     {
         Dictionary<string, int> temp = FindCount(GetFieldsMap().GetPlatformOs());
@@ -1881,19 +1881,19 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method is used to create a new Copy of an existing CellTable object.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The CellTable Copy </returns>
     public CellTable Copy()
     {
         return new CellTable(this._filePath);  
     }
 
     /// <summary>
-    /// 
+    /// This method is used to create a new (query) table that is filtered based on the given parameters.
     /// </summary>
-    /// <param name="filter"></param>
-    /// <returns></returns>
+    /// <param name="filter"> The filter parameters </param>
+    /// <returns> A new query table </returns>
     public CellTable CreateQueryTable(FilterParameters filter)
     {
         CellTable temp = Copy();
@@ -1902,9 +1902,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This helper method updates a table to represent the given filter parameters.
     /// </summary>
-    /// <param name="filter"></param>
+    /// <param name="filter"> The filter parameters </param>
     public void updateTableWhere(FilterParameters filter)
     {
         if (filter.GetFilterString().Count != 0)
@@ -2297,9 +2297,9 @@ public class CellTable
     }
 
     /// <summary>
-    /// 
+    /// This method creates a query table where phones were launched later than they were announced.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> The new query table </returns>
     public CellTable GetPhonesLaunchedAfterAnnouncedTable()
     {
         CellTable temp = Copy();
