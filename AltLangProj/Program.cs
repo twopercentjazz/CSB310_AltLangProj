@@ -54,30 +54,30 @@ CellTable cell = new CellTable(@"Resources\Input\cells.csv");
 
 
 
-//cell.printCellTable();
+//cell.PrintCellTable();
 
 
-//cell.printRecord(1);
+//cell.PrintRecord(1);
 //Console.WriteLine();
-//cell.printRecord(500);
+//cell.PrintRecord(500);
 //Console.WriteLine();
-//cell.printRecord(1000);
+//cell.PrintRecord(1000);
 //Console.WriteLine();
 
 
-//cell.printMultipleRecords(new int[] {1, 500, 1000});
+//cell.PrintMultipleRecords(new int[] {1, 500, 1000});
 
-//cell.printCustomString(1, new string[] { "id", "model", "oem" });
+//cell.PrintCustomString(1, new string[] { "id", "model", "oem" });
 
-//cell.printCustomMultipleRecords(new int[] { 1, 500, 1000 }, new string[] { "id", "platform_os", "oem" });
+//cell.PrintCustomMultipleRecords(new int[] { 1, 500, 1000 }, new string[] { "id", "platform_os", "oem" });
 
-//cell.deleteRecord(5);
+//cell.DeleteRecord(5);
 
 
-//cell.addRecord(null, null, null, "poop", null, null, null, null, null, null, "a,b,c", null);
+//cell.AddRecord(null, null, null, "poop", null, null, null, null, null, null, "a,b,c", null);
 
 /*
-foreach (string VARIABLE in cell.getFieldsMap().GetFeaturesSensors())
+foreach (string VARIABLE in cell.GetFieldsMap().GetFeaturesSensors())
 {
     if (VARIABLE == null)
     {
@@ -92,7 +92,7 @@ foreach (string VARIABLE in cell.getFieldsMap().GetFeaturesSensors())
 */
 
 
-//cell.printCellTable();
+//cell.PrintCellTable();
 /*
 Console.WriteLine();
 
@@ -139,9 +139,9 @@ Console.WriteLine(cell.getModePlatformOs());
 Console.WriteLine();
 */
 
-//cell.printCellTable("oem");
+//cell.PrintCellTable("oem");
 
-//cell.printCellTable();
+//cell.PrintCellTable();
 
 ///////////////////////////////
 
@@ -154,9 +154,9 @@ query.GetFilterIntRange().Add("launch_status", new KeyValuePair<int,int>(2000, 2
 CellTable cell2 = cell.createQueryTable(query);
 
 
-cell2.printCellTable("launch_status");
+cell2.PrintCellTable("launch_status");
 
-cell2.printFrequencyTable("launch_status");
+cell2.PrintFrequencyTable("launch_status");
 
 Console.WriteLine("\nThis year had the most phones launched in the 2000's:  " + cell2.getModeLaunchStatus());
 
@@ -169,9 +169,9 @@ query2.GetFilterInt().Add("features_sensors", new[]{1});
 
 CellTable cell3 = cell.createQueryTable(query2);
 
-cell3.printCellTable();
+cell3.PrintCellTable();
 
-cell3.printFrequencyTable("features_sensors");
+cell3.PrintFrequencyTable("features_sensors");
 
 Console.WriteLine("\nThis is the number of phones with only one feature sensor:  " + cell3.getFeaturesSensorsCountElementCount(1));
 
@@ -181,7 +181,7 @@ Console.WriteLine("\nThis is the number of phones with only one feature sensor: 
 Console.WriteLine();
 
 
-Console.WriteLine("\nThe company (oem) with the highest average weight of the phone body: " + cell.printAvgPerOem("body_weight"));
+Console.WriteLine("\nThe company (oem) with the highest average weight of the phone body: " + cell.PrintAvgPerOemTable("body_weight"));
 
 ///////////////////////////////////////////
 
@@ -189,20 +189,20 @@ Console.WriteLine();
 
 CellTable cell4 = cell.getPhonesLaunchedAfterAnnouncedTable();
 
-cell4.printTableSize(); ////////////
+cell4.PrintTableSize(); ////////////
 
-//cell4.printCellTable();
+//cell4.PrintCellTable();
 
-cell4.printCustomMultipleRecords(cell4.getRecordsMap().GetCellTable().Keys.ToArray(), new []{"id", "oem", "model", "launch_announced", "launch_status"});
+cell4.PrintCustomMultipleRecords(cell4.GetRecordsMap().GetCellTable().Keys.ToArray(), new []{"id", "oem", "model", "launch_announced", "launch_status"});
 
 
 ///////////////////////////////////
 
 Console.WriteLine();
-cell4.printCellTable();
-cell4.printFeatureSensorList(835);
+cell4.PrintCellTable();
+cell4.PrintFeatureSensorList(835);
 
-Console.WriteLine(cell4.getType("body_weight"));
+Console.WriteLine(cell4.GetType("body_weight"));
 
 
 
@@ -214,11 +214,11 @@ query3.GetFilterString().Add("oem", new []{"Google", "Sony"});
 
 CellTable cell5 = cell.createQueryTable(query3);
 
-cell5.printCellTable();
+cell5.PrintCellTable();
 
-cell5.printTableStats();
+cell5.PrintTableStats();
 
-//Console.WriteLine(cell5.getType("features_sensors"));
+//Console.WriteLine(cell5.GetType("features_sensors"));
 
 Console.WriteLine();
 
