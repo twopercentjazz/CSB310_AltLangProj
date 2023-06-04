@@ -122,6 +122,7 @@
 > 2. Was there any phones that were announced in one year and released in another? Give me the oem and models?
 >
 >   Motorola (One Hyper & Razr 2019) and Xiaomi (Redmi K30 5G & Mi Mix Alpha)
+>   - Each announced in 2019 and released in 2020
 > </pre>
 > ![Report_Q2](https://github.com/twopercentjazz/CSB310_AltLangProj/assets/49768882/c501d777-5c9a-4117-93ce-acb63fefd3e3)
 > <pre>
