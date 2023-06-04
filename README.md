@@ -35,9 +35,15 @@
 ### Which Programming Language and version did you pick?
 > <pre>
 > For this project I chose to explore the C# programming language using the Visual Studio IDE. 
-> -  C# Version 11
-> -  .NET Version 7
-> -  Visusal Studio Community 2022 Version 17.6.2
+> </pre>
+> <pre>
+> C# Version 11
+> </pre>
+> <pre>
+> .NET Version 7
+> </pre>
+> <pre>
+> Visusal Studio Community 2022 Version 17.6.2
 > </pre>
 
 ### Why did you pick this programming language?
