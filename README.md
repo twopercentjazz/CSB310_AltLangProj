@@ -146,7 +146,16 @@
 > <pre>
 > unit testing
 >
-> In my experience C# handles 
+> In my experience C# handles unit testing very similarly to Java. To elaborate, in both 
+> languages you use Assert statments to test the functionality of methods. These can 
+> be included in your code or kept seperate using a testing framework. The MSTest 
+> framework works a little differently than using gradle in IntelliJ. In Visual Studio,
+> you have to create a seperate Unit Test Project to use the framework. For my unit 
+> testing I experimented with in project unit testing and using the MSTest framework.
+> I ultimatly chose to use Debug.Asserts in my main program to keep all my testing in 
+> one place. In C#, Debug.Asserts are cool because the asserts are only evaluated when
+> running the code under the debugger (development console) and not evaluated in a 
+> release build (so there is no additional overhead).
 > </pre>
 > <pre>
 > exception handling
