@@ -113,24 +113,29 @@
 
 ### Answer the following questions...
 > <pre>
-> 
-> </pre>
-> <pre>
 > 1. What company has the highest average weight of the phone body?
->
+> 
+>    Ulefone (with a average weight of 238.31)
 > </pre>
+> ![Report_Q1](https://github.com/twopercentjazz/CSB310_AltLangProj/assets/49768882/d8ebc3f1-bb4c-4939-b3a1-0b8267897da1)
 > <pre>
 > 2. Was there any phones that were announced in one year and released in another? What are they? Give me the oem and models?
 >
+>   Motorola (One Hyper & Razr 2019) and Xiaomi (Redmi K30 5G & Mi Mix Alpha)
 > </pre>
+> ![Report_Q2](https://github.com/twopercentjazz/CSB310_AltLangProj/assets/49768882/c501d777-5c9a-4117-93ce-acb63fefd3e3)
 > <pre>
 > 3. How many phones have only one feature sensor?
 >
+>    432 
 > </pre>
+> ![Report_Q3](https://github.com/twopercentjazz/CSB310_AltLangProj/assets/49768882/7959a91f-68fe-45b1-b086-0cfb8c289371)
 > <pre>
 > 4. What year had the most phones launched in the 2000s?
 >
+>    2019 (with 299 launches)
 > </pre>
+> ![Report_Q4](https://github.com/twopercentjazz/CSB310_AltLangProj/assets/49768882/48a1f099-6aa5-4c9b-9d4f-defef13f7a09)
 
 
 
